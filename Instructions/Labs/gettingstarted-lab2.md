@@ -130,9 +130,18 @@ By following this workaround, you can ensure accurate execution of the PowerShel
 1. If prompted to stay signed in, you can click "No."
  
 1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
+
+## Support Contact
  
-1. Click "Next" from the bottom right corner to embark on your Lab journey!
+The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
  
-    ![Start Your Azure Journey](media/sc900-image(3).png)
+Learner Support Contacts:
+ 
+- Email Support: labs-support@spektrasystems.com
+- Live Chat Support: https://cloudlabs.ai/labs-support
+ 
+Click "Next" from the bottom right corner to embark on your Lab journey!
+ 
+   ![Start Your Azure Journey](media/sc900-image(3).png)
  
 Now you're all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
