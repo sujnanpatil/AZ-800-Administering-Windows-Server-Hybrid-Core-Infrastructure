@@ -93,7 +93,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
 > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help
 
-<validation step="b65ef28d-a185-42fd-a25f-5a18bb1b2903" /> 
+<validation step="8f3f0140-9499-4911-a107-619e314e2870" /> 
 
 ### Task 2: Create a user with the Global Administrator role
 
@@ -136,7 +136,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
 > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help
 
-<validation step="4ea1ff7e-4b7b-4fc0-bb83-fec04f01bdf9" />
+<validation step="63f88018-d250-44e1-b332-24d6ff014f17" />
 
 ### Task 3: Change the password for the user with the Global Administrator role
 
@@ -388,7 +388,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
 > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help
 
-<validation step="8e646bae-8cc0-4e44-8b11-fb2af82ffd89" />
+<validation step="1daf63e7-2e4c-4fd6-b6ef-f8bbe1de920d" />
 
 ## Exercise 5: Implementing Microsoft Entra ID integration features in AD DS (READ ONLY)
 
