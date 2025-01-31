@@ -137,11 +137,11 @@ For this lab, you'll use the available VM environment.
 
 1. Browse to **C:\Base**, select **SEA-VM1.vhd (1)**, select **Open (2)**, and then select **Next >**.
 
-   ![](media/lab5-task3-9.png)
+   ![](media/lab5-task3-9n.png)
 
 1. On the **Summary** page, select **Finish**. Notice that **SEA-VM1** displays in the Virtual Machines list.
 
-   ![](media/lab5-task3-10.png)
+   ![](media/lab5-task3-10n.png)
 
 1. Select **SEA-VM1**, and then in the Actions pane, under **SEA-VM1**, select **Settings**.
 
@@ -218,7 +218,7 @@ For this lab, you'll use the available VM environment.
 
 1. Select the **Inventory (1)** tab and verify that it contains **SEA-VM1(2)**.
 
-   ![](media/lab5-task4-11.png)
+   ![](media/lab5-task4-11n.png)
 
 1.  Select **SEA-VM1** and review its Properties pane.
 
@@ -228,7 +228,7 @@ For this lab, you'll use the available VM environment.
 
 1. Scroll to the bottom of the pane and select **+ Add disk (2)**.
 
-   ![](media/lab5-task4-14.png)
+   ![](media/lab5-task4-14n.png)
 
 1. Select **New Virtual Hard Disk**.
 
