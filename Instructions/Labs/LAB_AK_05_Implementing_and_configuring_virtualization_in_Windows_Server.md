@@ -1,5 +1,7 @@
 # Lab 5: Implementing and configuring virtualization in Windows Server
 
+In this Hands-On-Lab, you will learn how to implement and configure virtualization in Windows Server. You will set up and manage Hyper-V, create and configure virtual machines, and optimize virtual environments to improve performance and security.
+
 ## Lab scenario
 
 Contoso is a global engineering and manufacturing company with its head office in Seattle, USA. An IT office and data center are in Seattle to support the Seattle location and other locations. Contoso recently deployed a Windows Server server and client infrastructure. 
@@ -9,10 +11,11 @@ Because of many physical servers being currently underutilized, the company plan
 **Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-800%20Lab%20Simulation%20-%20Implementing%20and%20configuring%20virtualization%20in%20Windows%20Server)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
 
 ## Lab objectives
+
 In this lab, you will perform:
 
-- Create and configure VMs.
-- Install and configure containers.
+- Exercise 1: Creating and configuring VMs.
+- Exercise 2: Installing and configuring containers.
 
 ## Estimated time: 60 minutes
 
@@ -20,9 +23,11 @@ In this lab, you will perform:
 
    ![](media/mod5art.png)  
 
-### Exercise 1: Creating and configuring VMs
+## Exercise 1: Creating and configuring VMs
+In this exercise, you will install and configure the Hyper-V role on a Windows Server. You will ensure that the required hardware and software prerequisites are met and verify that Hyper-V is running correctly.
 
-#### Task 1: Create a Hyper-V virtual switch
+### Task 1: Create a Hyper-V virtual switch
+In this task, you will install the Hyper-V role on a Windows Server machine using Server Manager and PowerShell.
 
 1. Connect to **SEA-ADM1** and, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
 
@@ -53,7 +58,8 @@ In this lab, you will perform:
 
       ![](media/privateswitch.png) 
 
-#### Task 2: Create a virtual hard disk
+### Task 2: Create a virtual hard disk
+In this task, you will configure essential Hyper-V settings, including virtual switch configuration, VM storage locations, and resource allocation.
 
 1. On **SEA-ADM1**, in Hyper-V Manager connected to **SEA-SVR1**, under **Action (1)** pane, select **New (2)**, and then select **Hard Disk (3)**. The **New Virtual Hard Disk Wizard** starts.
 
@@ -86,7 +92,8 @@ In this lab, you will perform:
 
    ![](media/finish.png) 
 
-#### Task 3: Create a virtual machine
+### Task 3: Create a virtual machine
+In this task, you will create a new virtual machine using Hyper-V Manager and PowerShell, selecting appropriate hardware and storage configurations.
 
 1. On **SEA-ADM1**, in Hyper-V Manager,under **Action (1)** pane, select **New (2)**, and then select **Virtual Machine (3)**. The **New Virtual Machine Wizard** starts.
 
@@ -140,7 +147,9 @@ In this lab, you will perform:
 
 1. Close Hyper-V Manager.
 
-#### Task 4: Manage Virtual Machines using Windows Admin Center
+### Task 4: Manage Virtual Machines using Windows Admin Center
+
+In this task, you will manage virtual machines using Windows Admin Center
 
 1. On **SEA-ADM1**, select **Start**, and then select **Windows PowerShell (Admin)**.
 
@@ -239,13 +248,14 @@ In this lab, you will perform:
 
    ![](media/lab5-task4-22.png)
 
-### Exercise 1 results
 
-After this exercise, you should have used Hyper-V Manager and Windows Admin Center to create a virtual switch, a virtual hard disk, a virtual machine, and then manage the virtual machine.
+## Exercise 2: Installing and configuring containers
 
-### Exercise 2: Installing and configuring containers
+In this Exercise, you will install and configure containers in the server machine.
 
-#### Task 1: Install Docker on Windows Server
+### Task 1: Install Docker on Windows Server
+
+In this task, you will install Docker on Windows Server machine
 
 1. On **SEA-ADM1**, select **Start**, and then select **Windows PowerShell (Admin)**.
 
@@ -295,7 +305,10 @@ After this exercise, you should have used Hyper-V Manager and Windows Admin Cent
    Restart-Computer -Force
    ```
 
-#### Task 2: Install and run a Windows container
+### Task 2: Install and run a Windows container
+
+In this task, you will install and run windows container inside server machine.
+
 
 1. After **SEA-SVR1** restarts, use the below PowerShell command again to establish a new PowerShell Remoting session to **SEA-SVR1**.
    
@@ -366,7 +379,9 @@ After this exercise, you should have used Hyper-V Manager and Windows Admin Cent
    docker ps
    ```
 
-#### Task 3: Use Windows Admin Center to manage containers
+### Task 3: Use Windows Admin Center to manage containers
+
+In this task, you will use Windows Admin Center to manage containers.
 
 1. On **SEA-ADM1**, in the Windows Admin Center, in the Tools menu of **sea-svr1.contoso.com**, select **Containers**. 
 
@@ -374,9 +389,6 @@ After this exercise, you should have used Hyper-V Manager and Windows Admin Cent
 
 1. In the Containers pane, browse through the **Overview**, **Containers**, **Images**, **Networks**, and **Volumes** tabs.
 
-### Exercise 2 results
-
-After this exercise, you should have installed Docker on Windows Server, downloaded a Windows container image containing web services, and verified its functionality.
 
 ### Review
 In this lab, you have completed:
