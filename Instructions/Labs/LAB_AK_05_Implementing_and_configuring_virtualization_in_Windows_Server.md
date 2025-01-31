@@ -119,11 +119,11 @@ For this lab, you'll use the available VM environment.
 
    ![](media/lab5-task3-4.png)
 
-1. On the **Specify Generation** page, select **Generation 1**, and then select **Next >**.
+1. On the **Specify Generation** page, select **Generation 1 (1)**, and then select **Next > (2)**.
 
    ![](media/lab5-task3-5.png)
 
-1. On the **Assign Memory** page, enter **4096**, and then select **Next >**.
+1. On the **Assign Memory** page, enter **4096 (1)**, and then select **Next > (2)**.
 
    ![](media/lab5-task3-6.png)
 
@@ -135,7 +135,7 @@ For this lab, you'll use the available VM environment.
 
    ![](media/lab5-task3-8.png)
 
-1. Browse to **C:\Base**, select **SEA-VM1.vhd**, select **Open**, and then select **Next >**.
+1. Browse to **C:\Base**, select **SEA-VM1.vhd (1)**, select **Open (2)**, and then select **Next >**.
 
    ![](media/lab5-task3-9.png)
 
@@ -216,7 +216,7 @@ For this lab, you'll use the available VM environment.
 
    ![](media/lab5-task4-10.png)
 
-1. Select the **Inventory** tab and verify that it contains SEA-VM1.
+1. Select the **Inventory (1)** tab and verify that it contains **SEA-VM1(2)**.
 
    ![](media/lab5-task4-11.png)
 
@@ -224,15 +224,15 @@ For this lab, you'll use the available VM environment.
 
     ![](media/lab5-task4-12.png)
 
-1. Select **Settings**, and then select **Disks**.
+1. Select **Settings**, and then select **Disks (1)**.
 
-1. Scroll to the bottom of the pane and select **+ Add disk**.
+1. Scroll to the bottom of the pane and select **+ Add disk (2)**.
 
    ![](media/lab5-task4-14.png)
 
 1. Select **New Virtual Hard Disk**.
 
-1. On the **New Virtual Hard Disk** pane,Change the disk type to **fixed size** and in the **Size (GB)** text box, type **5** , leave other settings with their default values, and then select **Create**.
+1. On the **New Virtual Hard Disk** pane,Change the disk type to **fixed size(1)** and in the **Size (GB)** text box, type **5**(2) , leave other settings with their default values, and then select **Create (3)**.
 
    ![](media/lab5-task4-16upd2.png)
 
