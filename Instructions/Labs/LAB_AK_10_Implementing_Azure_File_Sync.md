@@ -153,8 +153,6 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, **AZ-800T00A-
 
 1. In the details pane, select **Upload**.
 
-   ![](./media/T2S21upd.png)
-
 1. On the **Upload files** tab, browse to **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab10**, select **File1.txt** and select **Open**, and then **Upload**. When the upload is complete, close the **Upload files** tab.
 
 1. On the **share1** page, select **Snapshots (1)** Under **Operations**,and select **Add snapshot (2)**, and then select **OK**.
