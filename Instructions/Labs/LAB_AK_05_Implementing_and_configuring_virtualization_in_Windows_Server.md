@@ -127,7 +127,7 @@ For this lab, you'll use the available VM environment.
 
    ![](media/lab5-task3-6.png)
 
-1. On the **Configure Networking** page, select the Connection drop-down menu, select **Contoso Private Switch**, and then select **Next >**.
+1. On the **Configure Networking** page, select the Connection drop-down menu, select **Contoso Private Switch (1)**, and then select **Next > (2)**.
 
    ![](media/lab5-task3-7.png)
 
