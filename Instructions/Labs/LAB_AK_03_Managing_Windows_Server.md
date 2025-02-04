@@ -1,12 +1,10 @@
 # Lab 3: Managing Windows Server
 
-## Lab scenario
+## Lab Scenario
 
 Contoso, Ltd. wants to implement several new servers in their environment, and they have decided to use Server Core. They also want to implement Windows Admin Center for remote management of both these servers and other servers in the organization.
 
-**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-800%20Lab%20Simulation%20-%20Managing%20Windows%20Server)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
-
-## Lab objective
+## Lab Objective
 In this lab, you will perform:
 
   - Task 1: Install Windows Admin Center
@@ -21,25 +19,13 @@ In this lab, you will perform:
 
    ![](media/mod3art.png)  
 
-## Lab setup
-
-Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running. Other VMs can be running, but they aren't required for this lab.
-
-> **Note**: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-SEA-ADM1** virtual machines are hosting the installation of **SEA-DC1** and **SEA-ADM1**.
-
-1. Select **SEA-ADM1**.
-
-1. Sign in using the following credentials:
-
-   - Username: **Administrator**
-   - Password: **Pa55w.rd**
-   - Domain: **CONTOSO**
-
-For this lab, you'll use the available VM environment and an Azure AD tenant. 
-
 ## Exercise 1: Implementing and using remote server administration
 
-#### Task 1: Install Windows Admin Center
+In this exercise, you will learn how to install and configure Windows Admin Center for remote server management. This will involve adding servers for remote administration, configuring extensions for added functionality, and verifying your remote administration setup. You'll also work with Remote PowerShell to manage servers remotely and perform administrative tasks.
+
+### Task 1: Install Windows Admin Center
+
+In this task, you will install Windows Admin Center on SEA-ADM1. You will download the installation package, run the installer using PowerShell, and configure the necessary settings during installation. After installation, you will troubleshoot any potential connection issues and restart the system to complete the setup.
 
 1. Connect to **SEA-ADM1**, and if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
 
@@ -60,7 +46,9 @@ For this lab, you'll use the available VM environment and an Azure AD tenant.
    
    > **Note**: After installation completes, you may encounter the error message 'ERR_Connection_Refused'. If this occurs, restart SEA-ADM1 to correct the issue.
 
-#### Task 2: Add servers for remote administration
+### Task 2: Add servers for remote administration
+
+In this task, you will use Windows Admin Center to add SEA-DC1 for remote administration. You will configure the connection by entering the necessary credentials and verifying the connection status. If any issues occur, you will handle the error by reconfiguring the settings to ensure successful remote management.
 
 1. On **SEA-ADM1**, start Microsoft Edge, and then go to `https://SEA-ADM1.contoso.com`.
 
@@ -92,7 +80,9 @@ For this lab, you'll use the available VM environment and an Azure AD tenant.
 
    > **Note**: To perform single sign-on, you would need to set up Kerberos constrained delegation.
 
-#### Task 3: Configure Windows Admin Center extensions
+### Task 3: Configure Windows Admin Center extensions
+
+In this task, you will configure extensions in Windows Admin Center to enhance its functionality. You will install the Security (Preview) extension, review installed extensions, and configure the DNS tools on SEA-DC1. This will allow you to manage and monitor additional aspects of your servers, such as DNS records.
 
 1. On **SEA-ADM1**, in the upper-right corner of the Microsoft Edge window displaying Windows Admin Center, select the **Settings(1)** icon (the cog wheel).
 
@@ -129,7 +119,9 @@ For this lab, you'll use the available VM environment and an Azure AD tenant.
 
    ![](media/lab3-t3-7upd.png)
 
-#### Task 4: Verify remote administration
+### Task 4: Verify remote administration
+
+In this task, you will verify that remote administration is working correctly through Windows Admin Center. You will review server information, install roles and features (like Telnet Client), and enable Remote Desktop on SEA-DC1. You will then use the Remote Desktop tool to connect to SEA-DC1 and confirm the connection is successful.
 
 1. On **SEA-ADM1**, in Windows Admin Center, in the left pane, in the list of **Tools**, select **Overview**. Note that the details pane of Windows Admin Center displays basic server information and performance monitoring.
 
@@ -155,7 +147,9 @@ For this lab, you'll use the available VM environment and an Azure AD tenant.
 
 1. Close the Microsoft Edge window.
 
-#### Task 5: Administer servers with Remote PowerShell
+### Task 5: Administer servers with Remote PowerShell
+
+In this task, you will use PowerShell Remoting to administer SEA-DC1. You will start a PowerShell session on SEA-ADM1, remotely connect to SEA-DC1, and then check and manage the status of the Application Identity service. This task will help you practice performing administrative tasks remotely using PowerShell.
 
 1. On **SEA-ADM1**, switch to the **PowerShell** console session. 
 
