@@ -6,15 +6,12 @@ To address concerns regarding the consistent operational and management model, r
 
 Your goal is to verify that Windows Admin Center can be used in a consistent manner regardless of the location of managed systems.
 
-**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-800%20Lab%20Simulation%20-%20Using%20Windows%20Admin%20Center%20in%20hybrid%20scenarios)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
-
 ## Lab objectives
 In this lab, you will perform:
 
 - Exercise 1:  Provisioning Azure VMs running Windows Server
-- Exercise 2: Implementing hybrid connectivity by using the Azure Network Adapter
-- Exercise 3: Deploying Windows Admin Center gateway in Azure
-- Exercise 4: Verifying functionality of the Windows Admin Center gateway in Azure
+- Exercise 2: Deploying Windows Admin Center gateway in Azure
+- Exercise 3: Verifying functionality of the Windows Admin Center gateway in Azure
 
 ## Estimated time: 90 minutes
 
@@ -24,7 +21,11 @@ In this lab, you will perform:
 
 ## Exercise 1: Provisioning Azure VMs running Windows Server
 
-#### Task 1: Create an Azure resource group by using an Azure Resource Manager template
+In this exercise, you will provision Azure VMs running Windows Server using Azure Resource Manager (ARM) templates. This will involve creating a resource group and deploying the VM using predefined ARM templates. You will also configure the virtual network to support Azure VMs.
+
+### Task 1: Create an Azure resource group by using an Azure Resource Manager template
+
+In this task, you will create an Azure resource group using an ARM template. This resource group will be used to organize the resources provisioned in this lab, ensuring a structured approach to managing resources within Azure.
 
 1. Connect to **SEA-ADM1**, and if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
 
@@ -56,7 +57,9 @@ In this lab, you will perform:
      -rgName $rgName
    ```
 
-#### Task 2: Create an Azure VM by using an Azure Resource Manager template
+### Task 2: Create an Azure VM by using an Azure Resource Manager template
+
+In this task, you will deploy an Azure VM using an ARM template. This Azure VM will be running Windows Server and will be used for managing the system in later exercises.
 
 1. From the Cloud Shell pane, upload an Azure Resource Manager template **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab04\L04-rg_template.json** and the corresponding Azure Resource Manager parameter file **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab04\L04-rg_template.parameters.json**.
 
@@ -200,9 +203,13 @@ In this lab, you will perform:
 
 -->
 
-## Exercise 3: Deploying Windows Admin Center gateway in Azure
+## Exercise 2: Deploying Windows Admin Center gateway in Azure
 
-#### Task 1: Install Windows Admin Center gateway in Azure
+In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable management of Azure VMs. You will run a provisioning script to deploy the WAC gateway, set up necessary networking components, and configure SSL for secure connections.
+
+### Task 1: Install Windows Admin Center gateway in Azure
+
+In this task, you will deploy the Windows Admin Center (WAC) gateway within an Azure VM. This deployment allows you to manage both on-premises and Azure resources from a central location.
 
 1. On **SEA-ADM1**, switch to the browser window displaying the Azure portal.
 
@@ -266,7 +273,9 @@ In this lab, you will perform:
 
 1. Close the Cloud Shell pane.
 
-#### Task 2: Manual installation of WAC on the az800l04-vmwac
+### Task 2: Manual installation of WAC on the az800l04-vmwac
+
+In this task, you will manually install Windows Admin Center on the Azure VM. This alternative installation method ensures that you can still deploy the tool if the automated script fails.
 
 1. Navigate to Virtual machines in the Azure portal and select **az800l04-vmwac**.
 
@@ -291,7 +300,9 @@ In this lab, you will perform:
 
 1. Navigate to the **Start** menu, right-click, go to **Shut down** or **sign out**, and select **Disconnect**.
 
-#### Task 3: Review results of the script provisioning
+### Task 3: Review results of the script provisioning
+
+In this task, you will validate the results of the WAC gateway installation. You will test whether the WAC gateway has been successfully deployed and is functioning correctly.
 
 1. From **SEA-ADM1**, Navigate to Azure portal and locate the vm named **az800l04-vmwac**.
 
@@ -308,9 +319,13 @@ In this lab, you will perform:
 
 <validation step="e28d4114-d700-4946-b80d-7fc70ade9e46" />
 
-## Exercise 4: Verifying functionality of the Windows Admin Center gateway in Azure
+## Exercise 3: Verifying functionality of the Windows Admin Center gateway in Azure
 
-#### Task 1: Connect to the Windows Admin Center gateway running in Azure VM
+In this exercise, you will verify the functionality of the Windows Admin Center gateway in Azure by connecting to Azure VMs. You will test PowerShell remoting, manage the VMs through WAC, and ensure proper configuration of the gateway.
+
+### Task 1: Connect to the Windows Admin Center gateway running in Azure VM
+
+In this task, you will connect to the Windows Admin Center gateway running on the Azure VM. This allows you to manage and monitor your Azure resources from a single interface.
 
 1. On **SEA-ADM1**, start Microsoft Edge, go to the URL containing the fully qualified name of the target Azure VM hosting the Windows Admin Center installation you identified in the previous exercise-3 task-1 or task-2.
 
@@ -322,7 +337,9 @@ In this lab, you will perform:
 
 1. Examine the Overview pane of Windows Admin Center.
 
-#### Task 2: Enable PowerShell Remoting on an Azure VM
+### Task 2: Enable PowerShell Remoting on an Azure VM
+
+In this task, you will enable PowerShell remoting on an Azure VM. PowerShell remoting allows you to manage your Azure VMs remotely through the WAC interface.
 
 1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal, and then, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Virtual machines**.
 
@@ -348,7 +365,9 @@ In this lab, you will perform:
    Enable-PSRemoting -Force -SkipNetworkProfileCheck
    ```
 
-#### Task 3: Connect to an Azure VM by using the Windows Admin Center gateway running in Azure VM
+### Task 3: Connect to an Azure VM by using the Windows Admin Center gateway running in Azure VM
+
+In this task, you will connect to an Azure VM through the Windows Admin Center gateway. This allows you to manage and interact with the Azure VM as if it were on-premises, using the same tools and interface.
 
 1. On **SEA-ADM1**, in the Microsoft Edge window displaying the interface of the Windows Admin Center gateway running on the **az800l04-vmwac** Azure VM, select **Windows Admin Center**.
 
@@ -365,30 +384,6 @@ In this lab, you will perform:
 1. In the list of connections, select **az800l04-vm0**
 
 1. After successfully connecting to the Azure VM, examine the Overview pane of the **az800l04-vmwac** Azure VM in Windows Admin Center.
-
-## Exercise 5: Deprovisioning the Azure environment
-
-#### Task 1: Start a PowerShell session in Cloud Shell
-
-1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal.
-
-1. In the Microsoft Edge window displaying the Azure portal, open the Cloud Shell pane by selecting the Cloud Shell icon.
-
-#### Task 2: Identify all Azure resources provisioned in the lab
-
-1. From the Cloud Shell pane, run the following command to list all the resource groups created throughout this lab:
-
-   ```powershell
-   Get-AzResourceGroup -Name 'AZ800-L040*'
-   ```
-
-1. Run the following command to delete all the resource groups you created throughout this lab:
-
-   ```powershell
-   Get-AzResourceGroup -Name 'AZ800-L040*' | Remove-AzResourceGroup -Force -AsJob
-   ```
-
-   >**Note**: The command executes asynchronously (as determined by the -AsJob parameter), so while you'll be able to run another PowerShell command immediately afterwards within the same PowerShell session, it will take a few minutes before the resource groups are actually removed.
 
 ### Review
 
