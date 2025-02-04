@@ -1,6 +1,6 @@
 # Lab 2: Implementing integration between AD DS and Microsoft Entra ID
 
-## Lab scenario
+## Lab Scenario
 
 To address concerns regarding management and monitoring overhead resulting from using Microsoft Entra ID to authenticate and authorize access to Azure resources, you decide to test integration between on-premises Active Directory Domain Services (AD DS) and Entra ID to verify that this will address business concerns about managing multiple user accounts by using a mix of on-premises and cloud resources.
 
@@ -8,9 +8,7 @@ Additionally, you want to make sure that your approach addresses the Information
 
 Your goal is to implement pass-through authentication between on-premises AD DS and Entra ID.
 
-**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-800%20Lab%20Simulation%20-%20Implementing%20integration%20between%20AD%20DS%20and%20Azure%20AD)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
-
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will perform:
 
@@ -26,23 +24,14 @@ In this lab, you will perform:
 
    ![](media/mod2art.png)  
 
-## Lab setup
-
-Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T00A-ADM1** must be running. Other VMs can be running, but they aren't required for this lab. 
-
-> **Note**: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T00A-SEA-ADM1** virtual machines are hosting the installation of **SEA-DC1**, **SEA-SVR1**, and **SEA-ADM1**
-
-1. Select **SEA-ADM1**.
-
-1. Sign in using the following credentials:
-
-   - Username: **Administrator**
-   - Password: **Pa55w.rd**
-   - Domain: **CONTOSO**
 
 ## Exercise 1: Preparing Microsoft Entra ID for AD DS integration
 
+In this exercise, you will prepare Microsoft Entra ID for integration with on-premises AD DS. You will add and verify a custom domain, create a global administrator user, and ensure the account is secure by updating the password.
+
 ### Task 1: Create a custom domain in Azure
+
+In this task, you will create a custom domain in Microsoft Entra ID (Azure AD) by connecting to the Azure portal and adding a domain name (e.g., contoso.com) to Entra ID. You will also familiarize yourself with the process of domain verification, though verification is skipped in this lab.
 
 1. Connect to **SEA-ADM1** and, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
 
@@ -99,6 +88,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 
 ### Task 2: Create a user with the Global Administrator role
 
+In this task, you will create a new user account in Microsoft Entra ID and assign it the Global Administrator role. This user will be used to manage the integration and ensure you have sufficient permissions for the steps ahead.
+
 1. On **SEA-ADM1**, navigate back to the **Microsoft Entra ID** page in the Azure portal, from the left-hand navigation pane select **Users**.
 
     ![](media/azz22.png)
@@ -142,6 +133,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 
 ### Task 3: Change the password for the user with the Global Administrator role
 
+In this task, you will change the password for the newly created Global Administrator. This task ensures the account is ready for use with more secure authentication settings.
+
 1. On the Azure portal, select your user account, and then select **Sign out**.
 
    ![](media/signout.png) 
@@ -168,7 +161,11 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 
 ## Exercise 2: Preparing on-premises AD DS for Microsoft Entra ID integration
 
+In this exercise, you will prepare your on-premises AD DS for Microsoft Entra ID integration. This includes using the IdFix tool to identify and resolve synchronization issues before integration.
+
 ### Task 1: Install IdFix
+
+In this task, you will download and install the IdFix DirSync Error Remediation Tool, which is used to identify and fix any directory synchronization issues between your on-premises AD DS and Microsoft Entra ID. This ensures that your environment is ready for the integration process.
 
 1. On **SEA-ADM1**, open a new tab in Microsoft Edge, and then browse to **https://github.com/microsoft/idfix**.
 
@@ -185,6 +182,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 1. In the **IdFix Privacy Statement** dialog box, review the disclaimer, and then select **OK**.
 
 ### Task 2: Run IdFix
+
+In this task, you will run IdFix to detect and fix errors in Active Directory objects (e.g., missing attributes or invalid characters) that could cause synchronization issues when integrating with Entra ID.
 
 1. In the **IdFix** window, select **Query**.
 
@@ -208,7 +207,11 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 
 ## Exercise 3: Downloading, installing, and configuring Microsoft Entra Connect
 
+In this exercise, you will download, install, and configure Microsoft Entra Connect. This tool enables directory synchronization between on-premises AD DS and Microsoft Entra ID, with options tailored to your organization’s needs.
+
 ### Task 1: Install and configure Microsoft Entra Connect
+
+In this task, you will download, install, and configure Microsoft Entra Connect, which is the tool used to synchronize on-premises Active Directory with Microsoft Entra ID. You will connect both environments and configure sync options to enable the integration process.
 
 1. On **SEA-ADM1**, in the Microsoft Edge window displaying the Azure portal, browse to **Microsoft Entra ID**.
 
@@ -265,7 +268,11 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
  
 ## Exercise 4: Verifying integration between AD DS and Microsoft Entra ID
 
+In this exercise, you will verify the integration between AD DS and Microsoft Entra ID. You will check synchronization status and ensure that changes to user accounts in AD DS are reflected in Microsoft Entra ID.
+
 ### Task 1: Verify synchronization in the Azure portal
+
+In this task, you will verify the synchronization status in the Azure portal, ensuring that users and groups from your on-premises AD DS are successfully synced with Microsoft Entra ID.
 
 1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal. 
 
@@ -289,6 +296,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 
 ### Task 2: Verify synchronization in the Synchronization Service Manager
 
+In this task, you will use the Synchronization Service Manager to check the status of synchronization operations between your on-premises AD DS and Microsoft Entra ID, ensuring that the system is properly syncing data.
+
 1. On **SEA-ADM1**, on the **Start** menu, expand **Azure AD Connect**, and then select **Synchronization Service**.
 
    ![](media/azz27.png)
@@ -307,6 +316,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 
 ### Task 3: Update a user account in Active Directory
 
+In this task, you will update an existing user account (e.g., Sumesh Rajan) in Active Directory and verify that the changes are synced with Microsoft Entra ID.
+
 1. On **SEA-ADM1**, search and select **Server Manager**.
 
    ![](media/az-14.png)
@@ -324,6 +335,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
    ![](media/az-16.png)
 
 ### Task 4: Create a user account in Active Directory
+
+In this task, you will create a new user account in Active Directory (e.g., Jordan Mitchell) and confirm that the account is synchronized to Microsoft Entra ID.
 
 1. In **Active Directory Users and Computers**, right-click or access the context menu for the **Sales (1)**, select **New (2)**, and then select **User (3)**.
 
@@ -345,6 +358,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 
 ### Task 5: Sync changes to Microsoft Entra ID
 
+In this task, you will Start the sync between On-premises and Entra ID.
+
 1. On **SEA-ADM1**, on the **Start** menu, select **Windows PowerShell**.
 
    ![](media/az--19.png)
@@ -360,6 +375,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
    > **Note**: Once the synchronization cycle starts, it can take 15 minutes for Microsoft Entra ID objects to appear in the Microsoft Entra ID portal.
 
 ### Task 6: Verify changes in Microsoft Entra ID
+
+In this task, you will verify the sync between On-premises and Entra ID
 
 1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal and go back to the **Microsoft Entra ID** page.
 
@@ -396,9 +413,13 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, and **AZ-800T
 
 ## Exercise 5: Implementing Microsoft Entra ID integration features in AD DS (READ ONLY)
 
-This exercise has been made read-only, as synchronization may take up to 72 hours to fully take effect.
+In this exercise, you will enable and configure several Microsoft Entra ID features in Active Directory Domain Services (AD DS), including password writeback, pass-through authentication, and password protection.
+
+This exercise has been made **Read-only**, as synchronization may take up to 72 hours to fully take effect.
 
 ### Task 1: Enable password writeback in Microsoft Entra Connect
+
+In this task, you will configure password writeback in Microsoft Entra Connect to enable Active Directory users to reset their passwords using Microsoft Entra ID. This process will allow changes to be synchronized between the two environments, ensuring users can reset their passwords in either system.
 
 1. On **SEA-ADM1**, on the **Start** menu, expand **Azure AD Connect (1)**, and then select **Azure AD Connect (2)**.
 
@@ -452,6 +473,8 @@ This exercise has been made read-only, as synchronization may take up to 72 hour
    
 ### Task 2: Enable pass-through authentication in Microsoft Entra Connect
 
+In this task, you will configure pass-through authentication (PTA) for seamless user sign-in between Microsoft Entra ID and your on-premises AD DS. PTA will ensure that user sign-ins are securely routed through your on-premises environment without the need for storing passwords in the cloud.
+
 1. On **SEA-ADM1**, on the **Start** menu, expand **Azure AD Connect**, and then select **Azure AD Connect**.
 
 1. In the **Welcome to Microsoft Entra Connect Sync** window, select **Configure**.
@@ -497,6 +520,8 @@ This exercise has been made read-only, as synchronization may take up to 72 hour
 
 ### Task 3: Verify pass-through authentication in Azure
 
+In this task, you will verify that pass-through authentication has been successfully set up in your Azure environment. You will check the authentication settings in Microsoft Entra ID through the Azure portal, ensuring that the integration between on-premises AD DS and Microsoft Entra ID is functioning properly.
+
 1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal and go back to the **Microsoft Entra ID** page.
 
 1. On the **Microsoft Entra ID** page in the Azure portal, select **Microsoft Entra Connect**.
@@ -524,6 +549,8 @@ Under **User Sign-In**, select **Seamless single sign-on (2)**.
    > **Note**: To install the Azure AD Authentication Agent on multiple servers in your environment, you can download its binaries from the **Pass-through authentication** page in the Azure portal. 
 
 ### Task 4: Install and register the Microsoft Entra ID Password Protection proxy service and DC agent
+
+In this task, you will install the Microsoft Entra ID Password Protection proxy service on SEA-SVR1 and the DC agent on SEA-DC1. These components will allow Microsoft Entra ID password protection to be enforced within your on-premises Active Directory environment. This task includes downloading the necessary installers, installing the services, and registering the proxy service with Active Directory.
 
 1. On **SEA-ADM1**, start Microsoft Edge, browse to the **[Azure AD Password Protection for Windows Server Active Directory](https://www.microsoft.com/en-us/download/details.aspx?id=57071)** page where you can download installers, and then select **Download**.
 
@@ -654,6 +681,8 @@ Under **User Sign-In**, select **Seamless single sign-on (2)**.
    ```
 
 ### Task 5: Enable password protection in Azure
+
+In this task, you will configure password protection settings in Microsoft Entra ID via the Azure portal. You will enable password protection for Windows Server Active Directory, enforce custom banned password lists, and set the mode to "Audit." This feature helps ensure that weak or commonly used passwords are prevented within your organization's environment.
 
 1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal, go back to the **Microsoft Entra ID** page, and then, on the **Microsoft Entra ID** page, under **Manage** section, select **Security**.
 
