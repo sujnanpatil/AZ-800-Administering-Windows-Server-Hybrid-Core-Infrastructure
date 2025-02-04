@@ -1,12 +1,10 @@
 # Lab 1: Implementing identity services and Group Policy
 
-## Lab scenario
+## Lab Scenario
 
 You are working as an administrator at Contoso Ltd. The company is expanding its business with several new locations. The Active Directory Domain Services (AD DS) Administration team is currently evaluating methods available in Windows Server for a non-interactive, remote domain controller deployment. The team is also searching for a way to automate certain AD DS administrative tasks. Additionally, the team wants to establish configuration management based on Group Policy Objects (GPO).
 
-**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-800%20Lab%20Simulation%20-%20Implementing%20identity%20services%20and%20Group%20Policy)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
-
-## Lab objectives
+## Lab Objectives
 
 In this lab, you will perform:
 
@@ -21,7 +19,11 @@ In this lab, you will perform:
 
 ## Exercise 1: Deploying a new domain controller on Server Core
 
-#### Task 1: Deploy AD DS on a new Windows Server Core server
+In this exercise, you will install the Active Directory Domain Services (AD DS) role on a Server Core machine, promote it to a domain controller, and configure it for use in the Contoso.com domain. You will also manage Active Directory objects through PowerShell.
+
+### Task 1: Deploy AD DS on a new Windows Server Core server
+
+In this task, you will install the AD DS role on the SEA-SVR1 server using PowerShell and verify the installation.
 
 1. Connect to **SEA-ADM1** and, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
 
@@ -43,7 +45,9 @@ In this lab, you will perform:
 
    > **Note**: You might need to wait a brief time after the installation process is complete before verifying that the AD DS role has installed. If you do not observe the expected results from the **Get-WindowsFeature** command, you can try again after a few minutes.
 
-#### Task 2: Prepare the AD DS installation and promote a remote server
+### Task 2: Prepare the AD DS installation and promote a remote server
+
+In this task, you will configure the SEA-SVR1 server to be promoted to a domain controller by using the Active Directory Domain Services Configuration Wizard and PowerShell scripting.
 
 1.  On **SEA-ADM1**, on the **Start** menu, select **Server Manager**, and then, in **Server Manager**, select the **All Servers** view.
 
@@ -133,7 +137,9 @@ In this lab, you will perform:
 
    > **Note**: You might have to select **Refresh**.
 
-#### Task 3: Manage objects in AD DS
+### Task 3: Manage objects in AD DS
+
+In this task, you will create an Organizational Unit (OU) called Seattle, create a user account for Ty Carlson, add it to a group, and assign it to the local Administrators group. You will also use PowerShell to manage user accounts and group memberships.
 
 1. Ensure that you are connected to the console session of **SEA-ADM1**.
 
@@ -195,7 +201,11 @@ In this lab, you will perform:
 
 ## Exercise 2: Configuring Group Policy
 
-#### Task 1: Create and edit a GPO
+In this exercise, you will create a Group Policy Object (GPO) called CONTOSO Standards, configure specific policies, and link the GPO to the Contoso.com domain. You will enforce settings for registry access and screen saver behavior.
+
+### Task 1: Create and edit a GPO
+
+In this task, you will create a new GPO named CONTOSO Standards, configure it to prevent access to registry editing tools, set a screen saver timeout, and enable password protection for the screen saver.
 
 1. On **SEA-ADM1**, from Server Manager, select **Tools (1)**, and then select **Group Policy Management (2)**.
 
@@ -236,7 +246,9 @@ In this lab, you will perform:
 
 1. Close the **Group Policy Management Editor** window.
 
-#### Task 2: Link the GPO
+### Task 2: Link the GPO
+
+In this task, you will link the CONTOSO Standards GPO to the Contoso.com domain to apply the configured settings across all domain users.
 
 1. In the **Group Policy Management** window, in the navigation pane, right-click or access the context menu for the `Contoso.com` domain, and then select **Link an Existing GPO**.
 
@@ -244,7 +256,9 @@ In this lab, you will perform:
 
 1. In the **Select GPO** dialog box, select **CONTOSO Standards**, and then select **OK**.
 
-#### Task 3: Review the effects of the GPO's settings
+### Task 3: Review the effects of the GPO's settings
+
+In this task, you will review the applied Group Policy settings on a client machine by checking the Control Panel and validating the settings for Remote Event Log Management. You will then log in as CONTOSO\Ty to see the effect of the policy changes.
 
 1. On **SEA-ADM1**, in the search box on the taskbar, enter **Control Panel**. 
 
@@ -278,7 +292,9 @@ In this lab, you will perform:
 
 1. Sign out and then sign in back as **CONTOSO\Administrator** with the password **Pa55w.rd**.
 
-#### Task 4: Create and link the required GPOs
+### Task 4: Create and link the required GPOs
+
+In this task, you will create and link a Seattle Application Override Group Policy Object (GPO) to the Seattle organizational unit (OU) within the Contoso.com domain. This will involve configuring settings for screen saver timeout to disable it, ensuring that specific policy overrides are applied to the Seattle OU. This task will provide you with the foundation for managing application-related policies at the organizational level.
 
 1. On **SEA-ADM1**, from Server Manager, select **Tools**, and then select **Group Policy Management**.
 
@@ -300,7 +316,9 @@ In this lab, you will perform:
 
 1. Close the **Group Policy Management Editor** window.
 
-#### Task 5: Verify the order of precedence
+### Task 5: Verify the order of precedence
+
+In this task, you will verify the order of precedence for Group Policy Objects (GPOs) in the Seattle OU. The Seattle Application Override GPO will have higher precedence over the CONTOSO Standards GPO, meaning that its settings, such as screen saver timeout, will overwrite the corresponding settings from the CONTOSO Standards GPO. By reviewing the Group Policy Inheritance tab, you will confirm how policies are applied and their impact on the Seattle OU.
 
 1. Back in the **Group Policy Management Console** tree, ensure that the **Seattle** OU is selected.
 
@@ -308,7 +326,9 @@ In this lab, you will perform:
 
    > **Note**: The Seattle Application Override GPO has higher precedence than the CONTOSO Standards GPO. The screen saver time-out policy setting that you just configured in the Seattle Application Override GPO is applied after the setting in the CONTOSO Standards GPO. Therefore, the new setting will overwrite the CONTOSO Standards GPO setting. Screen saver time-out will be disabled for users within the scope of the Seattle Application Override GPO.
 
-#### Task 6: Configure the scope of a GPO with security filtering
+### Task 6: Configure the scope of a GPO with security filtering
+
+In this task, you will configure the security filtering of the Seattle Application Override GPO. By modifying the security filtering, you will restrict the GPO’s scope to specific users and computers, ensuring that only the SeattleBranchUsers group and SEA-ADM1 computer are affected by the GPO. This task involves removing the default security filtering for Authenticated Users and adding the appropriate security group and computer for more targeted policy application.
 
 1. On **SEA-ADM1**, in the **Group Policy Management** console, in the navigation pane, if necessary, expand the **Seattle** OU, and then select the **Seattle Application Override** GPO under the **Seattle** OU.
 
@@ -335,7 +355,9 @@ In this lab, you will perform:
 
 1. In the **Select User, Computer, or Group** dialog box, in the **Enter the object name to select (examples):** text box, enter **SEA-ADM1**, and then select **OK**.
 
-#### Task 7: Verify the application of settings
+### Task 7: Verify the application of settings
+
+In this task, you will use the Group Policy Modeling Wizard to simulate the application of GPOs to a specific user and computer. You will verify that the Seattle Application Override GPO's settings, such as the screen saver timeout, are correctly applied to the Ty user and SEA-ADM1 computer. This step involves confirming that the winning GPO is properly enforced through the modeling tool, ensuring that the policy settings are applied as expected.
 
 1. In the navigation pane, in **Group Policy Management**, select **Group Policy Modeling**.
 
