@@ -233,87 +233,35 @@ In this lab, you will perform:
 ### Task 5: Verify DHCP functionality
 
 1. On **SEA-ADM1**, select **Start**, and then select **Settings**.
-
-1. In the **Settings** window, select **Network & Internet**.
-
-   ![](media/az800lab7img24.png)
-
-1. In **Network & Internet** pane, select **Network and Sharing Center**.
-
-   ![](media/az800lab7img43.png)
-
+1. In the **Settings** window, select **Network & Internet**, and then select **Network and Sharing Center**.
 1. In **Network and Sharing Center**, select **Ethernet**, and then select **Properties**.
-
-   ![](media/az800lab7img44.png)
-
 1. In the **Ethernet Properties** dialog box, select **Internet Protocol Version 4 (TCP/IPv4)**, and then select **Properties**.
-
 1. In the **Internet Protocol Version 4 (TCP/IPv4) Properties** dialog box, select **Obtain an IP address automatically**, select **Obtain DNS server address automatically**, and then select **OK**.
-
-   ![](media/az800lab7img25.png)
-
 1. Select **Close**, and then, in the **Ethernet Status** window, select **Details**.
-
-   ![](media/details.png)
-
-1. In the **Network Connection Details** dialog box, verify that DHCP is enabled, an IP address was obtained, and that the **sea-svr1** DHCP server issued the lease.
-
-   >**Note**: It may take some time to view the list of IP address was obtained. Please proceed with the next steps and return to review the list of **IP address** afterward or else try to turn off and start svr1 machine from hyper-v manager.
-   
-   >**Note** If its not visiable on the Network and Sharing Center window, select Change adapter settings, select Ethernet, and double-click the Ethernet connection to display its status window and back on **Network and Sharing Center** window check the connection Ethernet.
-   
-1. Select **Close** to return to the **Ethernet Status** window. 
-
-1. On **DHCP** page, select **sea-svr1**, in the Actions pane, select **More Actions**, select **All tasks**, and then select **Stop**.
-
-   ![](media/az800lab7img26.png)
-
-1. On **SEA-ADM1**, switch back to the **Ethernet Status** window, and then select **Disable**.
-
-1. Back in the **Network and Sharing Center** window, select **Change adapter settings**, select **Ethernet**, and then select **Enable this network device**.
-
-   ![](media/az800lab7img27.png)
-
-1. Double-click the enabled **Ethernet** connection to display its status window.
-
-1. In the **Ethernet Status** window, select **Details**.
-
-1. In the **Network Connection Details** dialog box, verify that DHCP is enabled, an IP address was obtained, and that the **SEA-DC1 (172.16.10.10)** DHCP server issued the lease.
-
-   ![](media/az800lab7img28.png)
-
+1. In the **Network Connection Details** dialog box, verify that DHCP is enabled, an IP address was obtained, and that the **sea-svr1 ** DHCP server issued the lease.
 1. Select **Close** to return to the **Ethernet Status** window.
-
-1. In the **Ethernet Status** window, select **Properties**.
-
-1. In the **Ethernet Properties** dialog box, select **Internet Protocol Version 4 (TCP/IPv4)**, and then select **Properties**.
-
-1. In the **Internet Protocol Version 4 (TCP/IPv4) Properties** dialog box, select **Use the following IP address (1)** and specify the following settings. In the **Internet Protocol Version 4 (TCP/IPv4) Properties** dialog box, select **Use the following DNS server addresses** and then select **OK (6)**.
-
-   - IP address: **172.16.10.11 (2)**
-   - Subnet mask: **255.255.0.0 (3)**
-   - Default gateway: **172.16.10.1 (4)**
-   - Preferred DNS server: **172.16.10.10 (5)**
-
-     ![](media/az800lab7img29.png)
-
-     >**Note**: Leave the **Ethernet Status** window open. You will need it later in this lab.
-
-1. On **SEA-ADM1**, in the **DHCP** window, select **sea-svr1**, in the Actions pane, select **More Actions**, select **All tasks**, and then select **Start**.
-
-1. On **SEA-ADM1**, in the **DHCP** window, expand the **sea-svr1** node, expand the **IPv4** node, expand the **Scope [172.16.0.0] Contoso** node, and then select **Address Leases**.
-
+1. On **SEA-ADM1**, in the **DHCP** window, expand the **172.16.10.12** node, expand the **IPv4** node, expand the **Scope [172.16.0.0] Contoso** node, and then select **Address Leases**.
 1. Verify that there is an entry representing the **SEA-ADM1.contoso.com** lease.
-
-   >**Note**: Please wait at least 10 minutes for the above entry, and make sure to refresh the page frequently..
-
 1. On **SEA-ADM1**, in the **DHCP** window, expand the **sea-dc1** node, expand the **IPv4** node, expand the **Scope [172.16.0.0] Contoso** node, and then select **Address Leases**.
-
 1. Verify that here as well there is an entry representing the **SEA-ADM1.contoso.com** lease.
+1. Select **sea-svr1 **, in the Actions pane, select **More Actions**, select **All tasks**, and then select **Stop**.
+1. On **SEA-ADM1**, switch back to the **Ethernet Status** window, and then select **Disable**.
+1. Back in the **Network and Sharing Center** window, select **Change adapter settings**, select **Ethernet**, and then select **Enable this network device**.
+1. Double-click the enabled **Ethernet** connection to display its status window.
+1. In the **Ethernet Status** window, select **Details**.
+1. In the **Network Connection Details** dialog box, verify that DHCP is enabled, an IP address was obtained, and that the **SEA-DC1 (172.16.10.10)** DHCP server issued the lease.
+1. Select **Close** to return to the **Ethernet Status** window.
+1. In the **Ethernet Status** window, select **Properties**.
+1. In the **Ethernet Properties** dialog box, select **Internet Protocol Version 4 (TCP/IPv4)**, and then select **Properties**.
+1. In the **Internet Protocol Version 4 (TCP/IPv4) Properties** dialog box, select **Use the following IP address** and specify the following settings:
 
-   >**Note**: Please wait at least 10 minutes for the above entry, and make sure to refresh the page frequently..
+   - IP address: **172.16.10.11**
+   - Subnet mask: **255.255.0.0**
+   - Default gateway: **172.16.10.1**
 
-1. On **SEA-ADM1**, in the **DHCP** window, select **sea-svr1**, in the Actions pane, select **More Actions**, select **All tasks**, and then select **Stop**.
+1. In the **Internet Protocol Version 4 (TCP/IPv4) Properties** dialog box, select **Use the following DNS server addresses**, set the **Preferred DNS server** to **172.16.10.10**, and then select **OK**.
+
+   > **Note**: Leave the **Ethernet Status** window open. You will need it later in this lab. 
 
 ## Exercise 2: Deploying and configuring DNS
 
