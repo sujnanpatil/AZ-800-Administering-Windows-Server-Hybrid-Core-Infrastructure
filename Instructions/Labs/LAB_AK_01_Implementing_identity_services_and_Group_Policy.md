@@ -79,9 +79,11 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
 
    ![](media/update6.png)
 
-1. On the **Domain Controller Options** page, ensure that the **Domain Name System (DNS) server** and **Global Catalog (GC)** checkboxes are selected. Ensure that the **Read-only domain controller (RODC)** checkbox is cleared.
+1. On the **Domain Controller Options** page, ensure that the **Domain Name System (DNS) server** and **Global Catalog (GC)** checkboxes are selected. Ensure that the **Read-only domain controller (RODC) (1)** checkbox is cleared.
 
-1. In the **Type the Directory Services Restore Mode (DSRM) password** section, enter and confirm the password **Pa55w.rd**, and then select **Next**.
+1. In the **Type the Directory Services Restore Mode (DSRM) password** section, enter and confirm the password **Pa55w.rd (2)**, and then select **Next (3)**.
+
+   ![](media/lab1f1.png)
 
 1. On the **DNS Options** page, select **Next**.
 
@@ -91,9 +93,13 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
 
    ![](media/update9.png)
 
-1. On the **Paths** page, keep the default path settings for the **Database** folder, **Log files** folder, and **SYSVOL** folder, and then select **Next**.
+1. On the **Paths** page, keep the default path settings for the **Database** folder, **Log files** folder, and **SYSVOL** folder (1), and then select **Next (2)**.
+
+   ![](media/lab1f2.png)
 
 1. To open the generated Windows PowerShell script, on the **Review Options** page, select **View script**.
+
+   ![](media/lab1f3.png)
 
 1. In Notepad, edit the generated Windows PowerShell script:
 
@@ -108,7 +114,9 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
 
 1. Minimize the **Notepad**.
 
-1. Back to **Review Options** page, select **Cancel** and when prompted for confirmation, select **Yes** to cancel the wizard.
+1. Back to **Review Options** page, select **Cancel (1)** and when prompted for confirmation, select **Yes (2)** to cancel the wizard.
+
+   ![](media/lab1f4.png)
 
 1. At the Windows PowerShell command prompt, enter the following command:
 
@@ -121,9 +129,14 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
    ```powershell
    Invoke-Command -ComputerName SEA-SVR1 {Install-ADDSDomainController -NoGlobalCatalog:$false -CreateDnsDelegation:$false -Credential (Get-Credential) -CriticalReplicationOnly:$false -DatabasePath "C:\Windows\NTDS" -DomainName "Contoso.com" -InstallDns:$true -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion:$false -SiteName "Default-First-Site-Name" -SysvolPath "C:\Windows\SYSVOL" -Force:$true}
    ```
+
+   ![](media/lab1f5.png)
+
 1. To invoke the command, press Enter.
 
-1. In the **Windows PowerShell Credential Request** dialog box, enter **CONTOSO\Administrator** in the **User name** box, enter **Pa55w.rd** in the **Password** box, and then select **OK**.
+1. In the **Windows PowerShell Credential Request** dialog box, enter **CONTOSO\Administrator (1)** in the **User name** box, enter **Pa55w.rd (2)** in the **Password** box, and then select **OK (3)**.
+
+   ![](media/lab1f6.png)
 
 1. When prompted for the password, in the **SafeModeAdministratorPassword** text box, enter **Pa55w.rd**, and then press Enter.
 
@@ -131,9 +144,13 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
 
 1. Wait until the command runs and the **Status Success** message is returned. The **SEA-SVR1** virtual machine restarts.
 
+   ![](media/lab1f7.png)
+
 1. Close Notepad without saving the file.
 
-1. After **SEA-SVR1** restarts, on **SEA-ADM1**, switch to **Server Manager**, and on the left side, select the **AD DS** node. Note that **SEA-SVR1** has been added as a server and that the warning notification has disappeared.
+1. After **SEA-SVR1** restarts, on **SEA-ADM1**, switch to **Server Manager**, and on the left side, select the **AD DS (1)** node. Note that **SEA-SVR1 (2)** has been added as a server and that the warning notification has disappeared.
+
+   ![](media/lab1f8.png)
 
    > **Note**: You might have to select **Refresh**.
 
@@ -219,22 +236,29 @@ In this task, you will create a new GPO named CONTOSO Standards, configure it to
 
    ![](media/update22.png)
 
-1. In the **Name** text box, enter **CONTOSO Standards**, and then select **OK**.
+1. In the **Name** text box, enter **CONTOSO Standards (1)**, and then select **OK (2)**.
+
+   ![](media/lab1f9.png)
 
 1. In the details pane, right-click or access the context menu for the **CONTOSO Standards** Group Policy Object (GPO), and then select **Edit**.
 
    ![](media/update24.png)
 
-1. In the **Group Policy Management Editor** window, in the navigation pane, expand **User Configuration**, expand **Policies**, expand **Administrative Templates**, and then select **System**.
-1. Double-click the **Prevent access to registry editing tools** policy setting or select the setting, and then press Enter.
+1. In the **Group Policy Management Editor** window, in the navigation pane, expand **User Configuration (1)**, expand **Policies (2)**, expand **Administrative Templates (3)**, and then select **System (4)**.
 
-1. In the **Prevent access to registry editing tools** dialog box, select **Enabled**, and then select **OK**.
+   ![](media/lab1f10.png)
+
+1. Double-click the **Prevent access to registry editing tools (5)** policy setting or select the setting, and then press Enter.
+
+1. In the **Prevent access to registry editing tools** dialog box, select **Enabled (1)**, and then select **OK (2)**.
 
    ![](media/update27.png)
 
-1. In the navigation pane, expand **User** **Configuration**, expand **Policies**, expand **Administrative Templates**, expand **Control Panel**, and then select **Personalization**.
+1. In the navigation pane, expand **User Configuration (1)**, expand **Policies (2)**, expand **Administrative Templates (3)**, expand **Control Panel (4)**, and then select **Personalization (5)**.
 
-1. In the details pane, double-click or select the **Screen saver timeout** policy setting, and then press Enter.
+   ![](media/lab1f11.png)
+
+1. In the details pane, double-click or select the **Screen saver timeout (6)** policy setting, and then press Enter.
 
 1. In the **Screen saver timeout** dialog box, select **Enabled (1)**. In the **Seconds** text box, enter **600 (2)**, and then select **OK (3)**.
 
@@ -242,7 +266,11 @@ In this task, you will create a new GPO named CONTOSO Standards, configure it to
 
 1. Double-click or select the **Password protect the screen saver** policy setting, and then press Enter.
 
-1. In the **Password protect the screen saver** dialog box, select **Enabled**, and then select **OK**.
+   ![](media/lab1f12.png)
+
+1. In the **Password protect the screen saver** dialog box, select **Enabled (1)**, and then select **OK (2)**.
+
+   ![](media/lab1f13.png)
 
 1. Close the **Group Policy Management Editor** window.
 
@@ -256,6 +284,8 @@ In this task, you will link the CONTOSO Standards GPO to the Contoso.com domain 
 
 1. In the **Select GPO** dialog box, select **CONTOSO Standards**, and then select **OK**.
 
+   ![](media/lab1f14.png)
+
 ### Task 3: Review the effects of the GPO's settings
 
 In this task, you will review the applied Group Policy settings on a client machine by checking the Control Panel and validating the settings for Remote Event Log Management. You will then log in as CONTOSO\Ty to see the effect of the policy changes.
@@ -264,9 +294,13 @@ In this task, you will review the applied Group Policy settings on a client mach
 
 1. In the **Best match** list, select **Control Panel**.
 
-1. Select **System and Security**, and under **Windows Defender Firewall**, select **Allow an app through Windows Firewall**.
+1. Select **System and Security (1)**, and under **Windows Defender Firewall**, select **Allow an app through Windows Firewall (2)**.
 
-1. In the **Allowed apps and features** list, locate the **Remote Event Log Management** entry, select the checkbox in the **Domain** column, and then select **OK**. 
+   ![](media/lab1f16.png)
+
+1. In the **Allowed apps and features** list, locate the **Remote Event Log Management (1)** entry, select the checkbox in the **Domain (2)** column, and then select **OK (3)**. 
+
+   ![](media/lab1f15.png)
 
 1. Sign out, and then sign in as **CONTOSO\\Ty** with the password **Pa55w.rd**.
 
@@ -279,6 +313,8 @@ In this task, you will review the applied Group Policy settings on a client mach
 1. In the **Best match** list, select **Control Panel**.
 
 1. In the search box in Control Panel, enter **screen saver**, and then select **Change screen saver**. (It might take a few minutes for the option to display.)
+
+   ![](media/lab1f17.png)
 
 1. In the **Screen Saver Settings** dialog box, notice that the **Wait** option is dimmed. You cannot change the time-out. Notice that the **On resume, display logon screen** option is selected and dimmed and that you cannot change the settings.
 
@@ -304,7 +340,11 @@ In this task, you will create and link a Seattle Application Override Group Poli
 
 1. Right-click or access the context menu for the **Seattle** organizational unit (OU), and then select **Create a GPO in this domain, and Link it here**.
 
+   ![](media/lab1f18.png)
+
 1. In the **New GPO** dialog box, in the **Name** text box, enter **Seattle Application Override**, and then select **OK**.
+
+   ![](media/lab1f19.png)
 
 1. In the details pane, right-click or access the context menu for the **Seattle Application Override** GPO, and then select **Edit**.
 
@@ -324,6 +364,8 @@ In this task, you will verify the order of precedence for Group Policy Objects (
 
 1. Select the **Group Policy Inheritance** tab and review its content.
 
+   ![](media/lab1f20.png)
+
    > **Note**: The Seattle Application Override GPO has higher precedence than the CONTOSO Standards GPO. The screen saver time-out policy setting that you just configured in the Seattle Application Override GPO is applied after the setting in the CONTOSO Standards GPO. Therefore, the new setting will overwrite the CONTOSO Standards GPO setting. Screen saver time-out will be disabled for users within the scope of the Seattle Application Override GPO.
 
 ### Task 6: Configure the scope of a GPO with security filtering
@@ -334,11 +376,15 @@ In this task, you will configure the security filtering of the Seattle Applicati
 
 1. In the **Group Policy Management Console** dialog box, review the following message: **You have selected a link to a Group Policy Object (GPO). Except for changes to link properties, changes you make here are global to the GPO, and will impact all other locations where this GPO is linked.**
 
-1. Select the **Do not show this message again** checkbox, and then select **OK**.
+1. Select the **Do not show this message again (1)** checkbox, and then select **OK (2)**.
+
+   ![](media/lab1f21.png)
 
 1. Review the **Security Filtering** section and note that the GPO applies by default to Authenticated Users.
 
 1. In the **Security Filtering** section, select **Authenticated Users**, and then select **Remove**.
+
+   ![](media/lab1f22.png)
 
 1. In the **Group Policy Management** dialog box, select **OK**, review the **Group Policy Management** warning, and then select **OK** again.
 
@@ -346,14 +392,21 @@ In this task, you will configure the security filtering of the Seattle Applicati
 
 1. In the details pane, select **Add**.
 
-1. In the **Select User, Computer, or Group** dialog box, in the **Enter the object name to select (examples):** text box, enter **SeattleBranchUsers**, and then select **OK**.
+1. In the **Select User, Computer, or Group** dialog box, in the **Enter the object name to select (examples):** text box, enter **SeattleBranchUsers (1)**, and then select **OK (2)**.
+
+   ![](media/lab1f23.png)
+
 1. In the details pane, under **Security Filtering**, select **Add**.
 
 1. In the **Select User, Computer, or Group** dialog box, select **Object Types**.
 
 1. In the **Object Types** dialog box, select the **Computers** checkbox and then select **OK**.
 
-1. In the **Select User, Computer, or Group** dialog box, in the **Enter the object name to select (examples):** text box, enter **SEA-ADM1**, and then select **OK**.
+   ![](media/lab1f24.png)
+
+1. In the **Select User, Computer, or Group** dialog box, in the **Enter the object name to select (examples):** text box, enter **SEA-ADM1 (1)**, and then select **OK (2)**.
+
+   ![](media/lab1f25.png)
 
 ### Task 7: Verify the application of settings
 
@@ -365,19 +418,27 @@ In this task, you will use the Group Policy Modeling Wizard to simulate the appl
 
 1. In **Group Policy Modeling Wizard**, select **Next**.
 
+   ![](media/lab1f26.png)
+
 1. On the **Domain Controller Selection** page, accept the default settings, and then select **Next**.
 
-1. On the **User and Computer Selection** page, in the **User information** section, select **User**, and then, in the **User** text box, enter **CONTOSO\Ty** or use the **Browse** command button to locate the **Ty** user account.
+   ![](media/lab1f27.png)
 
-1. On the **User and Computer Selection** page, in the **Computer information** section, select **Computer**, and then, in the **Computer** text box, enter **CONTOSO\SEA-ADM1** or use the **Browse** command button to locate the **SEA-ADM1** computer.
+1. On the **User and Computer Selection** page, in the **User information** section, select **User**, and then, in the **User** text box, enter **CONTOSO\Ty (1)** or use the **Browse** command button to locate the **Ty** user account.
 
-1. On the **User and Computer Selection** page, select **Next**.
+1. On the **User and Computer Selection** page, in the **Computer information** section, select **Computer**, and then, in the **Computer** text box, enter **CONTOSO\SEA-ADM1 (2)** or use the **Browse** command button to locate the **SEA-ADM1** computer.
+
+   ![](media/lab1f28.png)
+
+1. On the **User and Computer Selection** page, select **Next (3)**.
 
 1. On the **Advanced Simulation Options** page, accept the default settings, and then select **Next**.
 
 1. On the **Alternate Active Directory Paths** page, note the user and computer locations, and then select **Next**.
 
-1. On the **User Security Groups** page, verify that the list of groups includes **CONTOSO\\SeattleBranchUsers**, and then select **Next**.
+1. On the **User Security Groups** page, verify that the list of groups includes **CONTOSO\\SeattleBranchUsers (1)**, and then select **Next (2)**.
+
+   ![](media/lab1f29.png)
 
 1. On the **Computer Security Groups** page, select **Next**.
 
@@ -392,6 +453,8 @@ In this task, you will use the Group Policy Modeling Wizard to simulate the appl
 1. In the details pane, select the **Details** tab, and then select **show all**.
 
 1. In the report, scroll down until you locate the **User Details** section, and then locate the **Control Panel/Personalization** section. Note that the **Screen saver timeout** settings are disabled and the winning GPO is set to Seattle Application Override GPO.
+
+   ![](media/lab1f30.png)
 
 1. Close the **Group Policy Management** console.
 
