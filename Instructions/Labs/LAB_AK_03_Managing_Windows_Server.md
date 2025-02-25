@@ -29,7 +29,9 @@ In this task, you will install Windows Admin Center on SEA-ADM1. You will downlo
 
 1. Connect to **SEA-ADM1**, and if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
 
-1. On **SEA-ADM1**, select **Start**, and then right click on **Windows PowerShell** and select **Run as Administrator**.
+1. On **SEA-ADM1**, select **Start (1)**, and then right click on **Windows PowerShell (2)** and select **Run as Administrator (3)**.
+
+   ![](media/lab3f1.png)
 
 1. In the **Windows PowerShell** console, enter the following command, and then press Enter to download the latest version of Windows Admin Center:
 	
@@ -56,29 +58,42 @@ In this task, you will use Windows Admin Center to add SEA-DC1 for remote admini
 
    >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe)**.
 
-2. When prompted, in the **Windows Security** dialog box, enter the following credentials, and then select **OK**:
+   ![](media/lab7-171.png)
 
-   - Username: **CONTOSO\Administrator**
-   - Password: **Pa55w.rd**
+2. When prompted, in the **Windows Security** dialog box, enter the following credentials, and then select **OK (3)**:
+
+   - Username: **CONTOSO\Administrator (1)**
+   - Password: **Pa55w.rd (2)**
+
+   ![](media/lab7-172.png)
 
 3. Review the **New in this release** pop-up window and select **Close** in its upper-right corner.
 
 4. Review the **All connections** page and note that it includes the **sea-adm1.contoso.com** entry. 
 
-5. On the **All connections** page, select **+ Add**. 
+5. On the **All connections** page, select **+ Add (1)**. 
 
-6. In the Add or create resources pane, on the **Servers** tile, select **Add**.
+   ![](media/lab7-173.png)
 
-7. In the **Server name** text box, enter **sea-dc1.contoso.com**.
+6. In the Add or create resources pane, on the **Servers** tile, select **Add (2)**.
 
-8. Ensure that the **Use another account for this connection** option is selected, enter the following credentials, and then select **Add with credentials**:
+7. In the **Server name** text box, enter **sea-dc1.contoso.com (1)**  and click on **Add** (2).  
 
-   - Username: **CONTOSO\Administrator**
-   - Password: **Pa55w.rd**
 
-   > **Note**: After performing step 7, if an error message that says **You can add this server to your list of connections, but we can't confirm it's available.** appears, select **Add**. In the All Connections pane,  select **sea-svr1.contoso.com**, and then select **Manage as**. In the **Specify your credentials** dialog box, ensure that the **Use another account for this connection** option is selected, enter the Administrator credentials, and then select **Continue**.
+   ![](media/lab3f2.png)  
 
-   > **Note**: To perform single sign-on, you would need to set up Kerberos constrained delegation.
+   > **Note**: While performing step 7, if you see an error message stating, **"You can add this server to your list of connections, but we can't confirm it's available."**, select **Add**.  
+
+   - In the **All Connections** pane, select **sea-dc1.contoso.com** (1) and then click on **Manage as** (2).  
+   - In the **Specify your credentials** dialog box:  
+     - Ensure that **Use another account for this connection** (3) is selected.  
+     - Enter the Administrator credentials:  
+       - **Username**: **CONTOSO\Administrator** (4)  
+       - **Password**: **Pa55w.rd** (5)  
+     - Check the **Use this credential for all connections** checkbox (6).  
+     - Click **Continue** (7).  
+
+   ![](media/lab3f3.png)  
 
 ### Task 3: Configure Windows Admin Center extensions
 
@@ -108,7 +123,7 @@ In this task, you will configure extensions in Windows Admin Center to enhance i
 
 1. On the **Server connections** page, select the **sea-dc1.contoso.com** link.
 
-1. Ensure that **Use another account for this connection** option is selected, select the **Use these credentials for all connections**, enter the following credentials, and then select **Continue**:
+1. If prompted for credentials, ensure that **Use another account for this connection** option is selected, select the **Use these credentials for all connections**, enter the following credentials, and then select **Continue**:
 
    - Username: **CONTOSO\Administrator**
    - Password: **Pa55w.rd**
@@ -125,25 +140,39 @@ In this task, you will verify that remote administration is working correctly th
 
 1. On **SEA-ADM1**, in Windows Admin Center, in the left pane, in the list of **Tools**, select **Overview**. Note that the details pane of Windows Admin Center displays basic server information and performance monitoring.
 
-1. In the left pane, in the list of **Tools**, scroll down and review the basic administration tools available. Select **Roles & features** and note which roles and features are listed as installed and which ones are available to install. Scroll down, select the **Telnet Client** checkbox, and then select **+ Install** at the top of the pane.
+1. In the left pane, in the list of **Tools**, scroll down and review the basic administration tools available. Select **Roles & features (1)** and note which roles and features are listed as installed and which ones are available to install. Scroll down, select the **Telnet Client (2)** checkbox, and then select **+ Install (3)** at the top of the pane.
+
+   ![](media/lab3f4.png)  
 
 1. In the **Install Roles and Features** pane, select **Yes** and wait for the message confirming that Telnet Client was installed successfully.
 
-1. On the left pane, below the  **Overview**, select **Settings**.
+   ![](media/lab3f5.png)  
 
-1. In the **Settings** section , select **Remote Desktop**.
+1. On the left pane, below the  **Overview**, select **Settings (1)**.
 
-1. In the **Remote Desktop** section, select the option **Allow remote connections to this computer** checkbox, and then select **Save**.
+1. In the **Settings** section , select **Remote Desktop (2)**.
 
-1. In the left pane, in the list of **Tools**, select **Remote Desktop**.
+1. In the **Remote Desktop** section, select the option **Allow remote connections to this computer (3)** checkbox, and then select **Save (4)**.
 
-1. In the Remote Desktop pane, select the **Automatically connect with the certificate presented by this machine** checkbox, and then select **Connect**.
+   ![](media/lab3f6.png)  
 
-1. When prompted, select **Confirm**, and enter Password: **Pa55w.rd** then select **Connect**.
+1. In the left pane, in the list of **Tools**, select **Remote Desktop (1)**.
+
+1. In the Remote Desktop pane, select the **Automatically connect with the certificate presented by this machine (2)** checkbox, and then select **Connect**.
+
+   ![](media/lab3f7.png)  
+
+1. When prompted, select **Confirm**, and enter Password: **Pa55w.rd (1)** then select **Connect (2)**.
+
+   ![](media/lab3f8.png)  
+
+   ![](media/lab3f9.png)  
 
 1. Verify that you successfully connected via Remote Desktop to **SEA-DC1** within the Windows Admin Center interface.
 
 1. Select **Disconnect**.
+
+   ![](media/lab3f11.png)  
 
 1. Close the Microsoft Edge window.
 
@@ -179,6 +208,8 @@ In this task, you will use PowerShell Remoting to administer SEA-DC1. You will s
    ```
 
    > **Note**: Verify that the service is currently running.
+
+   ![](media/lab3f10.png)  
 
 ### Results
 
