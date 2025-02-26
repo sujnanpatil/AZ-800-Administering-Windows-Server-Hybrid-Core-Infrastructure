@@ -36,21 +36,21 @@ In this task, you will create an Azure resource group using an ARM template. Thi
 
 1. In the Azure portal, open the **Cloud Shell** pane by selecting the toolbar icon directly next to the search text box.
 
-  ![](media/lab4g1.png)  
+   ![](media/lab4g1.png)  
 
 1. If prompted to select either **Bash** or **PowerShell**, select **PowerShell**.
 
-  ![](media/lab4g2.png)  
+   ![](media/lab4g2.png)  
 
 1. If this is the first time you are starting Cloud Shell and you are presented with the **Getting started** page, select **No storage account required (1)**, select the **default (2)** subscription you are using in this lab, then select **Apply (3)**.
 
-  ![](media/lab4g3.png) 
+   ![](media/lab4g3.png) 
 
 1. In the toolbar of the Cloud Shell pane, select the **Manage Files** icon, in the drop-down menu, select **Upload**, and then upload the **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab04\L04-sub_template.json** file to the Cloud Shell home directory.
 
-  ![](media/lab4g4.png) 
+   ![](media/lab4g4.png) 
 
-  ![](media/lab4g5.png) 
+   ![](media/lab4g5.png) 
 
 1. From the Cloud Shell pane, run the following commands to create a resource group that will contain the resources you provision in this lab.
 
@@ -65,7 +65,7 @@ In this task, you will create an Azure resource group using an ARM template. Thi
      -rgName $rgName
    ```
 
-  ![](media/lab4g6.png) 
+   ![](media/lab4g6.png) 
 
 ### Task 2: Create an Azure VM by using an Azure Resource Manager template
 
@@ -89,7 +89,7 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
 
 1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for and select the **az800l04-vnet** virtual network.
 
-  ![](media/lab4g7.png) 
+   ![](media/lab4g7.png) 
 
 1. On the **az800l04-vnet** page, under **Settings** section, select **Subnets (1)**, and then, on the Subnets page, select **+ subnet (2)**.
 
@@ -100,7 +100,7 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
    |Subnet purpose |	**Virtual Network Gateway (3)** |
    |Starting address |	**10.4.3.224/27 (4)** |
 
-  ![](media/lab4g8.png) 
+   ![](media/lab4g8.png) 
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
@@ -108,8 +108,6 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
 > - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
  
 <validation step="f7861d50-4d57-462e-9da5-c570cc410428" />
-
-
 
 ## Exercise 2: Implementing hybrid connectivity by using the Azure Network Adapter
 
@@ -119,14 +117,14 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
 
    >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe)**. 
 
-   ![](media/lab7-171.png)
+    ![](media/lab7-171.png)
 
 1. If prompted, in the **Windows Security** dialog box, enter the following credentials, and then select **OK (3)**:
 
    - Username: **CONTOSO\Administrator (1)**
    - Password: **Pa55w.rd (2)**
 
-   ![](media/lab7-172.png)
+    ![](media/lab7-172.png)
 
 1. On the **All connections** page, select the **sea-adm1.contoso.com** entry. 
 1. In Windows Admin Center, select **Networks (1)**, and then select **+ Add Azure Network Adapter (Preview) (2)**.
@@ -137,13 +135,14 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
 
    >**Note**: This will automatically display the Azure pane on the **Settings** page within Windows Admin Center.
 
-   ![](media/lab4g9.png)
+    ![](media/lab4g9.png)
 
 1. In Windows Admin Center, in the Azure pane, on the **Settings** page, select **Register**.
 
    ![](media/lab4g10.png)
 
 1. In the **Get started with Azure in Windows Admin Center** pane, select **Copy (1)** to copy the code displayed in the listing of the steps of the registration procedure. 
+
 1. In the listing of step of the registration procedure, select the **Enter the code (2)** link.
 
    >**Note**: This will open another tab in the Microsoft Edge window displaying the **Enter code** page.
@@ -159,7 +158,6 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
    ![](media/lab4g13.png)
 
 1. When prompted **Are you trying to sign in to Windows Admin Center?**, select **Continue**.
-
 
    ![](media/lab4g14.png)
 
@@ -198,7 +196,6 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
    ```
 
    ![](media/lab4g18.png)
-
 
 1. On **SEA-ADM1**, switch to the browser window displaying the Azure portal.
 
@@ -286,6 +283,7 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
    Start-BitsTransfer -Source https://aka.ms/WACDownload -Destination "$env:USERPROFILE\Downloads\WindowsAdminCenter.exe"
    ```
 1. Open a file explorer, navigate to the **Downloads** folder, and run the **WindowsAdminCenter.exe** file. This will start the **Windows Admin Center (v2) Installer** wizard.
+
 1. On the **Welcome to the Windows Admin Center setup wizard** page, select **Next**.
 
    ![](media/lab4g22.png)
