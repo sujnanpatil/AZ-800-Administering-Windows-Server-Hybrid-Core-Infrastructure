@@ -310,7 +310,7 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
 
 1. Select **Install**, and when the installation is complete, ensure the **Start Windows Admin Center: `https://az800l04-vmwac:443`** box is selected, and select **Finish**.
 
-  >**Note**: The installation may take up to 5 minutes.
+   >**Note**: The installation may take up to 5 minutes.
 
    ![](media/lab4g28.png)
 
@@ -323,6 +323,7 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
 1. On **SEA-ADM1**, on the **az800l04-vmwac** page, select the **Overview** entry on the left menu and copy the **DNS Name**.
 
 1. On **SEA-ADM1**, start Microsoft Edge and paste the **DNS Name** in the `https://` format.
+
 1. In Microsoft Edge window, disregard the message **Your connection isn't private**, select **Advanced**, and then select the link starting with the text **Continue to**.
 
    ![](media/lab4g30.png)  
@@ -338,7 +339,7 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
 
 1. Examine the Overview pane of Windows Admin Center.
 
-   ![](media/lab4g32.png)  
+   ![](media/lab4g32n.png)  
 
 ### Task 2: Enable PowerShell Remoting on an Azure VM
 
@@ -385,7 +386,7 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
 
 1. After successfully connecting to the Azure VM, examine the Overview pane of the **az800l04-vm0** Azure VM in Windows Admin Center.
 
-   ![](media/lab4g37.png) 
+   ![](media/lab4g37n.png) 
 
 ### Review
 
