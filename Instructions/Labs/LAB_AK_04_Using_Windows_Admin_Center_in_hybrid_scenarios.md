@@ -42,12 +42,10 @@ In this task, you will create an Azure resource group using an ARM template. Thi
 
 1. In the toolbar of the Cloud Shell pane, select the **Manage Files** icon, in the drop-down menu, select **Upload**, and then upload the **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab04\L04-sub_template.json** file to the Cloud Shell home directory.
 
-1. From the Cloud Shell pane, run the following commands to create a resource group that will contain the resources you provision in this lab. (Replace the `<Azure region>` placeholder with the name of an Azure region into which you can deploy Azure virtual machines, such as **eastus**.)
-
-   >**Note**: This lab has been tested and verified using East US, so you should use that region. In general, to identify Azure regions where you can provision Azure VMs, refer to [Find Azure credit offers in your region](https://aka.ms/regions-offers).
+1. From the Cloud Shell pane, run the following commands to create a resource group that will contain the resources you provision in this lab.
 
    ```powershell
-   $location = '<Azure region>'
+   $location = 'eastus'
    $rgName = 'AZ800-L0401-RG'
    New-AzSubscriptionDeployment `
      -Location $location `
