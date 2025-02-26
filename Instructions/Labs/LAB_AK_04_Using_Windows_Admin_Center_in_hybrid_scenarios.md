@@ -95,28 +95,11 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
  
 <validation step="f7861d50-4d57-462e-9da5-c570cc410428" />
 
-<!-- 
+
 
 ## Exercise 2: Implementing hybrid connectivity by using the Azure Network Adapter
 
-#### Task 1: Register Windows Admin Center with Azure
-
-1. On **SEA-ADM1**, select **Start**, and then select **Windows PowerShell (Admin)**.
-
-   >**Note**: Perform the next two steps in case you have not already installed Windows Admin Center on **SEA-ADM1**.
-
-1. In the **Windows PowerShell** console, enter the following command, and then press Enter to download the latest version of Windows Admin Center:
-	
-   ```powershell
-   Start-BitsTransfer -Source https://aka.ms/WACDownload -Destination "$env:USERPROFILE\Downloads\WindowsAdminCenter.msi"
-   ```
-1. Enter the following command, and then press Enter to install Windows Admin Center:
-	
-   ```powershell
-   Start-Process msiexec.exe -Wait -ArgumentList "/i $env:USERPROFILE\Downloads\WindowsAdminCenter.msi /qn /L*v log.txt REGISTRY_REDIRECT_PORT_80=1 SME_PORT=443 SSL_CERTIFICATE_OPTION=generate"
-   ```
-
-   > **Note**: Wait until the installation completes. This should take about 2 minutes.
+### Task 1: Register Windows Admin Center with Azure
 
 1. On **SEA-ADM1**, start Microsoft Edge, and then browse to `https://SEA-ADM1.contoso.com`.
 
@@ -124,28 +107,10 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
 
    >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe)**. 
    
-1. If prompted, in the **Windows Security** dialog box, enter the following credentials, and then select **OK**:
+1. If prompted, in the **Windows Security** dialog box, enter the credentials provided by the instructor, and then select **OK**.
 
-   - Username: **CONTOSO\Administrator**
-   - Password: **Pa55w.rd**
-
-1. In **Windows Admin Center**, select **Settings** (from the upper-right corner of the page) > **Extensions**. Then select **Extensions**:
-
-   ![](media/extensions.png) 
-
-1. On the **Installed extensions** tab, check **Azure Extended network** is installed.
-
-   >**Note:** If it is not installed then follow the below steps:
-   
-   > 1. On the **Available extensions** tab, select **Azure Extended network**, and then select **Install**.
-   
-   > 2. After a few seconds you should see a message indicating a successful installation.
-
-1. Select **Settings (1)** dropdown, and from the dropdown select **All connections (2)**, select the **sea-adm1.contoso.com** entry. 
-
-   ![](media/settingsallconnections.png)
-
-1. In Windows Admin Center, from left pane, in the list of Tools, select **Networks**, and then select **+ Add Azure Network Adapter (Preview)**.
+1. On the **All connections** page, select the **sea-adm1.contoso.com** entry. 
+1. In Windows Admin Center, select **Networks**, and then select **+ Add Azure Network Adapter (Preview)**.
 
    > **Note**: Depending on the screen resolution, you might need to select the **ellipsis** icon if the **Actions** menu is not available.
 
@@ -154,69 +119,40 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
    >**Note**: This will automatically display the Azure pane on the **Settings** page within Windows Admin Center.
 
 1. In Windows Admin Center, in the Azure pane, on the **Settings** page, select **Register**.
-
 1. In the **Get started with Azure in Windows Admin Center** pane, select **Copy** to copy the code displayed in the listing of the steps of the registration procedure. 
-
 1. In the listing of step of the registration procedure, select the **Enter the code** link.
 
    >**Note**: This will open another tab in the Microsoft Edge window displaying the **Enter code** page.
 
 1. In the **Enter code** text box, paste the code you copied into Clipboard, and then select **Next**.
-
 1. On the **Sign in** page, provide the same username that you used to sign into your Azure subscription in the previous exercise, select **Next**, provide the corresponding password, and then select **Sign in**.
-
 1. When prompted **Are you trying to sign in to Windows Admin Center?**, select **Continue**.
-
 1. In Windows Admin Center, verify that the sign in was successful and close the newly opened tab of the Microsoft Edge window.
-
 1. In the **Get started with Azure in Windows Admin Center** pane, ensure that **Microsoft Entra application** is set to **Create new**, and then select **Connect**.
+1. In the listing of the steps of the registration procedure, select **Sign in**. This will open a pop-up window labeled **Permissions requested**.
+   >Note: If you get an error message when signing in, try refreshing the page in previous step.
+1. In the **Permissions requested** pop-up window, select **Consent on behalf of your organization**, and then select **Accept**.
 
-   >**Note**: Please wait until it successfully connected to Azure AD.
+### Task 2: Create an Azure Network Adapter
 
-1. In the listing of the steps of the registration procedure, select **Sign in**.
+>**Note**: Due to recent changes in the WAC console, this step is currently unavailable to execute.
 
-1. In the **Permissions requested** pop-up window, select **Accept**.
-
-#### Task 2: Create an Azure Network Adapter
-
-1. On **SEA-ADM1**, back in the Microsoft Edge window displaying Windows Admin Center, browse to the **sea-adm1.contoso.com** page, and then from the left pane, in the list of Tools, select **Networks**.
-
-1. In Windows Admin Center, on the **Networks** page, from the **Actions** menu, select the **+ Add Azure Network Adapter (Preview)** entry again.
-
-1. In the **Add Azure Network Adapter** settings pane, specify the following settings, and then select **Create** (leave others with their default values):
-
-   |Setting|Value|
-   |---|---|
-   |Subscription|The name of the Azure subscription you are using in this lab|
-   |Location|East US|
-   |Virtual network|az800l04-vnet|
-   |Gateway subnet|10.4.3.224/27|
-   |Gateway SKU|VpnGw1|
-   |Client Address Space|192.168.0.0/24|
-   |Authentication Certificate|Auto-generated Self-signed root and client Certificate|
-
-1. On **SEA-ADM1**, in the Microsoft Edge window displaying the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Virtual network gateways**.
-
-1. On the **Virtual network gateways** page, select **Refresh** and verify that the new entry with the name starting with **WAC-Created-vpngw-ID_NO** appears in the list of virtual network gateways.
-
-   >**Note**: The provisioning of the Azure virtual network gateway can take up to 45 minutes. Do not wait for the provisioning to complete but instead proceed to the next exercise.
-
--->
-
-## Exercise 2: Deploying Windows Admin Center gateway in Azure
+## Exercise 3: Deploying Windows Admin Center gateway in Azure
 
 In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable management of Azure VMs. You will run a provisioning script to deploy the WAC gateway, set up necessary networking components, and configure SSL for secure connections.
 
 ### Task 1: Install Windows Admin Center gateway in Azure
 
-In this task, you will deploy the Windows Admin Center (WAC) gateway within an Azure VM. This deployment allows you to manage both on-premises and Azure resources from a central location.
+1. On **SEA-ADM1**, switch to the Windows Powershell(Admin)
 
+1. Run the below command to download **Deploy-WACAzVM.ps1**
+
+   ```Powershell
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/MicrosoftLearning/AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure/master/Allfiles/Labfiles/Lab04/Deploy-WACAzVM.ps1" -OutFile "C:\Users\Administrator.CONTOSO\Downloads\Deploy-WACAzVM.ps1" -UseBasicParsing 
+   ```
 1. On **SEA-ADM1**, switch to the browser window displaying the Azure portal.
-
 1. Back in the Azure portal, open the Cloud Shell pane by selecting the **Cloud Shell** icon.
-
-1. In the toolbar of the Cloud Shell pane, select the **Upload/Download files** icon, in the drop-down menu, select **Upload**, and then upload the **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab04\Deploy-WACAzVM.ps1** file into the Cloud Shell home directory.
-
+1. In the toolbar of the Cloud Shell pane, select the **Upload/Download files** icon, in the drop-down menu, select **Upload**, and then upload the **C:\Users\Administrator.CONTOSO\Downloads\Deploy-WACAzVM.ps1** file into the Cloud Shell home directory.
 1. From the Cloud Shell pane, run the following command to enable the compatibility for the **AzureRm** PowerShell cmdlets that are used by the Windows Admin Center provisioning script:
 
    ```powershell
@@ -254,6 +190,9 @@ In this task, you will deploy the Windows Admin Center (WAC) gateway within an A
 
    ```powershell
    Install-Module -Name pswsman
+   ```
+
+   ```powershell
    Disable-WSManCertVerification -All
    ```
 
@@ -263,90 +202,49 @@ In this task, you will deploy the Windows Admin Center (WAC) gateway within an A
    ./Deploy-WACAzVM.ps1 @scriptParams
    ```
 
-1. When prompted to provide the name for the local Administrator account, enter **Student**
+1. When prompted to provide the name for the local Administrator account, enter the **username** provided by the instructor.
+1. When prompted to provide the password for the local Administrator account, enter the **password** provided by the instructor
 
-1. When prompted to provide the password for the local Administrator account, enter **Pa55w.rd1234**
-
-   >**Note**: Wait for the provisioning script to complete. This might take about 10 minutes. If the script displays errors such as the one below, you can proceed to the next task.
-
-    ![](media/error.png)  
-
+   >**Note**: Wait for the provisioning script to complete. This might take about 5 minutes.
+   
 1. Close the Cloud Shell pane.
+1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Virtual Machines**, and then, on the **Virtual Machines** page, select the **az800l04-vmwac** entry.
+1. Under the **Connect** section, select **Connect** and then select **Download RDP file**.
+1. When prompted, insert the credentials provided by the instructor.
+1. Within the Remote Desktop session to **az800l04-vmwac** vm, select **Start**, and then select **Windows PowerShell (Admin)**.
 
-### Task 2: Manual installation of WAC on the az800l04-vmwac
-
-In this task, you will manually install Windows Admin Center on the Azure VM. This alternative installation method ensures that you can still deploy the tool if the automated script fails.
-
-1. Navigate to Virtual machines in the Azure portal and select **az800l04-vmwac**.
-
-1. From the top navigation menu, select **Connect** dropdown and select **Connect**. Click on **Download RDP file**.
-
-1. Select **Open File**, then proceed by clicking **Connect** in the warning popup window.
-
-1. Enter the password as **Pa55w.rd1234** and click **OK**.Then, proceed by selecting **Yes**.
-
-1. Once logged in, Select **NO** in the Network blue pane, and subsequently, **close** any open windows.
-
-1. Click the **Start** button and type **Edge**, click **Microsoft edge** and complete the Edge setup wizard.
-
-1. Navigate to below link to download the Windows Admin Center:
+1. In the **Windows PowerShell** console, enter the following command, and then press Enter to download the latest version of Windows Admin Center:
+	
+   ```powershell
+   Start-BitsTransfer -Source https://aka.ms/WACDownload -Destination "$env:USERPROFILE\Downloads\WindowsAdminCenter.exe"
    ```
-   https://www.microsoft.com/en-us/evalcenter/download-windows-admin-center
-   ```
+1. Open a file explorer, navigate to the **Downloads** folder, and run the **WindowsAdminCenter.exe** file. This will start the **Windows Admin Center (v2) Installer** wizard.
+1. On the **Welcome to the Windows Admin Center setup wizard** page, select **Next**.
+1. On the **License Terms and Privacy Statement** page, **accept the terms** and select **Next**.
+1. On the **Select installation mode** page, ensure **Express setup** is selected, and select **Next**.
+1. On the **Select TLS certificate** page, ensure **Generate a self-signed certificate (expires in 60 days)** is selected, and select **Next**.
+1. On the **Automatic updates** page, select **Notify me of available updates without downloading or installing them**, and select **Next**.
+1. On the **Send diagnostic data to Microsoft** page, ensure **Required diagnostic data** is selected, and select **Next**.
+1. Select **Install**, and when the installation is complete, ensure the **Start Windows Admin Center: `https://az800l04-vmwac:443`** box is selected, and select **Finish**.
 
-1. Select the **Download now**, then choose **Open file**. Close the Microsoft Edge browser.Click on **Next** and Proceed by checking the **I accept these terms** box, click **Next**, then select **Generate a self-signed certificate** and click on **Next** thrice followed by **Install**. Finally, click **Finish** to complete the installation.
+  >**Note**: The installation may take up to 5 minutes.
 
-   ![](media/dwnloadnw.png) 
-
-1. Navigate to the **Start** menu, right-click, go to **Shut down** or **sign out**, and select **Disconnect**.
-
-### Task 3: Review results of the script provisioning
-
-In this task, you will validate the results of the WAC gateway installation. You will test whether the WAC gateway has been successfully deployed and is functioning correctly.
-
-1. From **SEA-ADM1**, Navigate to Azure portal and locate the vm named **az800l04-vmwac**.
-
-1. Copy the **Public IP Address** displayed on the Overview page. Next, open the Edge browser, right-click on the URL field, and choose the paste option. Ensure to prepend "https://" to the URL, and append the port number you configured for WAC, such as **443**. The resulting final URL should resemble this: **https://20.232.18.205:443/**. Finally, press the **Enter** key.
-
-1. Navigate back to Azure portal, select the Azure VM **az800l04-vmwac** entry, and then, on the **az800l04-vmwac** page, under **Networking** section select **Network settings**.
-
-1. On the **az800l04-vmwac | Network settings** page, on the **Inbound port rules** tab, note the entries representing the inbound port rule allowing connectivity on TCP port 5986 and the inbound rule allowing connectivity on TCP port 443.
-
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
-
-<validation step="e28d4114-d700-4946-b80d-7fc70ade9e46" />
-
-## Exercise 3: Verifying functionality of the Windows Admin Center gateway in Azure
-
-In this exercise, you will verify the functionality of the Windows Admin Center gateway in Azure by connecting to Azure VMs. You will test PowerShell remoting, manage the VMs through WAC, and ensure proper configuration of the gateway.
+## Exercise 4: Verifying functionality of the Windows Admin Center gateway in Azure
 
 ### Task 1: Connect to the Windows Admin Center gateway running in Azure VM
 
-In this task, you will connect to the Windows Admin Center gateway running on the Azure VM. This allows you to manage and monitor your Azure resources from a single interface.
-
-1. On **SEA-ADM1**, start Microsoft Edge, go to the URL containing the fully qualified name of the target Azure VM hosting the Windows Admin Center installation you identified in the previous exercise-3 task-1 or task-2.
-
+1. On **SEA-ADM1**, on the **az800l04-vmwac** page, select the **Overview** entry on the left menu and copy the **DNS Name**.
+1. On **SEA-ADM1**, start Microsoft Edge and paste the **DNS Name** in the `https://` format.
 1. In Microsoft Edge window, disregard the message **Your connection isn't private**, select **Advanced**, and then select the link starting with the text **Continue to**.
-
-1. When prompted, in the **Sign in to access this site** dialog box, sign in with the **Student** as username and **Pa55w.rd1234** as password.
-
+1. When prompted, in the **Sign in to access this site** dialog box, sign in with the credentials provided by the instructor.
 1. On the **All connections** page of Windows Admin Center, select **az800l04-vmwac [Gateway]**.
-
 1. Examine the Overview pane of Windows Admin Center.
 
 ### Task 2: Enable PowerShell Remoting on an Azure VM
 
-In this task, you will enable PowerShell remoting on an Azure VM. PowerShell remoting allows you to manage your Azure VMs remotely through the WAC interface.
-
 1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal, and then, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Virtual machines**.
-
 1. On the **Virtual machines** page, select **az800l04-vm0**.
-
-1. On the **az800l04-vm0** page, from the left navigation menu, under **Operations** section, select **Run command**, and then select **RunPowerShellScript**.
-
+1. On the **az800l04-vm0** page, in the **Operations** section, select **Run command**, and then select **RunPowerShellScript**.
 1. If Windows Remote Management is disabled, on the **Run Command Script** page, in the **PowerShell Script** section, enter the following command, and then select **Run** to enable it.
 
    ```powershell
@@ -365,25 +263,15 @@ In this task, you will enable PowerShell remoting on an Azure VM. PowerShell rem
    Enable-PSRemoting -Force -SkipNetworkProfileCheck
    ```
 
-### Task 3: Connect to an Azure VM by using the Windows Admin Center gateway running in Azure VM
-
-In this task, you will connect to an Azure VM through the Windows Admin Center gateway. This allows you to manage and interact with the Azure VM as if it were on-premises, using the same tools and interface.
+#### Task 3: Connect to an Azure VM by using the Windows Admin Center gateway running in Azure VM
 
 1. On **SEA-ADM1**, in the Microsoft Edge window displaying the interface of the Windows Admin Center gateway running on the **az800l04-vmwac** Azure VM, select **Windows Admin Center**.
-
 1. On the **All connections** page, select **+ Add**.
-
 1. On the **Add or create resources** page, in the **Servers** section, select **Add**.
-
 1. In the **Server name** text box, enter **az800l04-vm0**.
-
-   >**Note:** If you are getting any errors, ignore it and proceed with the next steps.
-
-1. Select the **Use another account for this connection** option, provide the **Student** username and **Pa55w.rd1234** password, and then select **Add with Credentials**.
-
+1. Select the **Use another account for this connection** option, provide the credentials provided by the instructor, and then select **Add with Credentials**.
 1. In the list of connections, select **az800l04-vm0**
-
-1. After successfully connecting to the Azure VM, examine the Overview pane of the **az800l04-vmwac** Azure VM in Windows Admin Center.
+1. After successfully connecting to the Azure VM, examine the Overview pane of the **az800l04-vm0** Azure VM in Windows Admin Center.
 
 ### Review
 
