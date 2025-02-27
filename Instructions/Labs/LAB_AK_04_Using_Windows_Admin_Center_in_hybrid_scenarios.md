@@ -10,8 +10,9 @@ Your goal is to verify that Windows Admin Center can be used in a consistent man
 In this lab, you will perform:
 
 - Exercise 1:  Provisioning Azure VMs running Windows Server
-- Exercise 2: Deploying Windows Admin Center gateway in Azure
-- Exercise 3: Verifying functionality of the Windows Admin Center gateway in Azure
+- Exercise 2: Implementing hybrid connectivity by using the Azure Network Adapter
+- Exercise 3: Deploying Windows Admin Center gateway in Azure
+- Exercise 4: Verifying functionality of the Windows Admin Center gateway in Azure
 
 ## Estimated time: 90 minutes
 
@@ -111,7 +112,13 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
 
 ## Exercise 2: Implementing hybrid connectivity by using the Azure Network Adapter
 
+In this exercise, you will implement hybrid connectivity using the Azure Network Adapter.
+
 ### Task 1: Register Windows Admin Center with Azure
+
+In this task, you will register Windows Admin center with Azure.
+
+In this task, you will register windows admin center with Azure.
 
 1. On **SEA-ADM1**, start Microsoft Edge, and then browse to `https://SEA-ADM1.contoso.com`.
 
@@ -186,6 +193,8 @@ In this task, you will deploy an Azure VM using an ARM template. This Azure VM w
 In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable management of Azure VMs. You will run a provisioning script to deploy the WAC gateway, set up necessary networking components, and configure SSL for secure connections.
 
 ### Task 1: Install Windows Admin Center gateway in Azure
+
+In this task, you will install windows admin center gateway in Azure.
 
 1. On **SEA-ADM1**, switch to the Windows Powershell(Admin)
 
@@ -318,7 +327,11 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
 
 ## Exercise 4: Verifying functionality of the Windows Admin Center gateway in Azure
 
+In this exercise, you will verify functionality of the WAC gateway in Azure.
+
 ### Task 1: Connect to the Windows Admin Center gateway running in Azure VM
+
+In this task, you will connect to the WAC gateway running in Azure VM.
 
 1. On **SEA-ADM1**, on the **az800l04-vmwac** page, select the **Overview** entry on the left menu and copy the **DNS Name**.
 
@@ -342,6 +355,8 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
    ![](media/lab4g32n.png)  
 
 ### Task 2: Enable PowerShell Remoting on an Azure VM
+
+In this task, you will enable powershell remoting on an Azure VM.
 
 1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal, and then, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Virtual machines**.
 1. On the **Virtual machines** page, select **az800l04-vm0 (1)**.
@@ -369,6 +384,8 @@ In this exercise, you will deploy Windows Admin Center (WAC) in Azure to enable 
    ```
 
 ### Task 3: Connect to an Azure VM by using the Windows Admin Center gateway running in Azure VM
+
+In this task, you will connect to an Azure VM using WAC gateway running in Azure VM.
 
 1. On **SEA-ADM1**, in the Microsoft Edge window displaying the interface of the Windows Admin Center gateway running on the **az800l04-vmwac** Azure VM, select **Windows Admin Center**.
 
