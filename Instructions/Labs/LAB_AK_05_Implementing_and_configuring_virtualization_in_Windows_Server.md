@@ -35,28 +35,28 @@ In this task, you will install the Hyper-V role on a Windows Server machine usin
 
    ![](media/servermanager.png) 
 
-1. In Server Manager, select **All Servers**.
+1. In Server Manager, select **All Servers (1)**.
 
-1. In the Servers list, select the **SEA-SVR1** entry, display its context menu, right click and select **Hyper-V Manager**.
+   ![](media/lab5h1.png) 
 
-1. In Hyper-V Manager, ensure that **SEA-SVR1.CONTOSO.COM** is selected.
+1. In the Servers list, select the **SEA-SVR1 (2)** entry, display its context menu, right click and select **Hyper-V Manager (3)**.
 
-   ![](media/hyper-v-manager.png) 
+1. In Hyper-V Manager, ensure that **SEA-SVR1.CONTOSO.COM (1)** is selected.
 
-1. In the Actions pane, select **Virtual Switch Manager**.
+   ![](media/lab5h2.png) 
 
-   ![](media/hypervmanager1.png) 
+1. In the Actions pane, select **Virtual Switch Manager (2)**.
 
 1. In the **Virtual Switch Manager**, in the **Create virtual switch** pane, select **Private (1)**, and then select **Create Virtual Switch (2)**.
 
-   ![](media/privateswitch1.png) 
+   ![](media/lab5h3.png) 
 
 1. In the **Virtual Switch Properties** box, specify the following settings, and then select **OK (3)**:
 
    - Name: **Contoso Private Switch (1)**
    - Connection type: **Private network (2)**
 
-      ![](media/privateswitch.png) 
+   ![](media/lab5h4.png) 
 
 ### Task 2: Create a virtual hard disk
 In this task, you will configure essential Hyper-V settings, including virtual switch configuration, VM storage locations, and resource allocation.
@@ -129,13 +129,17 @@ In this task, you will create a new virtual machine using Hyper-V Manager and Po
 
    ![](media/lab5-task3-9n.png)
 
+   ![](media/lab5h5.png)
+
 1. On the **Summary** page, select **Finish**. Notice that **SEA-VM1** displays in the Virtual Machines list.
+
+   ![](media/lab5h6.png)
 
    ![](media/lab5-task3-10n.png)
 
-1. Select **SEA-VM1**, and then in the Actions pane, under **SEA-VM1**, select **Settings**.
+1. Select **SEA-VM1 (1)**, and then in the Actions pane, under **SEA-VM1**, select **Settings (2)**.
 
-   ![](media/lab5-task3-11.png)
+   ![](media/lab5h7.png)
 
 1. In the **Hardware** list, select **Memory**.
 
@@ -151,66 +155,49 @@ In this task, you will create a new virtual machine using Hyper-V Manager and Po
 
 In this task, you will manage virtual machines using Windows Admin Center
 
-1. On **SEA-ADM1**, select **Start**, and then select **Windows PowerShell (Admin)**.
-
-   >**Note**: Perform the next two steps in case you have not already installed Windows Admin Center on **SEA-ADM1**.
-
-1. In the **Windows PowerShell** console, enter the following command. and then press Enter to download the latest version of Windows Admin Center:
-	
-   ```powershell
-   Start-BitsTransfer -Source https://aka.ms/WACDownload -Destination "$env:USERPROFILE\Downloads\WindowsAdminCenter.msi"
-   ```
-1. Enter the following command, and then press Enter to install Windows Admin Center:
-	
-   ```powershell
-   Start-Process msiexec.exe -Wait -ArgumentList "/i $env:USERPROFILE\Downloads\WindowsAdminCenter.msi /qn /L*v log.txt REGISTRY_REDIRECT_PORT_80=1 SME_PORT=443 SSL_CERTIFICATE_OPTION=generate"
-   ```
-
-   > **Note**: Wait until the installation completes. This should take about 2 minutes. If the web page does not respond, open **services.msc** and verify that the Windows Admin Center Service is **Started**.
-
-1. On **SEA-ADM1**, start Microsoft Edge, and then go to `https://SEA-ADM1.contoso.com`. 
-   
-   >**Note**: If the link does not work, on **SEA-ADM1**, open File Explorer, select Downloads folder, in the Downloads folder select **WindowsAdminCenter.msi** file and install manually. After the install completes, refresh Microsoft Edge.
-
+1. On **SEA-ADM1**, start Microsoft Edge, and then browse to `https://SEA-ADM1.contoso.com`.
+ 
    >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe)**.
+
+   ![](media/lab7-171.png)
    
-1. If prompted, in the **Windows Security** dialog box, enter the following credentials, and then select **OK**:
+1. If prompted, in the **Windows Security** dialog box, enter the following credentials, and then select **OK (3)**:
 
-   - Username: **CONTOSO\Administrator**
-   - Password: **Pa55w.rd**
+   - Username: **CONTOSO\Administrator (1)**
+   - Password: **Pa55w.rd (2)**
 
-   >**Note:** Close **Successfully installed version 2311** pop-up.
+   ![](media/lab7-172.png)
 
-   >**Note:** Select **OK**, on the **Successfully updated your extensions** pop-up.
+1. In the All connections pane, select **+ Add (1)**.
 
-1. On the **All connections** pane, select **+ Add**.
+   ![](media/lab7-173.png)
 
-   ![](media/lab5-task4-6.png)
+1. In the Add or create resources pane, on the **Servers** tile, select **Add (2)**.
 
-1. On the **Add or create resources** pane, on the **Servers** tile, select **Add**.
+1. In the **Server name** text box, enter **sea-svr1.contoso.com** (1) and click on **Add** (2).  
 
-   ![](media/lab5-task4-7.png)
+   ![](media/lab5h8.png)  
 
-1. In the **Server name** text box, enter **sea-svr1.contoso.com**.
+   > **Note**: While performing above step, if you see an error message stating, **"You can add this server to your list of connections, but we can't confirm it's available."**, select **Add**.  
 
-1. Ensure that the **Use another account for this connection (1)** option is selected, enter the following credentials, and then select **Add with credentials (4)**:
+   - In the **All Connections** pane, select **sea-svr1.contoso.com** (1) and then click on **Manage as** (2).  
+   - In the **Specify your credentials** dialog box:  
+     - Ensure that **Use another account for this connection** (3) is selected.  
+     - Enter the Administrator credentials:  
+       - **Username**: **CONTOSO\Administrator** (4)  
+       - **Password**: **Pa55w.rd** (5)  
+     - Check the **Use this credential for all connections** checkbox (6).  
+     - Click **Continue** (7).  
 
-   - Username: **CONTOSO\Administrator (2)**
-   - Password: **Pa55w.rd (3)**
-
-   ![](media/lab5-task4-9.png)
-
-   > **Note**: After performing step 8, if an error message that says **You can add this server to your list of connections, but we can't confirm it's available.** appears, select **Add**. In the All Connections pane,  select **sea-svr1.contoso.com**, and then select **Manage as**. In the **Specify your credentials** dialog box, ensure that the **Use another account for this connection** option is selected, enter the Administrator credentials, and then select **Continue**.
-
-   > **Note**: To perform single sign-on, you would need to set up Kerberos constrained delegation.
+   ![](media/lab5h9.png)
 
 1. Select **sea-svr1.contoso.com**, from the left navigation menu, in the **Tools** list, select **Virtual machines (1)**, select the **Summary (2)** tab, and then review its content.
 
-   ![](media/lab5-task4-10.png)
+   ![](media/lab5h10.png)
 
 1. Select the **Inventory (1)** tab and verify that it contains **SEA-VM1(2)**.
 
-   ![](media/lab5-task4-11n.png)
+   ![](media/lab5h11.png)
 
 1.  Select **SEA-VM1** and review its Properties pane.
 
@@ -242,7 +229,11 @@ In this task, you will manage virtual machines using Windows Admin Center
 
 1. Scroll down and display the statistics for the running VM.
 
-1. Refresh the page, select **Power**, select **Shut down**, and then select **Yes** to confirm.
+1. Refresh the page, select **Power (1)**, select **Shut down (2)**, and then select **Yes (3)** to confirm.
+
+   ![](media/lab5h12.png)
+
+   ![](media/lab5h13.png)
 
 1. From the lefy navigation menu, in the **Tools** list, select **Virtual switches (1)** and identify the **existing switches (2)**.
 
@@ -268,12 +259,12 @@ In this task, you will install Docker on Windows Server machine
    ```powershell
    [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
    Install-PackageProvider -Name NuGet -Force
-   Install-Module PowerShellGet -RequiredVersion 2.2.4 -SkipPublisherCheck
    ```
-   **Note:** Coopy and execute the commands one by one.
-
 1. When prompted to install NuGet, press the **Y** key, and then press Enter.
 
+   ```powershell
+   Install-Module PowerShellGet -RequiredVersion 2.2.4 -SkipPublisherCheck
+   ```
 1. When prompted to confirm the installation of modules from an untrusted repository, press the **A** key, and then press Enter.
 
 1. After the installation completes, enter the following command, and then press Enter to restart **SEA-SVR1**:
@@ -299,6 +290,7 @@ In this task, you will install Docker on Windows Server machine
    Install-Package -Name docker -ProviderName DockerProvider
    ```
 1. When prompted to confirm, press the **A** key, and then press Enter.
+
 1. After the installation completes, enter the following commands, and then press Enter to restart **SEA-SVR1**:
 
    ```powershell
@@ -310,7 +302,7 @@ In this task, you will install Docker on Windows Server machine
 In this task, you will install and run windows container inside server machine.
 
 
-1. After **SEA-SVR1** restarts, use the below PowerShell command again to establish a new PowerShell Remoting session to **SEA-SVR1**.
+1. Wait for sometime until **SEA-SVR1** restarts, use the below PowerShell command again to establish a new PowerShell Remoting session to **SEA-SVR1**.
    
    ```powershell
     Enter-PSSession -ComputerName SEA-SVR1
@@ -331,7 +323,7 @@ In this task, you will install and run windows container inside server machine.
 1. Enter the following command, and then press Enter to download a Servercore image containing an Internet Information Services (IIS) installation:
 
    ```powershell
-   docker pull mcr.microsoft.com/windows/servercore/iis
+   docker pull nanoserver/iis
    ```
 
    > **Note**: The time it takes to complete the download will depend on the available bandwidth of the network connection from the lab VM to the Microsoft container registry.
@@ -344,7 +336,7 @@ In this task, you will install and run windows container inside server machine.
 1. Enter the following command, and then press Enter to launch a container based on the downloaded image:
 
    ```powershell
-   docker run --isolation=hyperv -d -t --name nano -p 80:80 mcr.microsoft.com/windows/servercore/iis 
+   docker run --isolation=hyperv -d -t --name nano -p 80:80 nanoserver/iis 
    ```
 
    > **Note**: The docker command starts a container in the Hyper-V isolation mode (which addresses any host operating system incompatibility issues) as a background service (`-d`) and configures networking such that port 80 of the container host maps to port 80 of the container. 
@@ -389,6 +381,7 @@ In this task, you will use Windows Admin Center to manage containers.
 
 1. In the Containers pane, browse through the **Overview**, **Containers**, **Images**, **Networks**, and **Volumes** tabs.
 
+   ![](media/lab5h14.png)
 
 ### Review
 In this lab, you have completed:
