@@ -137,6 +137,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
     | --- | --- |
     | Peering link name | **az800l08-vnet1_to_az800l08-vnet0 (1)** |
     | Virtual network deployment model | **Resource manager (2)** |
+    | Subscription | Leave the default subscription (3) |
     | Remote virtual network: Virtual network | **az800l08-vnet1(4)** |
     | Allow 'az800l08-vnet1' to access 'az800l08-vnet0' | **Select the checkbox (5)** |
     | Allow 'az800l08-vnet1' to receive forwarded traffic from 'az800l08-vnet0'| **Select the checkbox (6)** |
@@ -506,7 +507,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
     | --- | --- |
     | Subscription | the name of the Azure subscription you are using in this lab |
     | Resource Group | **AZ800-L0802-RG** |
-    | Name | **mydns<inject key="DeploymentID" enableCopy="false"/>** |
+    | Name | **mydns<inject key="DeploymentID" enableCopy="false"/>.com** |
 
 1. Select **Review + create**, and then select **Create**.
 
