@@ -8,8 +8,6 @@ The process will involve Azure Resource Manager (ARM) templates and OS configura
 
 Your goal is to deploy and configure Azure VMs running Windows Server in the manner that satisfies manageability and security requirements.
 
-**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-800%20Lab%20Simulation%20-%20Deploying%20and%20configuring%20Windows%20Server%20on%20Azure%20VMs)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
-
 ## Lab objectives
 
 In this lab, you will perform:
@@ -26,21 +24,6 @@ In this lab, you will perform:
 
    ![](media/mod6art.png)  
 
-## Lab setup
-
-Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running. Other VMs can be running, but they aren't required for this lab.
-
-> **Note**: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-SEA-ADM1** virtual machines are hosting the installation of **SEA-DC1** and **SEA-ADM1**.
-
-1. Select **SEA-ADM1**.
-
-1. Sign in using the following credentials:
-
-   - Username: **CONTOSO\Administrator**
-   - Password: **Pa55w.rd**
-
-For this lab, you'll use the available VM environment and an Azure subscription. Before you begin the lab, ensure that you have an Azure subscription and a user account with the Owner or Contributor role in that subscription.
-
 ## Exercise 1: Authoring Azure Resource Manager (ARM) templates for Azure VM deployment
 
 ### Task 1: Connect to your Azure subscription and enable enhanced security of Microsoft Defender for Cloud
@@ -51,9 +34,19 @@ In this task, you will connect to your Azure subscription and enable enhanced se
 
 1. On **SEA-ADM1**, start Microsoft Edge, go to the [Azure portal](https://portal.azure.com).
 
-1. In the **Sign in** dialog box, copy and paste  **Email/Username**: <inject key="AzureAdUserEmail"></inject> and then select **Next**.
+1. In the **Sign in** dialog box, copy and paste  **Email/Username (1)**: <inject key="AzureAdUserEmail"></inject> and then select **Next (2)**.
 
-1. In the **Enter password** dialog box, copy and paste **Password**: <inject key="AzureAdUserPassword"></inject> and then select **Sign in**.
+   ![](media/lab6f1.png)
+
+1. In the **Enter password** dialog box, copy and paste **Password (1)**: <inject key="AzureAdUserPassword"></inject> and then select **Sign in (2)**.
+
+   ![](media/lab6f2.png)
+
+1. If you see the pop-up **Action Required**, click **Ask Later**.
+
+   ![](media/action.png) 
+
+   >**Note** : Please follow the steps outlined on page 1 to set up MFA if the **Ask Later** option is not visible. Once MFA setup is complete, please enter the number displayed on the screen in the Authenticator app and proceed. 
 
 1. On the **Stay signed in?** dialog box, select the Don’t show this again check box and then select **No**.
 
@@ -61,69 +54,97 @@ In this task, you will connect to your Azure subscription and enable enhanced se
 
 3. In the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for and select **Microsoft Defender for Cloud**.
 
+   ![](media/lab6f3.png)
+
 4. On the **Microsoft Defender for Cloud \| Getting started** page, select **Upgrade**.
+
+   >**Note**: Your subscription may already have the enhanced security of Defender for Cloud enabled, in which case there is no need to upgrade, and you can continue on to the next task.
 
 ### Task 2: Generate an ARM template and parameters files by using the Azure portal
 
 In this task, you will use the Azure portal to create resource groups and create a disk in the resource group.
 
-1. On **SEA-ADM1**, in the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for and select **Virtual machines**. In the **Virtual machines** page, select **+ Create**, and then select **Azure virtual machine**.
+1. On **SEA-ADM1**, in the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for and select **Virtual machines**.
+
+   ![](media/lab6f4.png)
+
+1. In the **Virtual machines** page, select **+ Create (1)**, and then select **Azure virtual machine (2)**.
+
+   ![](media/lab6f5.png)
 
 1. In the **Create a virtual machine** page, on the **Basics** tab, specify the following settings and leave all other settings with their default values, but do not deploy it:
 
    |Setting|Value|
    |---|---|
-   |Subscription|the name of the Azure subscription you will be using in this lab.|
-   |Resource group|the name of a new resource group **AZ800-L0601-RG**|
-   |Virtual machine name|**az800l06-vm0**|
-   |Region|Use the name of an Azure region in which you can provision Azure virtual machines|
-   |Availability options|No infrastructure redundancy required|
-   |Security type|Standard|
-   |Image|**Windows Server 2022 Datacenter: Azure Edition - x64 Gen2**|
-   |Run with Azure Spot discount|No|
-   |Size|**Standard_D2s_v3**|
-   |Username|**Student**|
-   |Password|**Pa55w.rd1234**|
-   |Confirm Password|**Pa55w.rd1234**|
-   |Public inbound ports|None|
-   |Would you like to use an existing Windows Server license|Off|
+   |Subscription|Leave the default subscription|
+   |Resource group|select the resource group **AZ800-L0601-RG (1)** from the drop-down|
+   |Virtual machine name|**az800l06-vm0 (2)**|
+   |Region|Leave the default region (3)|
+   |Availability options|No infrastructure redundancy required (4)|
+   |Security type|Standard (5)|
+   |Image|**Windows Server 2022 Datacenter: Azure Edition - x64 Gen2 (6)**|
+   |Run with Azure Spot discount|No (7)|
+   |Size|**Standard_D2s_v3 (8)**|
+   |Username|**Student** (9)|
+   |Password|**Pa55w.rd1234** (10)|
+   |Confirm Password|**Pa55w.rd1234** (11)|
+   |Public inbound ports|None (12)|
+   |Would you like to use an existing Windows Server license|Off (13)|
 
-1. Select **Next: Disks >**, and then on the **Create a virtual machine** page, on the **Disks** tab, specify the following settings, leaving all other settings with their default values:
+   ![](media/lab6f6.png)
+
+   ![](media/lab6f7.png)
+
+   ![](media/lab6f50.png)
+
+1. Select **Next: Disks > (14)**, and then on the **Create a virtual machine** page, on the **Disks** tab, specify the following settings, leaving all other settings with their default values:
 
    |Setting|Value|
    |---|---|
-   |OS disk type|**Standard HDD**|
+   |OS disk type|**Standard HDD (1)**|
 
-1. Select **Next: Networking >**, and in the **Create a virtual machine** page, on the **Networking** tab, select the **Create new** hyperlink that follows the **Virtual network** text box.
-1. On the **Create virtual network** page, specify the following settings, leaving all other settings with their default values, and then select **OK**:
+   ![](media/lab6f8.png)
+
+1. Select **Next: Networking > (2)**, and in the **Create a virtual machine** page, on the **Networking** tab, select the **Create new (1)** hyperlink that follows the **Virtual network** text box.
+1. On the **Create virtual network** page, specify the following settings, leaving all other settings with their default values, and then select **OK (6)**:
 
    |Setting|Value|
    |---|---|
-   |Name|**az800l06-vnet**|
-   |Address range|**10.60.0.0/20**|
-   |Subnet name|**subnet0**|
-   |Subnet range|**10.60.0.0/24**|
+   |Name|**az800l06-vnet (2)**|
+   |Address range|**10.60.0.0/20 (3)**|
+   |Subnet name|**subnet0 (4)**|
+   |Subnet range|**10.60.0.0/24 (5)**|
+
+   ![](media/lab6f9.png)
 
 1. Back on the **Create a virtual machine** page, on the **Networking** tab, specify the following settings, leaving all other settings with their default values:
 
    |Setting|Value|
    |---|---|
-   |Public IP|None|
-   |NIC network security group|None|
-   |Enable accelerated networking|Off|
-   |Load balancing options|None|
+   |Public IP|None (1)|
+   |NIC network security group|None (2)|
+   |Enable accelerated networking|Off (3)|
+   |Load balancing options|None (4)| 
 
-1. Select **Next: Management >**, leaving all settings with their default values.
-   
+   ![](media/lab6f10.png)
+
+1. Select **Next: Management > (5)**, leaving all settings with their default values.
+
+   ![](media/lab6f11.png)  
+
 1. Select **Next: Monitoring >**, and on the **Create a virtual machine** page, on the **Monitoring** tab, specify the following settings, leaving all other settings with their default values:
 
    |Setting|Value|
    |---|---|
-   |Boot diagnostics|**Enable with managed storage account (recommended)**|
-   
-1. Select **Next: Advanced >**, on the **Advanced** tab of the **Create a virtual machine** page, review the available settings without modifying any of them, and then select **Review + create**.
+   |Boot diagnostics|**Enable with managed storage account (recommended) (1)**|
 
-1. Do not click on **Create**
+   ![](media/lab6f12n.png)  
+   
+1. Select **Next: Advanced > (2)**, on the **Advanced** tab of the **Create a virtual machine** page, review the available settings without modifying any of them, and then select **Review + create**.
+
+   ![](media/lab6f13.png)
+
+1. **Do not click** on **Create**
 
    >**Note**: Do not create the virtual machine. Instead, utilize the autogenerated template provided for this purpose.
 
@@ -134,6 +155,8 @@ In this task, you will use the Azure portal to create resource groups and create
    ![](media/lab6-10.png)
 
 1. On the **Template** page, select **Download**.
+
+   ![](media/lab6f14.png)
 
 1. Select the ellipsis button next to the **template.zip**, and then in the pop-up menu, select **Show in folder**. This will automatically open File Explorer displaying the content of the **Downloads** folder.
 
@@ -149,7 +172,13 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. Extract the content of the **template.zip** file into the same folder.
 
+   ![](media/lab6f15.png)
+
+   ![](media/lab6f16.png)
+
 1. Open the **template.json** file in Notepad, and review its content. Keep the Notepad window open.
+
+   ![](media/lab6f17.png)
 
 1. From File Explorer, open the **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab06\\template\\parameters.json** file in Notepad and review its content.
 
@@ -182,7 +211,11 @@ In this task, you will use the Azure portal to create resource groups and create
    },
    ```
 
+   ![](media/lab6f18.png)
+
 1. Save the change and close the file.
+
+   ![](media/lab6f19.png)
 
 ## Exercise 3: Deploying Azure VMs running Windows Server by using ARM templates
 
@@ -192,24 +225,44 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for and select **Deploy a Custom Template**.
 
+   ![](media/lab6f20.png)
+
 1. In the **Custom deployment** page, select **Build your own template in the editor**.
+
+   ![](media/lab6f21.png)
 
 1. On the **Edit template** page, select **Load file**, upload the template file **template.json** that you edited in the previous exercise, and then select **Save**.
 
+   ![](media/lab6f23.png)
+
+   ![](media/lab6f22.png)
+
 1. On the **Custom deployment** page, select **Edit parameters**.
 
+   ![](media/lab6f24.png)
+
 1. On the **Edit parameters** page, select **Load file**, upload the parameters file **parameters.json** that you reviewed in the previous exercise, and then select **Save**.
+
+   ![](media/lab6f25.png)
 
 1. Back on the **Custom deployment** page, specify the following settings, and leave the other settings with their default values:
 
    |Setting|Value|
    |---|---|
-   |Subscription|the name of the Azure subscription you are using in this lab|
-   |Resource group|**AZ800-L0601-RG**|
-   |Region|the name of the Azure region into which you can provision Azure VMs|
-   |Admin Password|**Pa55w.rd1234**|
+   |Subscription|Leave the default value|
+   |Resource group|Select **AZ800-L0601-RG (1)** resource group from the dropdown|
+   |Region|Leave the default value|
+   |Admin Password|**Pa55w.rd1234** (2)|
+
+   ![](media/lab6f26.png)
+
+   ![](media/lab6f27.png)
 
 1. Select **Review + create**, and then select **Create**.
+
+   ![](media/lab6f28.png)
+
+   ![](media/lab6f29.png)
 
    >**Note**: The deployment might take about 10 minutes.
 
@@ -225,7 +278,9 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. Within the list of resources, select the Azure VM **az800l06-vm0** entry. 
 
-1. On the **az800l06-vm0** page, under **Settings** section, select **Extensions + applications**, and on the list of extensions, verify that the **customScriptExtension** has been **provisioned successfully**.
+1. On the **az800l06-vm0** page, under **Settings** section, select **Extensions + applications (1)**, and on the list of extensions, verify that the **customScriptExtension (2)** has been **provisioned successfully**.
+
+   ![](media/lab6f30.png)
 
 1. Browse back to the **AZ800-L0601-RG** page, and in the **Settings** section, select **Deployments**.
 
@@ -249,11 +304,11 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for and select **Microsoft Defender for Cloud**.
 
-1. On the **Overview** page of Microsoft Defender for Cloud, on the vertical menu on the left side, in the **Management** section, select **Environment settings**. 
+1. On the **Overview** page of Microsoft Defender for Cloud, on the vertical menu on the left side, in the **Management** section, select **Environment settings (1)**. 
 
-1. On the **Environment settings** page, expand and select the entry representing your Azure subscription.
+1. On the **Environment settings** page, expand and select the entry representing your **Azure subscription (2)**.
 
-    ![](media/az-800-lab06-10.png)
+    ![](media/lab6f31.png)
 
 1. On the **Settings | Defender plans** page, ensure that the Servers plan is configured with **Microsoft Defender for Plan 2**(1) and the status is set to **On**(2). If not, update the pricing to Plan 2, enable the status by setting it to On, and then click **Save**(3)
 
@@ -281,67 +336,92 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. On the **Network security groups** page, select **+ Create**.
 
+   ![](media/lab6f32.png)
+
 1. On the **Basics** tab of the **Create network security group** page, specify the following settings (leave others with their default values):
 
       |Setting|Value|
       |---|---|
-      |Subscription|the name of the Azure subscription you are using in this lab|
-      |Resource group|**AZ800-L0601-RG**|
-      |Name|**az800l06-vm0-nsg1**|
+      |Subscription|Leave the default value|
+      |Resource group|Select **AZ800-L0601-RG (1)** resource group from drop down|
+      |Name|**az800l06-vm0-nsg1 (2)**|
       |Region|the name of the Azure region into which you provisioned the Azure VM **az800l06-vm0**|
 
-1. On the **Create network security group** page, on the **Basics** tab, select **Review + create**, and then select **Create**.
+   ![](media/lab6f33.png)
+
+1. On the **Create network security group** page, on the **Basics** tab, select **Review + create (3)**, and then select **Create**.
+
+   ![](media/lab6f34.png)
 
 1. In the Azure portal, browse back to the **AZ800-L0601-RG** page, and then in the list of resources, select the entry representing the newly created network security group **az800l06-vm0-nsg1**.
 
-1. On the **az800l06-vm0-nsg1** page, review the listing of the default inbound and outbound security rules, and then in the **Settings** section, select **Inbound
-security rules**.
+1. On the **az800l06-vm0-nsg1** page, review the listing of the default inbound and outbound security rules, and then in the **Settings** section, select **Inbound security rules**.
 
-1. On the **az800l06-vm0-nsg1 \| Inbound security rules** page, select **+ Add**.
+1. On the **az800l06-vm0-nsg1 \| Inbound security rules (1)** page, select **+ Add (2)**.
 
-1. On the **Add inbound security rule** page, specify the following settings, leaving all others with their default values, and then select **Add**:
+1. On the **Add inbound security rule** page, specify the following settings, leaving all others with their default values, and then select **Add (10)**:
 
       |Setting|Value|
       |---|---|
-      |Source|**Any**|
-      |Source port ranges|*|
-      |Destination|**Any**|
-      |Service|**HTTP**|
-      |Action|**Allow**|
-      |Priority|**300**|
-      |Name|**AllowHTTPInBound**|
+      |Source|**Any (3)**|
+      |Source port ranges|* (4)|
+      |Destination|**Any (5)**|
+      |Service|**HTTP (6)**|
+      |Action|**Allow (7)**|
+      |Priority|**300 (8)**|
+      |Name|**AllowHTTPInBound (9)**|
+
+   ![](media/lab6f35.png)
 
 ### Task 2: Configure Inbound HTTP access to an Azure VM
 
 1. In the Azure portal, browse back to the **AZ800-L0601-RG** page, and then in the list of resources, select the entry representing the Azure VM **az800l06-vm0**.
 
+   ![](media/lab6f36.png)
+
 1. On the **az800l06-vm0** page, under **Networking** section select **Network settings**.
 
-1. On the **az800l06-vm0 \| Network settings** page, select the link designating the network interface attached to **az800l06-vm0**.
+1. On the **az800l06-vm0 \| Network settings (1)** page, select the link designating the **network interface (2)** attached to **az800l06-vm0**.
+
+   ![](media/lab6f37n.png)
 
 1. On the page displaying the network interface properties, in the vertical menu on the left side, in the **Settings** section, select **Network security group**. 
 
-1. On the **Network security group** page, in the drop-down list, select **az800l06-vm0-nsg1**, and then select **Save**.
+1. On the **Network security group (1)** page, in the drop-down list, select **az800l06-vm0-nsg1 (2)**, and then select **Save (3)**.
+
+   ![](media/lab6f38.png)
 
 1. In the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for and select **Public IP addresses**, click **Create**.
 
-1. On Basis tab of create public ip address specify the following and select **Review + create** and **Create**.
+   ![](media/lab6f39.png)
+
+   ![](media/lab6f40.png)
+
+1. On Basis tab of create public ip address specify the following and select **Review + create (3)** and **Create**.
      
       |Setting|Value|
       |---|---|
-      |Resource group|**AZ800-L0601-RG**|
-      |Name|**az800l06-vm0-pip1**|
+      |Resource group|Select **A9Z800-L0601-RG (1)** resource group from the dropdown|
+      |Name|**az800l06-vm0-pip1 (2)**|
       |SKU|**Standard**|
+
+   ![](media/lab6f41.png)
       
-1. In the Azure portal, browse back to the **AZ800-L0601-RG** page, and then in the list of resources, select the entry representing the network interface, select **IP configurations** under **Settings**, and then select the **ipconfig1** entry.
+1. In the Azure portal, browse back to the **AZ800-L0601-RG** page, and then in the list of resources, select the entry representing the network interface, select **IP configurations (1)** under **Settings**, and then select the **ipconfig1 (2)** entry.
 
-1. On the **Edit ip configuration** page, in the **Public IP address settings** section, select **Associate public ip address**, and then, below the **Public IP address** drop-down list, select **az800l06-vm0-pip1** and click **Save**.
+   ![](media/lab6f42.png)
 
-1. Browse back to the page displaying the network interface properties and select **Overview**. Note the value of the public IP address assigned to the interface.
+1. On the **Edit ip configuration** page, in the **Public IP address settings** section, select **Associate public ip address (3)**, and then, below the **Public IP address** drop-down list, select **az800l06-vm0-pip1 (4)** and click **Save (5)**.
+
+   ![](media/lab6f43.png)
+
+1. Browse back to the page displaying the network interface properties and select **Overview (1)**. Note the value of the **Public IP address (2)** assigned to the interface.
+
+   ![](media/lab6f44.png)
 
 1. Open another browser tab, browse to that IP address, and verify that a webpage opens, displaying **Hello World from az800l06-vm0**.
 
-    ![](media/az-800-lab06-07.png)
+   ![](media/az-800-lab06-07.png)
 
 1. From the lab computer, start the Remote Desktop app, and try connecting to the same IP address. Verify that the connection fails.
 
@@ -357,15 +437,23 @@ security rules**.
 
 1. On the **az800l06-vm0 \| Configuration** page, select **Enable just-in-time** VM access and select the **Open Microsoft Defender for Cloud** link.
 
-     ![](media/az-800-lab06-01.png)
+   ![](media/az-800-lab06-01.png)
 
-1. On the **Just-in-time VM access** page, verify that the entry representing the **az800l06-vm0** Azure VM appears on the **Configured** tab.
+   ![](media/lab6f45.png)
+
+1. On the **Just-in-time VM access** page, verify that the entry representing the **az800l06-vm0 (2)** Azure VM appears on the **Configured (1)** tab.
+
+   ![](media/lab6f46.png)
 
 ### Task 4: Connect to the Azure VM via JIT VM access
 
-1. Browse back to the **az800l06-vm0** page, select **Connect**, and
+1. Browse back to the **az800l06-vm0** page, select **Connect**
+
+   ![](media/lab6f47.png)
 
 1. On **az800l06-vm0 \| Connect** page, scroll down and click **Select** option in **Native RDP** under **Most Common** section.
+
+   ![](media/lab6f48.png)
 
 1. Select the check box under the **Configure prerequisites for Native RDP** and click on **Configure** and wait for the configuration to be completed.
 
