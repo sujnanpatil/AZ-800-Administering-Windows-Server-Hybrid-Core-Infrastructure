@@ -139,7 +139,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
     | Virtual network deployment model | **Resource manager (2)** |
     | Remote virtual network: Virtual network | **az800l08-vnet1(4)** |
     | Allow 'az800l08-vnet1' to access 'az800l08-vnet0' | **Select the checkbox (5)** |
-    |Allow 'az800l08-vnet1' to receive forwarded traffic from 'az800l08-vnet0'| **Select the checkbox (6)** |
+    | Allow 'az800l08-vnet1' to receive forwarded traffic from 'az800l08-vnet0'| **Select the checkbox (6)** |
 
     ![](media/az7upd.png)
 
@@ -152,6 +152,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
     | Allow 'az800l08-vnet0' to receive forwarded traffic from 'az800l08-vnet1'| **Select the checkbox (3)** |
     
     ![](media/az8upd.png)
+
 
     >**Note**: Wait for the operation to complete.
 
