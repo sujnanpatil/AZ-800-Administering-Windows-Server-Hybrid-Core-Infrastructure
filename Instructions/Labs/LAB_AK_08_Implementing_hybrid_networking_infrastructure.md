@@ -150,12 +150,11 @@ In this lab, you will perform:
     
     ![](media/lab8j5.png)
 
+     >**Note**: Wait for the operation to complete.
 
-    >**Note**: Wait for the operation to complete.
+     >**Note**: This step establishes two peerings - one from **az800l08-vnet0** to **az800l08-vnet1** and the other from **az800l08-vnet1** to **az800l08-vnet0**.
 
-    >**Note**: This step establishes two peerings - one from **az800l08-vnet0** to **az800l08-vnet1** and the other from **az800l08-vnet1** to **az800l08-vnet0**.
-
-    >**Note**: **Allow forwarded traffic** needs to be enabled in order to facilitate routing between spoke virtual networks, which you will implement later in this lab.
+     >**Note**: **Allow forwarded traffic** needs to be enabled in order to facilitate routing between spoke virtual networks, which you will implement later in this lab.
 
 1. On the **az800l08-vnet0 | Peerings** virtual network page, select **+ Add**.
 
