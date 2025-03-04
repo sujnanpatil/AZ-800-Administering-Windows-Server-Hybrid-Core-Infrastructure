@@ -4,8 +4,6 @@
 
 You were tasked with building a test environment in Azure, consisting of Microsoft Azure virtual machines deployed into separate virtual networks configured in the hub and spoke topology. This testing must include implementing connectivity between spokes by using user-defined routes that force traffic to flow via the hub. You also need to implement DNS name resolution for Azure virtual machines between virtual networks by using Azure private DNS zones and evaluate the use of Azure DNS zones for external name resolution.
 
-**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-800%20Lab%20Simulation%20-%20Implementing%20hybrid%20networking%20infrastructure)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
-
 ## Lab objectives
 
 In this lab, you will perform:
@@ -19,15 +17,9 @@ In this lab, you will perform:
 
    ![](media/mod8art.png)  
 
-## Lab setup
+## Exercise 1: Implement virtual network routing in Azure
 
-Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running. Other VMs can be running, but they aren't required for this lab.
-
-> **Note**: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-SEA-ADM1** virtual machines are hosting the installation of **SEA-DC1** and **SEA-ADM1**
-
-### Exercise 1: Implement virtual network routing in Azure
-
-#### Task 1: Provision lab infrastructure resources
+### Task 1: Provision lab infrastructure resources
 
 1. Connect to **SEA-ADM1**, and then, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
 
@@ -84,6 +76,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
 1. Upload the files **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab08\L08-rg_template.json** and **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab08\L08-rg_template.parameters.json** into the Cloud Shell home directory.
 
+   ![](media/lab8j2.png)
+
 1. From the Cloud Shell pane, run the following command to create the three virtual networks and four Azure VMs into them by using the template and parameter files you uploaded:
 
    ```powershell
@@ -93,6 +87,8 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
    -TemplateFile $HOME/L08-rg_template.json `
    -TemplateParameterFile $HOME/L08-rg_template.parameters.json
    ```
+
+   ![](media/lab8j3.png)
 
     >**Note**: Wait for the deployment to complete before proceeding to the next step. This should take about 3 minutes.
 
@@ -117,7 +113,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
     >**Note**: Do not wait for the deployment to complete, proceed to the next step. The installation of the Network Watcher extension should take about 5 minutes.
 
-#### Task 2: Configure the hub and spoke network topology
+### Task 2: Configure the hub and spoke network topology
 
 1. On **SEA-ADM1**, in the Microsoft Edge window displaying the Azure portal, open another tab and browse to the **[Azure portal](https://portal.azure.com)**.
 
@@ -127,9 +123,9 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
     ![](media/mod818.png)
 
-1. On the **az800l08-vnet0** virtual network page, from the left navigation pane, under the **Settings** section, select **Peerings**, and then select **+ Add**.
+1. On the **az800l08-vnet0** virtual network page, from the left navigation pane, under the **Settings (1)** section, select **Peerings (2)**, and then select **+ Add (3)**.
 
-     ![](media/mod817.png)
+     ![](media/lab8j4.png)
 
 1. Specify the following settings for **Remote virtual network** (leave others with their default values)
 
@@ -152,7 +148,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
     | Allow 'az800l08-vnet0' to access 'az800l08-vnet1' | **Select the checkbox (2)** |
     | Allow 'az800l08-vnet0' to receive forwarded traffic from 'az800l08-vnet1'| **Select the checkbox (3)** |
     
-    ![](media/az8upd.png)
+    ![](media/lab8j5.png)
 
 
     >**Note**: Wait for the operation to complete.
@@ -185,11 +181,13 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
     >**Note**: This step establishes two peerings - one from **az800l08-vnet0** to **az800l08-vnet2** and the other from **az800l08-vnet2** to **az800l08-vnet0**. This completes setting up the hub and spoke topology (with the **az800l08-vnet0** virtual network serving the role of the hub, while **az800l08-vnet1** and **az800l08-vnet2** are its spokes).
 
-#### Task 3: Test transitivity of virtual network peering
+### Task 3: Test transitivity of virtual network peering
 
 >**Note**: Before you start this task, make sure that the script you invoked in the first task of this exercise completed successfully.
 
 1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Network Watcher**.
+
+   ![](media/lab8j6.png)
 
 1. On the **Network Watcher** page, from the left navigation pane under **Network diagnostic tools (1)** section, select **Connection troubleshoot (2)**.
 
@@ -199,17 +197,21 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
     | Setting | Value |
     | --- | --- |
-    | Source type | **Virtual machine** |
-    | Virtual machine | **az800l08-vm0** |
-    | Destination | **Specify manually** |
-    | URI, FQDN or IP address | **10.81.0.4** |
-    | Protocol | **TCP** |
-    | Destination Port | **3389** |
-    | Diagnostic tests | Select **Connectivity** and **Next hop** from the list |
+    | Source type | **Virtual machine (1)** |
+    | Virtual machine | **az800l08-vm0 (2)** |
+    | Destination | **Specify manually (3)** |
+    | URI, FQDN or IP address | **10.81.0.4 (4)** |
+    | Protocol | **TCP (5)** |
+    | Destination Port | **3389 (6)** |
+    | Diagnostic tests | Select **Connectivity** and **Next hop** from the list (7) |
+
+   ![](media/lab8j7n.png)
+
+   ![](media/lab8j8.png)
 
     > **Note**: **10.81.0.4** represents the private IP address of **az800l08-vm1**. The test uses the **TCP** port **3389** because Remote Desktop is by default enabled on Azure virtual machines and accessible within and between virtual networks.
 
-1. Select **Run diagnostic tests** and wait until results of the connectivity check are returned. Verify that the status is **Reachable (success)**. Review the network path and note that the connection was direct, with no intermediate hops in between the VMs.
+1. Select **Run diagnostic tests (8)** and wait until results of the connectivity check are returned. Verify that the status is **Reachable (success)**. Review the network path and note that the connection was direct, with no intermediate hops in between the VMs.
 
     > **Note**: This is expected because the hub virtual network is peered directly with the first spoke virtual network.
 
@@ -253,37 +255,40 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
     > **Note**: This is expected because the two spoke virtual networks are not peered with each other and virtual network peering is not transitive.
 
-#### Task 4: Configure routing in the hub and spoke topology
+### Task 4: Configure routing in the hub and spoke topology
 
 1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Virtual machines**.
 
-1. On the **Virtual machines** page, in the list of virtual machines, select **az800l08-vm0**.
+1. On the **Virtual machines** page, in the list of virtual machines, select **az800l08-vm0 (1)**.
 
-1. On the **az800l08-vm0** virtual machine page, from the left navigation pane, under the **Networking** section, select **Network settings**.
+1. On the **az800l08-vm0** virtual machine page, from the left navigation pane, under the **Networking (2)** section, select **Network settings (3)**.
 
-1. Select the **az800l08-nic0(primary)/ipconfig1(primaty)** link under **Network interface/IP configurations**.
+1. Select the **az800l08-nic0(primary)/ipconfig1(primaty)** link under **Network interface/IP configurations (4)**.
 
-   ![](media/az12.png)
+   ![](media/lab8j1.png)
 
 1. Select checkbox **Enable IP forwarding (1)**  and select **Apply (2)** to save the change.
 
-     ![](media/az13upd2.png)
+   ![](media/az13upd2.png)
 
-    > **Note**: This setting is required in order for **az800l08-vm0** to function as a router, which will route traffic between two spoke virtual networks.
+   >**Note**: This setting is required in order for **az800l08-vm0** to function as a router, which will route traffic between two spoke virtual networks.
 
 1. In the Azure portal, browse back to the **az800l08-vm0** Azure virtual machine page.
 
-1. On the **az800l08-vm0** page, from the left navigation pane, under the **Operations** section, select **Run command**, and then, in the list of commands, select **RunPowerShellScript**.
+1. On the **az800l08-vm0** page, from the left navigation pane, under the **Operations (1)** section, select **Run command (2)**, and then, in the list of commands, select **RunPowerShellScript (3)**.
 
-1. On the **Run Command Script** page, enter the following command, and then select **Run** to install the Remote Access Windows Server role.
+   ![](media/lab8j9.png)
+
+1. On the **Run Command Script** page, enter the following command (1), and then select **Run (2)** to install the Remote Access Windows Server role.
 
    ```powershell
    Install-WindowsFeature RemoteAccess -IncludeManagementTools
    ```
+   ![](media/lab8j10.png)
 
    > **Note**: Wait for the confirmation that the command completed successfully.
 
-1. On the **Run Command Script** page, in the **PowerShell script** section, replace the previously entered command with the following commands, and then select **Run** to install the Routing role service.
+1. On the **Run Command Script** page, in the **PowerShell script** section, replace the previously entered command with the following commands (1), and then select **Run (2)** to install the Routing role service.
 
    ```powershell
    Install-WindowsFeature -Name Routing -IncludeManagementTools -IncludeAllSubFeature
@@ -292,73 +297,90 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
    Get-NetAdapter | Set-NetIPInterface -Forwarding Enabled
    ```
 
+   ![](media/lab8j11.png)
+
    > **Note**: Wait for the confirmation that the command completed successfully.
 
    > **Note**: Now you need to create and configure user-defined routes on the spoke virtual networks.
 
-      ![](media/az15.png)
-
 1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Route tables**, and then, on the **Route tables** page, select **+ Create**.
+
+   ![](media/lab8j12.png)
+
+   ![](media/lab8j13.png)
 
 1. Create a route table with the following settings (leave others with their default values):
 
     | Setting | Value |
     | --- | --- |
-    | Subscription | the name of the Azure subscription you are using in this lab |
-    | Resource group | **AZ800-L0801-RG** |
+    | Subscription | Leave the default subscription |
+    | Resource group |  Select **AZ800-L0801-RG (1)** from the drop down list |
     | Location | the name of the Azure region in which you created the virtual networks |
-    | Name | **az800l08-rt12 (1)** |
-    | Propagate gateway routes | **No (2)** |
+    | Name | **az800l08-rt12 (2)** |
+    | Propagate gateway routes | **No (3)** |
 
-1. Select **Review + create (3)**, and then select **Create**.
+    ![](media/lab8j14.png)
 
-    ![](media/az16upd2.png)
+1. Select **Review + create (4)**, and then select **Create (5)**.
+
+   ![](media/lab8j15.png)
 
    > **Note**: Wait for the route table to be created. This should take about 1 minute.
 
 1. Select **Go to resource**.
 
-1. On the **az800l08-rt12** route table page, from the left-navigation menu, under the **Settings** section, select **Routes**, and then select **+ Add (1)**.
+   ![](media/lab8j16.png)
+
+1. On the **az800l08-rt12** route table page, from the left-navigation menu, under the **Settings (1)** section, select **Routes (2)**, and then select **+ Add (3)**.
 
 1. Add a new route with the following settings:
 
     | Setting | Value |
     | --- | --- |
-    | Route name | **az800l08-route-vnet1-to-vnet2 (2)** |
-    | Destination Type | **IP Addresses (3)** |
-    | Destination IP Address/CIDR ranges | **10.82.0.0/20 (4)** |
-    | Next hop type | **Virtual appliance (5)** |
-    | Next hop address | **10.80.0.4 (6)** |
-    | Select **Add (7)**. |
+    | Route name | **az800l08-route-vnet1-to-vnet2 (4)** |
+    | Destination Type | **IP Addresses (5)** |
+    | Destination IP Address/CIDR ranges | **10.82.0.0/20 (6)** |
+    | Next hop type | **Virtual appliance (7)** |
+    | Next hop address | **10.80.0.4 (8)** |
+
+1. Select  **Add (9)**
 
     > **Note**: **10.80.0.4** represents the private IP address of **az800l08-vm0**. 
 
-    ![](media/Ex-1-T4-S15.png)
+    ![](media/lab8j17.png)
 
-1. Back on the **az800l08-rt12** route table page, from the left-navigation menu, under the **Settings** section, select **Subnets**, and then select **+ Associate**.
+1. Back on the **az800l08-rt12** route table page, from the left-navigation menu, under the **Settings (1)** section, select **Subnets (2)**, and then select **+ Associate (3)**.
 
 1. Associate the route table **az800l08-rt12** with the following subnet:
 
     | Setting | Value |
     | --- | --- |
-    | Virtual network | **az800l08-vnet1** |
-    | Subnet | **subnet0** |
+    | Virtual network | **az800l08-vnet1 (4)** |
+    | Subnet | **subnet0 (5)** |
 
-1. Select **OK**.
+1. Select **OK (6)**.
+
+    ![](media/lab8j18.png)
 
 1. Browse back to **Route tables** page and select **+ Create**.
+
+    ![](media/lab8j19.png)
 
 1. Create a route table with the following settings (leave others with their default values):
 
     | Setting | Value |
     | --- | --- |
-    | Subscription | the name of the Azure subscription you are using in this lab |
-    | Resource group | **AZ800-L0801-RG** |
+    | Subscription | Leave the default subscription |
+    | Resource group |  Select **AZ800-L0801-RG (1)** from the drop down list |
     | Region | the name of the Azure region in which you created the virtual networks |
-    | Name | **az800l08-rt21** |
-    | Propagate gateway routes | **No** |
+    | Name | **az800l08-rt21 (2)** |
+    | Propagate gateway routes | **No (3)** |
 
-1. Select **Review + create**, and then select **Create**.
+    ![](media/lab8j20.png)
+
+1. Select **Review + create (4)**, and then select **Create (5)**.
+
+    ![](media/lab8j21.png)
 
    > **Note**: Wait for the route table to be created. This should take about 3 minutes.
 
@@ -370,24 +392,28 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
     | Setting | Value |
     | --- | --- |
-    | Route name | **az800l08-route-vnet2-to-vnet1** |
-    | Destination Type | **IP Addresses** |
-    | Destination IP Address/CIDR ranges | **10.81.0.0/20** |
-    | Next hop type | **Virtual appliance** |
-    | Next hop address | **10.80.0.4** |
+    | Route name | **az800l08-route-vnet2-to-vnet1 (1)**|
+    | Destination Type | **IP Addresses (2)** |
+    | Destination IP Address/CIDR ranges | **10.81.0.0/20 (3)** |
+    | Next hop type | **Virtual appliance (4)** |
+    | Next hop address | **10.80.0.4 (5)** |
 
-1. Select **Add**.
+    ![](media/lab8j22.png)
 
-1. Back on the **az800l08-rt21** route table page, from the left navigation pane, under the **Settings** section, select **Subnets**, and then select **+ Associate**.
+1. Select **Add (6)**.
+
+1. Back on the **az800l08-rt21** route table page, from the left navigation pane, under the **Settings (1)** section, select **Subnets (2)**, and then select **+ Associate (3)**.
 
 1. Associate the route table **az800l08-rt21** with the following subnet:
 
     | Setting | Value |
     | --- | --- |
-    | Virtual network | **az800l08-vnet2** |
-    | Subnet | **subnet0** |
+    | Virtual network | **az800l08-vnet2 (4)** |
+    | Subnet | **subnet0 (5)** |
 
-1. Select **OK**.
+    ![](media/lab8j23.png)
+
+1. Select **OK (6)**.
 
 1. In the Azure portal, browse back to the **Network Watcher - Connection troubleshoot** page.
 
@@ -418,24 +444,30 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
 <validation step="0ebb917b-c450-4512-b0e1-a353ee5517b8" />
 
-### Exercise 2: Implement DNS name resolution in Azure
+## Exercise 2: Implement DNS name resolution in Azure
 
-#### Task 1: Configure Azure private DNS name resolution
+### Task 1: Configure Azure private DNS name resolution
 
 1. On **SEA-ADM1**, in the Microsoft Edge window displaying the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for and select **Private DNS zones**, and then, on the **Private DNS zones** page, select **+ Create**.
+
+   ![](media/lab8j24.png)
+
+   ![](media/lab8j25.png)
 
 1. Create a private DNS zone with the following settings:
 
     | Setting | Value |
     | --- | --- |
-    | Subscription | the name of the Azure subscription you are using in this lab (1) |
-    | Resource group | select **AZ800-L0802-RG (2)** |
-    | Name | **contoso.org (3)** |
-    | Resource group location | the same Azure region into which you deploy resources in the previous exercise of this lab |
+    | Subscription | Leave the default value |
+    | Resource group | select **AZ800-L0802-RG (1)** from the drop down list |
+    | Name | **contoso.org (2)** |
+    | Resource group location | Leave the default value |
 
-1. Select **Review create (4)**, and then select **Create**.
+1. Select **Review create (3)**, and then select **Create (4)**.
 
-    ![](media/az27upd.png)
+   ![](media/lab8j26.png)
+
+   ![](media/lab8j27.png)
 
     >**Note**: Wait for the private DNS zone to be created. This should take about 2 minutes.
 
@@ -443,7 +475,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
 1. On the **contoso.org** private DNS zone page, in the **DNS Management (1)** section, select **Virtual network links (2)** and then Click on **Add (3)**.
 
-   ![](media/az19upd.png)
+   ![](media/lab8j28.png)
 
 1. Specify the following settings (leave others with their default values), and select **Create(5)** to create a virtual network link for the first virtual network you created in the previous exercise:
 
@@ -468,11 +500,11 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
 1. In the **Overview** section of the **contoso.org** private DNS zone page, review the listing of DNS record sets and verify that the **A** records of **az800l08-vm0**, **az800l08-vm1**, and **az800l08-vm2** appear in the list as **Auto registered**.
 
-    ![](media/mod806.png)
+    ![](media/lab8j29.png)
 
     >**Note:** You might need to wait a few minutes and refresh the page if the record sets are not listed.
 
-#### Task 2: Validate Azure private DNS name resolution
+### Task 2: Validate Azure private DNS name resolution
 
 1. On **SEA-ADM1**, in the Microsoft Edge window displaying the Azure portal, browse back to the **Network Watcher** page.
 
@@ -485,33 +517,41 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
     | Destination | **Specify manually (4)** |
     | URI, FQDN or IP address | **az800l08-vm2.contoso.org (5)** |
     | Preferred IP Version | **IPv4 (6)** |
-    | Protocol | **TCP** |
-    | Destination Port | **3389 (7)** |
-    | Diagnostic tests | Select **Connectivity** and **Next hop** from the list |
+    | Protocol | **TCP (7)** |
+    | Destination Port | **3389 (8)** |
+    | Diagnostic tests | Select **Connectivity** and **Next hop** (9) from the list |
 
-    ![](media/az23upd.png)
+    ![](media/lab8j30.png)
 
-1. Select **Run diagnostic tests (8)** and wait until the results of the connectivity check are returned. Verify that the status is **Reachable**. 
+    ![](media/lab8j31.png)
+
+1. Select **Run diagnostic tests (10)** and wait until the results of the connectivity check are returned. Verify that the status is **Reachable**. 
 
      ![](media/Ex-2-T2-S3-1.png)
 
     >**Note**: This is expected because the target fully qualified domain name (FQDN) is resolvable via the Azure private DNS zone. 
 
-#### Task 3: Configure Azure public DNS name resolution
+### Task 3: Configure Azure public DNS name resolution
 
 1. On **SEA-ADM1**, switch to the Microsoft Edge tab displaying the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for and select **DNS zones**, and then, on the **DNS zones** page, select **+ Create**.
+
+    ![](media/lab8j32.png)
+
+    ![](media/lab8j33.png)
 
 1. On the **Create DNS zone** page, specify the following settings (leave others with their default values):
 
     | Setting | Value |
     | --- | --- |
-    | Subscription | the name of the Azure subscription you are using in this lab |
-    | Resource Group | **AZ800-L0802-RG** |
-    | Name | **mydns<inject key="DeploymentID" enableCopy="false"/>.com** |
+    | Subscription | Leave the default value |
+    | Resource Group | Select **AZ800-L0802-RG (1)** from the drop-down list. |
+    | Name | **mydns<inject key="DeploymentID" enableCopy="false"/>.com (2)** |
 
-1. Select **Review + create**, and then select **Create**.
+    ![](media/lab8j34.png)
 
-    ![](media/mod804.png)
+1. Select **Review + create (3)**, and then select **Create (4)**.
+
+    ![](media/lab8j35.png)
 
     >**Note**: Wait for the DNS zone to be created. This should take about 1 minute.
 
@@ -542,7 +582,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1** and **AZ-800T00A-ADM1** must be running
 
     >**Note**: Record the full name of **Name server 1**. You will need it in the next task.
 
-#### Task 4: Validate Azure public DNS name resolution
+### Task 4: Validate Azure public DNS name resolution
 
 1. On **SEA-ADM1**, on the **Start** menu, select **Windows PowerShell**.
 
