@@ -59,68 +59,102 @@ In this lab, you will perform:
 
 1. In the **Network access** window, in the **Type a name and then click Add, or click the arrow to find someone** text box, type **Users (1)** and click **Add (2)**.
 
-   ![](media/users-add01.png)
+   ![](media/lab9k1.png)
 
-1. In the **Network access** window, select **Share**, and once you are presented with the **Your folder is shared** window, select **Done**.
+1. In the **Network access** window, select **Share (3)**, and once you are presented with the **Your folder is shared** window, select **Done**.
 
-   ![](media/labfiles-shared.png)
+   ![](media/lab9k2.png)
 
-1. Switch back to the **Server Manager** window, and then, on the **Add Roles and Features Wizard installation succeeded (1)** page, select **Close (2)**.
+1. Switch back to the **Server Manager** window, and then, on the **Add Roles and Features Wizard installation succeeded** page, select **Close**.
 
-   ![](media/close-srvmngr01.png)
+   ![](media/lab9k3.png)
 
 1. Switch to the **SEA-SVR3** console session, and then, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
+
+   > **Note:** Minimize the current VM window, then select and start **SEA-SVR3** from the **labVM** desktop.
+
+   ![](media/lab9k4.png)
 
 1. If presented with the **SConfig** menu, at **Enter number to select an option**, enter **15** and press Enter to exit to a **PowerShell** console session.
    
    > **Note**: To open Notepad from PowerShell, type **Notepad** and press enter.
 
+   ![](media/lab9k5.png)
+
 2. At the **Windows PowerShell** prompt, enter the following commands, and press Enter after each to create a new drive formatted with ReFS:
 
+   ### 1. List all available disks  
    ```powershell
    Get-Disk
+   ```	
+   ### 2. Initialize the disk (replace `1` with the correct disk number)  
+   ```powershell
    Initialize-Disk -Number 1
+   ```	
+   ### 3. Create a new partition using the entire disk space and assign a drive letter (M)  
+   ```powershell
    New-Partition -DiskNumber 1 -UseMaximumSize -DriveLetter M
+   ```	
+   ### 4. Format the partition with the ReFS file system  
+   ```powershell
    Format-Volume -DriveLetter M -FileSystem ReFS
    ```
 
 3. At the **Windows PowerShell** prompt, enter the following commands, and press Enter after each to copy from **SEA-ADM1** a script that creates sample files to be deduplicated, execute it, and identify the outcome:
 
+   ## PowerShell Commands for Drive Mapping and File Management
+
+   ### 1. Map a network drive to `X:` pointing to `\\SEA-ADM1\Labfiles`
    ```powershell
    New-PSDrive -Name 'X' -PSProvider FileSystem -Root '\\SEA-ADM1\Labfiles'
+   ```
+   ### 2. Create a directory `M:\Data`
+   ```powershell
    New-Item -Type Directory -Path 'M:\Data' -Force
+   ```
+   ### 3. Copy `CreateLabFiles.cmd` from the network drive to `M:\Data`
+   ```powershell
    Copy-Item -Path X:\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab09\CreateLabFiles.cmd -Destination M:\Data\ -PassThru
+   ```
+   ### 4. Execute the copied script
+   ```powershell
    Start-Process -FilePath M:\Data\CreateLabFiles.cmd -PassThru
+   ```
+   ### 5. Change the working directory to `M:\Data`
+   ```powershell
    Set-Location -Path M:\Data
+   ```
+   ### 6. List the contents of `M:\Data`
+   ```powershell
    Get-ChildItem -Path .
+   ```
+   ### 7. Verify the `M:` drive details
+   ```powershell
    Get-PSDrive -Name M
    ```
-
    > **Note**: Record the free space on drive **M**. 
 
 ### Task 2: Enable and configure Data Deduplication
 
 1. Switch back to the console session to **SEA-ADM1**, and then, within the console session, switch to **Server Manager**.
 
+   > **Note:** Minimize the current VM window, then select **SEA-ADM1** from the taskbar.
+
 1. In the **Server Manager** tree pane, select **File and Storage Services**, and then select **Disks**.
 
-1. In the **Disks (1)** pane, browse to the list of disks of **SEA-SVR3** and select the entry representing the disk number **1 (2)**, which you configured in the previous task.
+1. In the **Disks (1)** pane, browse to the list of disks of **SEA-SVR3** and select the entry representing the disk number **1** (2), which you configured in the previous task.
 
-   ![](media/disk-selection01.png)
+   ![](media/lab9k6.png)
 
-1. In the **Volumes (1)** pane, display the context-sensitive menu of the **M:** volume, and by right clicking on **M: (2)** volume ,select **Configure Data Deduplication (3)**.
+1. In the **Volumes** pane, display the context-sensitive menu of the **M:** volume, and by right clicking on **M: (3)** volume ,select **Configure Data Deduplication (4)**.
 
-   ![](media/configure-ddl01.png)
+1. In the **Volume (M:\\) Deduplication Settings** window, in the **Data deduplication** drop-down list, select the **General purpose file server (1)** setting.
 
-1. In the **Volume (M:\\) Deduplication Settings** window, in the **Data deduplication (1)** drop-down list, select the **General purpose file server (2)** setting.
+   ![](media/lab9k7.png)
 
-   ![](media/ddl-gpfs01.png)
+1. In the **Deduplicate files older than (in days):** text box, replace the default value of **3** with **0** (2).
 
-1. In the **Deduplicate files older than (in days):** text box, replace the default value of **3** with **0**.
-
-1. Select the **Set Deduplication Schedule** button.
-
-   ![](media/set-ddls.png)
+1. Select the **Set Deduplication Schedule (3)** button.
 
 1. In the **SEA-SVR3 Deduplication Schedule** window, select **Enable throughput optimization (1)**, and then select **OK (2)**.
 
@@ -130,52 +164,43 @@ In this lab, you will perform:
 
 ### Task 3: Test Data Deduplication
 
-1. On **SEA-ADM1**, select **Start (1)**, and right click on **Windows PowerShell (2)**, and select **Run as Administrator (3)**.
-
-   ![](media/powershell-admin01.png)
-
-   >**Note**: Perform the next two steps in case you have not already installed Windows Admin Center on **SEA-ADM1**.
-
-1. In the **Windows PowerShell** console, enter the following command and then press Enter to download the latest version of Windows Admin Center:
-	
-   ```powershell
-   Start-BitsTransfer -Source https://aka.ms/WACDownload -Destination "$env:USERPROFILE\Downloads\WindowsAdminCenter.msi"
-   ```
-1. Enter the following command and then press Enter to install Windows Admin Center:
-	
-   ```powershell
-   Start-Process msiexec.exe -Wait -ArgumentList "/i $env:USERPROFILE\Downloads\WindowsAdminCenter.msi /qn /L*v log.txt REGISTRY_REDIRECT_PORT_80=1 SME_PORT=443 SSL_CERTIFICATE_OPTION=generate"
-   ```
-
-   > **Note**: Wait until the installation completes. This should take about 2 minutes.
-
-1. On **SEA-ADM1**, start Microsoft Edge, and then go to `https://SEA-ADM1.contoso.com`.
-
-   >**Note**: If the link does not work, on **SEA-ADM1**, open File Explorer, select Downloads folder, in the Downloads folder select **WindowsAdminCenter.msi** file and install manually. After the install completes, refresh Microsoft Edge.
-
+1. On **SEA-ADM1**, start Microsoft Edge, and then browse to `https://SEA-ADM1.contoso.com`.
+ 
    >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe)**.
 
-1. If prompted, in the **Windows Security** dialog box, enter the following credentials, and then select **OK**:
+   ![](media/lab7-171.png)
+   
+1. If prompted, in the **Windows Security** dialog box, enter the following credentials, and then select **OK (3)**:
 
-   - Username: **CONTOSO\Administrator**
-   - Password: **Pa55w.rd**
+   - Username: **CONTOSO\Administrator (1)**
+   - Password: **Pa55w.rd (2)**
 
-1. On the All connections pane, select **+ Add (1)**.
+   ![](media/lab7-172.png)
 
-1. On the Add or create resources pane, on the **Servers (2)** tile, select **Add (3)**.
+1. In the All connections pane, select **+ Add (1)**.
 
-   ![](media/add-server01.png)
+   ![](media/lab7-173.png)
 
-1. In the **Server name** text box, enter **sea-svr3.contoso.com (1)**. 
+1. In the Add or create resources pane, on the **Servers** tile, select **Add (2)**.
 
-1. If needed, ensure that the **Use another account for this connection (2)** option is selected, enter the following credentials, and then select **Add with credentials (5)**:
+1. In the **Server name** text box, enter **sea-svr3.contoso.com** (1) and click on **Add** (2).  
 
-   - Username: **CONTOSO\Administrator (3)**
-   - Password: **Pa55w.rd (4)**
-  
-     ![](media/add-with-creds01.png)
+   ![](media/lab9k8.png)  
 
-     > **Note**: After performing step 8, if an error message that says **You can add this server to your list of connections, but we can't confirm it's available.** appears, select **Add**. In the All Connections pane,  select **sea-svr1.contoso.com**, and then select **Manage as**. In the **Specify your credentials** dialog box, ensure that the **Use another account for this connection** option is selected, enter the Administrator credentials, and then select **Continue**.
+   > **Note**: While performing the step, if you see an error message stating, **"You can add this server to your list of connections, but we can't confirm it's available."**, select **Add**.  
+
+   - In the **All Connections** pane, select **sea-svr3.contoso.com** (1) and then click on **Manage as** (2).  
+   - In the **Specify your credentials** dialog box:  
+     - Ensure that **Use another account for this connection** (3) is selected.  
+     - Enter the Administrator credentials:  
+       - **Username**: **CONTOSO\Administrator** (4)  
+       - **Password**: **Pa55w.rd** (5)  
+     - Check the **Use this credential for all connections** checkbox (6).  
+     - Click **Continue** (7).  
+
+   ![](media/lab9k9.png)
+
+1. In **All connections** pane, select **sea-svr3.contoso.com**.
 
 1. On the **sea-svr3.contoso.com (1)** page, in the **Tools** menu, select **PowerShell (2)**, and then, when prompted, sign in as the **CONTOSO\Administrator** user with **Pa55w.rd (3)** as its password and **Submit (4)**
 
@@ -188,6 +213,8 @@ In this lab, you will perform:
    ```
 1. Switch back to the console session to **SEA-SVR3**.
 
+   > **Note:** Minimize the current VM window, then select **SEA-SVR3** from the taskbar.
+
 1. On **SEA-SVR3**, at the **Windows PowerShell** prompt, enter the following command and press Enter to identify the available space on the volume being deduplicated:
 
    ```powershell
@@ -199,6 +226,8 @@ In this lab, you will perform:
 1. Wait for **five to ten minutes** to allow the deduplication job to complete and repeat the previous step.
 
 1. Switch back to console session to **SEA-ADM1**.
+
+   > **Note:** Minimize the current VM window, then select **SEA-ADM1** from the taskbar.
 
 1. On **SEA-ADM1**, in the **Windows PowerShell** console within the **Microsoft Edge** window displaying Windows Admin Center connection to **sea-svr3.contoso.com**, enter the following commands and press Enter after each to determine the status of the deduplication job:
 
@@ -307,23 +336,27 @@ In this lab, you will perform:
 
    ![](media/iscsi-vdsize01.png)
 
-1. On the **Assign iSCSI target** page, ensure the **New iSCSI target** radio button is selected, and then select **Next**.
+1. On the **Assign iSCSI target** page, ensure the **New iSCSI target (1)** radio button is selected, and then select **Next (2)**.
 
-1. In the **Specify target name** page, in the **Name (1)** field, enter **iSCSIFarm**, and then select **Next (2)**.
+   ![](media/lab9k10.png)
 
-   ![](media/iscsi-tgname01.png)
+1. In the **Specify target name** page, in the **Name** field, enter **iSCSIFarm (1)**, and then select **Next (2)**.
 
-1. In the **Specify access servers (1)** page, select the **Add (2)** button.
+   ![](media/lab9k11.png)
 
-1. In the **Select a method to identify the initiator** window, select the **Browse (3)** button.
+1. In the **Specify access servers** page, select the **Add (1)** button.
 
-   ![](media/iscsi-browsesrvr01.png)
+   ![](media/lab9k12.png)
+
+1. In the **Select a method to identify the initiator** window, select the **Browse (2)** button.
 
 1. In the **Select Computer** window, in the **Enter the object name to select** text box, enter **SEA-DC1 (1)**, select **Check Names (2)**, and then select **OK (3)**.
 
    ![](media/iscsi-selectcomp01.png)
 
 1. In the **Select a method to identify the initiator** window, select **OK**.
+
+   ![](media/lab9k13.png)
 
 1. On the **Specify access servers (1)** page, select **Next (2)**.
 
@@ -346,6 +379,8 @@ using the following settings:
    - iSCSI target: **iSCSIFarm**
    - On **Assign ISCSI Target**: select **Existing ISCSI target**
   
+     ![](media/lab9k14.png)
+ 
      ![](media/iscsi-create201.png)
      
 1. Switch to the **SEA-DC1** console session, and then, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
