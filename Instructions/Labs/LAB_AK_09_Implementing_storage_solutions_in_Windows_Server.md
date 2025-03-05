@@ -491,8 +491,6 @@ using the following settings:
 
    ![](media/spl-disks.png)
 
-   >**Note:** Ensure that all four disks have a storage capacity of 127 GB each. If the storage is not available, right-click on the specific disk and select "Reset" to make it available.
-
 1. On the **Confirm selections** page, review the settings, and then select **Create**.
 
    ![](media/spl-create.png) 
