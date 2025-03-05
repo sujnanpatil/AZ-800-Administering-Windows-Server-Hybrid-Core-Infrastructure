@@ -820,18 +820,22 @@ using the following settings:
 
    ![](media/add-srvcluster01.png)
 
-1. In the **Cluster name** text box, enter **S2DCluster.Contoso.com (1)**.
+1. In the **Cluster name** text box, enter **S2DCluster.Contoso.com (1)** and click on **Add (2)**
 
-1. Ensure that **Use another account for this connection (2)** option is selected, enter the following credentials, and then select **Add with Credential (5)**:
+   ![](media/lab9k15.png)  
 
-   - Username: **CONTOSO\Administrator (3)**
-   - Password: **Pa55w.rd (4)**
-  
-     > **Note**: After performing step 14, if an error message that says **You can add this server to your list of connections, but we can't confirm it's available.** appears, select **Add**. In the All Connections pane,  select **sea-svr1.contoso.com**, and then select **Manage as**. In the **Specify your credentials** dialog box, ensure that the **Use another account for this connection** option is selected, enter the Administrator credentials, and then select **Continue**.
-   
-1. Select checkbox **Add the server name exactly as enter** and select **Add**.
+   > **Note**: While performing the step, if you see an error message stating, **check the name or network connection, but we can't confirm that this cluster is available."**, select **Add**.  
 
-   ![](media/add-cluster01.png)
+   - In the **All Connections** pane, select **S2DCluster.Contoso.com** (1) and then click on **Manage as** (2).  
+   - In the **Specify your credentials** dialog box:  
+     - Ensure that **Use another account for this connection** (3) is selected.  
+     - Enter the Administrator credentials:  
+       - **Username**: **CONTOSO\Administrator** (4)  
+       - **Password**: **Pa55w.rd** (5)  
+     - Check the **Use this credential for all connections** checkbox (6).  
+     - Click **Continue** (7).  
+
+   ![](media/lab9k16.png)
 
 1. Back on the **All connections** page, select **s2dcluster.contoso.com (1)**.
 
