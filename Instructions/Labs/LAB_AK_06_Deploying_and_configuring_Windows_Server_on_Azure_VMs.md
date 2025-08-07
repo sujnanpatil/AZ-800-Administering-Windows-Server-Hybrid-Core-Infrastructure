@@ -1,4 +1,4 @@
-# Lab 6: Deploying and configuring Windows Server on Azure VMs
+# Lab 06: Deploying and configuring Windows Server on Azure VMs
 
 ## Lab scenario
 
