@@ -1,4 +1,4 @@
-# Lab 4: Using Windows Admin Center in hybrid scenarios
+# Lab 04: Using Windows Admin Center in hybrid scenarios
 
 ## Lab scenario
 
