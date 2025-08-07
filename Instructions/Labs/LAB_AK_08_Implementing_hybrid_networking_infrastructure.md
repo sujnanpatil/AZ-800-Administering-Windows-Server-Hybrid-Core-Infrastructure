@@ -1,4 +1,4 @@
-# Lab 8: Implementing hybrid networking infrastructure
+# Lab 08: Implementing hybrid networking infrastructure
 
 ## Lab scenario
 

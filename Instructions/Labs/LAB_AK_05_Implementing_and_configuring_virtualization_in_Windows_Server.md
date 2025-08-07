@@ -1,4 +1,4 @@
-# Lab 5: Implementing and configuring virtualization in Windows Server
+# Lab 05: Implementing and configuring virtualization in Windows Server
 
 In this Hands-On-Lab, you will learn how to implement and configure virtualization in Windows Server. You will set up and manage Hyper-V, create and configure virtual machines, and optimize virtual environments to improve performance and security.
 

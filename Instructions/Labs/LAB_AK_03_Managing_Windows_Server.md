@@ -1,4 +1,4 @@
-# Lab 3: Managing Windows Server
+# Lab 03: Managing Windows Server
 
 ## Lab Scenario
 

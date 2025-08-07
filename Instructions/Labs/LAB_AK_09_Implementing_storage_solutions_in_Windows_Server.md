@@ -1,4 +1,4 @@
-# Lab 9: Implementing storage solutions in Windows Server
+# Lab 09: Implementing storage solutions in Windows Server
 
 ## Lab scenario
 
