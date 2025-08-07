@@ -1,4 +1,4 @@
-# Lab 2: Implementing integration between AD DS and Microsoft Entra ID
+# Lab 02: Implementing integration between AD DS and Microsoft Entra ID
 
 ## Lab Scenario
 
