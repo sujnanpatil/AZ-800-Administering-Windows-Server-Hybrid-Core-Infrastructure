@@ -1,4 +1,4 @@
-# Lab 7: Implementing and configuring network infrastructure services in Windows Server
+# Lab 07: Implementing and configuring network infrastructure services in Windows Server
 
 ## Lab scenario
 
