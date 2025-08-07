@@ -1,4 +1,4 @@
-# Lab 1: Implementing identity services and Group Policy
+# Lab 01: Implementing identity services and Group Policy
 
 ## Lab Scenario
 
