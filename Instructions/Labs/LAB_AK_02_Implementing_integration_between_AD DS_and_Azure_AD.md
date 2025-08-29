@@ -12,18 +12,17 @@ Your goal is to implement pass-through authentication between on-premises AD DS 
 
 In this lab, you will perform:
 
-- Exercise 1: Prepare Entra ID for integration with on-premises AD DS, including adding and verifying a custom domain.
-- Exercise 2: Prepare on-premises AD DS for integration with Entra ID, including running IdFix DirSync Error Remediation Tool.
-- Exercise 3: Install and configure Microsoft Entra Connect.
-- Exercise 4: Verify integration between AD DS and Entra ID by testing the synchronization process.
-- Exercise 5: Implementing Entra ID integration features in Active Directory, including Entra ID Password Protection for Windows Server Active Directory and SSPR with password writeback.
+- **Exercise 1:** Prepare Entra ID for integration with on-premises AD DS, including adding and verifying a custom domain.
+- **Exercise 2:** Prepare on-premises AD DS for integration with Entra ID, including running IdFix DirSync Error Remediation Tool.
+- **Exercise 3:** Install and configure Microsoft Entra Connect.
+- **Exercise 4:** Verify integration between AD DS and Entra ID by testing the synchronization process.
+- **Exercise 5:** Implementing Entra ID integration features in Active Directory, including Entra ID Password Protection for Windows Server Active Directory and SSPR with password writeback.
 
-## Estimated time: 60 minutes
+## Estimated time: 60 Minutes
 
 ## Architecture Diagram
 
    ![](media/mod2art.png)  
-
 
 ## Exercise 1: Preparing Microsoft Entra ID for AD DS integration
 
@@ -33,9 +32,15 @@ In this exercise, you will prepare Microsoft Entra ID for integration with on-pr
 
 In this task, you will create a custom domain in Microsoft Entra ID (Azure AD) by connecting to the Azure portal and adding a domain name (e.g., contoso.com) to Entra ID. You will also familiarize yourself with the process of domain verification, though verification is skipped in this lab.
 
-1. Connect to **SEA-ADM1** and, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
+1. On the **HOSTVM dropdown menu (1)**, select **SEA-ADM1 (2)** to connect to the administrator VM.  
 
-1. On **SEA-ADM1**, double-click on the Azure portal, and authenticate with your Azure credentials.
+    ![](media/AZ-800-l1-1.png)
+
+1. On the **SEA-ADM1 login screen**, sign in as **CONTOSO\Administrator** with the password **Pa55w.rd**.  
+
+    ![](media/AZ-800-l1-2.1.png)
+
+1. On **SEA-ADM1**, double-click on the **Azure portal**, and authenticate with your Azure credentials.
 
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
  
@@ -55,7 +60,11 @@ In this task, you will create a custom domain in Microsoft Entra ID (Azure AD) b
 
 1. If prompted to **Stay signed in**, you can click **No**.
 
+    ![](media/AZ-800-g7.png)
+
 1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **Cancel** to skip the tour.
+
+    ![](media/AZ-800-g8.png)
 
 1. On the Azure portal, from the **Search resources, Services, and docs(G+/)** blade, search for **Microsoft Entra ID (1)** and select **Microsoft Entra ID (2)** from the services.
 
@@ -82,7 +91,7 @@ In this task, you will create a custom domain in Microsoft Entra ID (Azure AD) b
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help
 
 <validation step="b65ef28d-a185-42fd-a25f-5a18bb1b2903" /> 
 
@@ -100,20 +109,24 @@ In this task, you will create a new user account in Microsoft Entra ID and assig
 
 1. On the **Create new User** page, under **Basics** tab, provide the below details and then click on **Next: Properties> (4)**.
 
-    - In the **User principal name** and **Display Name** text boxes, enter **admin1 (1)(2)**.
+    - In the **User principal name (1)** and **Display Name (2)** text boxes, enter **admin1**.
 
       >**Note**: Ensure the domain name drop-down menu for the **User name** lists the default domain name ending with `onmicrosoft.com`.
 
-    - Under **Password**, select the **Auto generate (2)** checkbox. Record the user name and password as you'll use it later in this lab.
+    - Under **Password**, select the **Auto generate (3)** checkbox. Record the user name and password as you'll use it later in this lab.
 
       ![](media/az-5.png)
+
+      > **Note:** Copy **User principal name**  and **Password** and paste in Notepad for later use.
 
 1. Under **settings** in the **Usage location** drop-down list, select **United States (1)** and then click on **Next: Assignments> (2)**.
 
     ![](media/az-6.png)
 
 1. Under **Assignments** tab , select **+ Add role** and on **Directory roles** page, from the list of roles, select **Global administrator (1)**, and then select **Select (2)**.
-
+    
+    ![](media/AZ-800-l3-1.png)
+    
     ![](media/az-7.png)
 
 1. On the **Create new user** page, select **Next: Review + Create** and **Create**.
@@ -127,7 +140,7 @@ In this task, you will create a new user account in Microsoft Entra ID and assig
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help
 
 <validation step="4ea1ff7e-4b7b-4fc0-bb83-fec04f01bdf9" />
 
@@ -141,13 +154,23 @@ In this task, you will change the password for the newly created Global Administ
 
 1. On the **Pick an account** page, select **+ Use another account**.
 
+    ![](media/AZ-800-l3-2.png)
+
 1. On the **Sign in** page, enter the fully-qualified username of the user account you previously created , and then select **Next**.
 
-   >**Note**: It looks similar to **admin1@otuwamocXXXX.onmicrosoft.com**
+    ![](media/AZ-800-l3-3.png)
+
+    >**Note**: It looks similar to **admin1@otuwamocXXXX.onmicrosoft.com**
+
+1. Next, provide your password:
+
+    ![](media/AZ-800-l3-4.png)
 
 1. For the current password, use the password that you copied in the previous step.
 
 1. It asks you to change current password, enter a complex password twice, and then select **Sign in**.
+
+    ![](media/AZ-800-l3-5.png)
 
    >**Note**: Record the complex password you used as you'll use it later in this lab.
 
@@ -171,9 +194,11 @@ In this task, you will download and install the IdFix DirSync Error Remediation 
 
 1. On the **Github** page, you have to scroll down, and under **ClickOnce Launch**, select **launch**.
 
-   ![](media/azz12.png)
+    ![](media/AZ-800-l3-6.png)
 
-1. On the status bar, select **Open file**.
+1. In the browser, click the **Downloads icon (1)** on the status bar and then click **Open file**.
+
+    ![](media/AZ-800-l3-7.png)
 
 1. In the **Application Install - Security Warning** dialog box, select **Install**.
 
@@ -181,11 +206,15 @@ In this task, you will download and install the IdFix DirSync Error Remediation 
 
 1. In the **IdFix Privacy Statement** dialog box, review the disclaimer, and then select **OK**.
 
+    ![](media/AZ-800-l3-8.png)
+
 ### Task 2: Run IdFix
 
 In this task, you will run IdFix to detect and fix errors in Active Directory objects (e.g., missing attributes or invalid characters) that could cause synchronization issues when integrating with Entra ID.
 
 1. In the **IdFix** window, select **Query**.
+
+    ![](media/AZ-800-l3-9.png)
 
 1. If presented with the **Schema Warning** dialog box, select **Yes**.
 
@@ -197,7 +226,7 @@ In this task, you will run IdFix to detect and fix errors in Active Directory ob
 
 1. In the **IdFix** window, from the **ACTION** drop-down menu **(1)**, select **Edit(2)**, and then select **Apply(3)** to automatically implement the recommended changes.
 
-   ![](media/azz24.png)
+    ![](media/AZ-800-l3-10.png)
 
 1. In the **Apply Pending** dialog box, select **Yes**(1).
 
@@ -219,9 +248,9 @@ In this task, you will download, install, and configure Microsoft Entra Connect,
 
    ![](media/azz16.png)
 
-1. On the  **Microsoft Entra Connect | Get started** Get Started page, select **Manage** tab and under **Manage from on-premises: Connect Sync**, select **Download Connect Sync Agent**.
+1. On the  **Microsoft Entra Connect | Get started** Get Started page, select **Manage (1)** tab and under **Manage from on-premises: Connect Sync**, select **Download Connect Sync Agent (2)**.
 
-   ![](media/azz3.png)
+   ![](media/AZ-800-l3-13.png)
 
 1. On the **Microsoft Entra Connect Agent** page, select **Accept terms & download**
 
@@ -232,6 +261,8 @@ In this task, you will download, install, and configure Microsoft Entra Connect,
    ![](media/za1.png)
 
 1. On the **Express Settings** page, select **Use express settings**.
+
+    ![](media/AZ-800-l3-11.png)
 
 1. On the **Connect to Microsoft Entra ID** page, enter the username of the Microsoft Entra ID Global Administrator user account you created in exercise 1 **(1)**, and then select **Next (2)**.
 
@@ -262,7 +293,7 @@ In this task, you will download, install, and configure Microsoft Entra Connect,
 
 1. On the **Configuration complete** page, select **Exit**.
 
-   ![](media/az-11.png)
+   ![](media/AZ-800-l3-12.png)
 
     >**Note:** If you encounter the message **Directory synchronization is enabled for this directory, but has not taken effect. Please wait untill directory synchronization is ready** in the configuration window, allow up to 30 minutes for the synchronization process to complete.      
  
@@ -298,19 +329,19 @@ In this task, you will verify the synchronization status in the Azure portal, en
 
 In this task, you will use the Synchronization Service Manager to check the status of synchronization operations between your on-premises AD DS and Microsoft Entra ID, ensuring that the system is properly syncing data.
 
-1. On **SEA-ADM1**, on the **Start** menu, expand **Azure AD Connect**, and then select **Synchronization Service**.
+1. On **SEA-ADM1**, on the **Start (1)** menu, expand **Azure AD Connect (2)**, and then select **Synchronization Service (3)**.
 
-   ![](media/azz27.png)
+   ![](media/AZ-800-l3-14.png)
             
 1. In the **Synchronization Service Manager** window, under the **Operations** tab, observe the tasks that were performed to sync the Microsoft Entra ID objects.
 
-   ![](media/azz28.png)
+   ![](media/AZ-800-l3-15.png)
 
-1. Select the **Connectors** tab and note the two connectors.
+1. Select the **Connectors (1)** tab and note the two connectors **(2)**.
 
    >**Note**: One connector is for AD DS and the other is for the Microsoft Entra ID tenant.
 
-   ![](media/azz29.png)
+   ![](media/AZ-800-l3-16.png)
 
 1. Close the **Synchronization Service Manager** window.
 
@@ -318,13 +349,13 @@ In this task, you will use the Synchronization Service Manager to check the stat
 
 In this task, you will update an existing user account (e.g., Sumesh Rajan) in Active Directory and verify that the changes are synced with Microsoft Entra ID.
 
-1. On **SEA-ADM1**, search and select **Server Manager**.
+1. On **SEA-ADM1**, in the **Start** menu, type **Server Manager (1)** in the search box, and then select **Server Manager (2)** from the results.  
 
-   ![](media/az-14.png)
+   ![](media/AZ-800-l1-4.png)
 
-1. Click on the **Tools** menu from top right, select **Active Directory Users and Computers**.
+1. Click on the **Tools (1)** menu from top right, select **Active Directory Users and Computers (2)**.
 
-   ![](media/azz30.png) 
+   ![](media/AZ-800-l3-17.png) 
 
 1. In **Active Directory Users and Computers**, expand the **Sales (1)**, and then open the properties **(3)** for **Sumesh Rajan** by right clicking on the user **(2)**.
 
@@ -350,19 +381,21 @@ In this task, you will create a new user account in Active Directory (e.g., Jord
 
      ![](media/az-18.png)
 
-1. In the **Password** and **Confirm password** fields, enter `Pa55w.rd`, and then select **Next >**.
+1. In the **Password (1)** and **Confirm password (2)** fields, enter `Pa55w.rd`, and then select **Next > (3)**.
 
-   ![](media/azz33.png)
+   ![](media/AZ-800-l3-18.png)
 
 1. Select **Finish**.
+
+    ![](media/AZ-800-l3-19.png)
 
 ### Task 5: Sync changes to Microsoft Entra ID
 
 In this task, you will Start the sync between On-premises and Entra ID.
 
-1. On **SEA-ADM1**, on the **Start** menu, select **Windows PowerShell**.
+1. On **SEA-ADM1**, in the **Start** menu, type **Windows PowerShell (1)** in the search box, and then select **Windows PowerShell (2)** from the results.  
 
-   ![](media/az--19.png)
+   ![](media/AZ-800-l3-20.png)
 
 1. In the **Windows PowerShell** console, enter the following command, and then press Enter to trigger synchronization:
 
@@ -370,7 +403,7 @@ In this task, you will Start the sync between On-premises and Entra ID.
    Start-ADSyncSyncCycle
    ```
 
-   ![](media/az-20.png)   
+   ![](media/AZ-800-l3-21.png)   
 
    > **Note**: Once the synchronization cycle starts, it can take 15 minutes for Microsoft Entra ID objects to appear in the Microsoft Entra ID portal.
 
@@ -382,9 +415,9 @@ In this task, you will verify the sync between On-premises and Entra ID
 
 1. On the **Microsoft Entra ID** page, select **Users**.
 
-1. On the **All Users** page, search for the user **Sumesh** and select it.
+1. On the **All Users (1)** page, search for the user **Sumesh (2)** and select **Sumesh (3)**.
 
-   ![](media/azz34.png)
+   ![](media/AZ-800-l3-22.png)  
 
 1. Select the **Edit properties**.
 
@@ -402,12 +435,14 @@ In this task, you will verify the sync between On-premises and Entra ID
 
 1. Select **Edit properties**, select **All (1)** tab, and review the attributes of the user account that was synced from Microsoft Entra ID **(2)**.
 
+   ![](media/AZ-800-l3-23.png)  
+
    ![](media/az-24.png)   
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help
 
 <validation step="8e646bae-8cc0-4e44-8b11-fb2af82ffd89" />
 
@@ -437,7 +472,7 @@ In this task, you will configure password writeback in Microsoft Entra Connect t
    
    - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
-     ![](media/az-27.png)      
+     ![](media/AZ-800-l3-25.png)      
    
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
@@ -686,15 +721,15 @@ In this task, you will configure password protection settings in Microsoft Entra
 
 1. On **SEA-ADM1**, switch to the Microsoft Edge window displaying the Azure portal, go back to the **Microsoft Entra ID** page, and then, on the **Microsoft Entra ID** page, under **Manage** section, select **Security**.
 
-   ![](media/az-53.png)
+   ![](media/AZ-800-l3-26.png)
 
-1. On the **Security** page, under **Manage** section, select **Authentication methods**.
+1. On the **Security** page, under **Manage (1)** section, select **Authentication methods (2)**.
 
-   ![](media/az-54.png)
+   ![](media/AZ-800-l3-26.png)
 
-1. On the **Authentication methods** page, under **Manage** section, select **Password protection**.
+1. On the **Authentication methods** page, under **Manage (1)** section, select **Password protection (2)**.
 
-   ![](media/az-55.png)
+   ![](media/AZ-800-l3-28.png)
 
 1. On the **Password protection** page, 
 

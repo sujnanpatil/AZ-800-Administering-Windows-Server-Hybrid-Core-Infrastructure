@@ -28,11 +28,11 @@ For convenience, you can open the lab guide in a separate window by selecting th
  
 1. Feel free to **Start, Stop, or Restart (2)** your virtual machine as needed from the **Resources (1)** tab. Your experience is in your hands!
  
-    ![Manage Your Virtual Machine](media/AZ-800-g4.png)
+    ![](media/AZ-800-g4.png)
 
-2. To initiate the required VMs, manually select and launch them directly from the Lab VM's desktop.
+2. From the **HostVM drop-down (1)** at the top of the lab environment, select the required virtual machine such as **SEA-ADM1, SEA-DC1, or SEA-SVR1 (2)**.
 
-    ![Manage Your Virtual Machine](media/vmselect.png)
+    ![](media/AZ-800-g5.png)
 
 3. When logging into the Hyper-V virtual machines, if a message appears stating **"Press Ctrl+Alt+Delete to unlock"**, navigate to the **Actions** menu in the Virtual Machine Connection window and select the **Ctrl+Alt+Delete** option, as shown in the image below.
 
@@ -80,7 +80,7 @@ By following this workaround, you can ensure accurate execution of the PowerShel
  
 1. On your virtual machine, click on the **Azure Portal** icon as shown below:
  
-   ![Launch Azure Portal](media/sc900-image(1).png)
+   ![](media/AZ-800-g6.png)
     
 3. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
  
@@ -100,7 +100,11 @@ By following this workaround, you can ensure accurate execution of the PowerShel
        
 5. If prompted to **Stay signed in**, you can click **No.**
  
-6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
+    ![](media/AZ-800-g7.png)
+
+6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **Cancel**
+
+    ![](media/AZ-800-g8.png)
 
 ## Steps to Proceed with MFA Setup if "Ask Later" Option is Not Visible
 
@@ -120,11 +124,17 @@ By following this workaround, you can ensure accurate execution of the PowerShel
 
 1. After scanning, click **Next** to proceed.
 
+    ![](media/AZ-800-g11.png)
+
 1. On your phone, enter the number shown on your computer screen in the Authenticator app and select **Next**.
        
-1. If prompted to stay signed in, you can click "No."
+1. If prompted to **Stay signed in**, you can click **No.**
  
-1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
+    ![](media/AZ-800-g7.png)
+ 
+1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click **Cancel**
+
+    ![](media/AZ-800-g8.png)
  
 ## Support Contact
  

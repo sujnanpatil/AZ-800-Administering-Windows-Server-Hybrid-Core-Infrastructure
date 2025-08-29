@@ -115,7 +115,7 @@ In this task, you will configure extensions in Windows Admin Center to enhance i
 
 1. Select the **Security (Preview)** **(1)** extension, then click on **Install** **(2)**. The extension will install and Windows Admin Center will refresh.
 
-   ![](media/AZ-800-l2-4.png)  
+   ![](media/AZ-800-l2-4.1.png)  
 
    > **Note**: If the **Security (Preview)** extension is not available, choose another Microsoft extension.
 
