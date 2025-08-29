@@ -4,9 +4,9 @@ Welcome to your AZ-800: Administering Windows Server Hybrid Core Infrastructure 
  
 ## Accessing Your Lab Environment
  
-Once you're ready to dive in, your virtual machine and lab guide will be right at your fingertips within your web browser.
+Once you're ready to dive in, your virtual machine and **Guide** will be right at your fingertips within your web browser.
  
-![Access Your VM and Lab Guide](media/g132.png)
+![Access Your VM and Lab Guide](media/AZ-800-g1.png)
 
 ### Virtual Machine & Lab Guide
  
@@ -16,19 +16,19 @@ Your virtual machine is your workhorse throughout the workshop. The lab guide is
  
 To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
  
-![Explore Lab Resources](media/g133.png)
+![Explore Lab Resources](media/AZ-800-g2.png)
  
 ## Utilizing the Split Window Feature
  
 For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
  
-![Use the Split Window Feature](media/g134.png)
+![Use the Split Window Feature](media/AZ-800-g3.png)
  
 ## Managing Your Virtual Machine
  
-1. Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
+1. Feel free to **Start, Stop, or Restart (2)** your virtual machine as needed from the **Resources (1)** tab. Your experience is in your hands!
  
-    ![Manage Your Virtual Machine](media/g135.png)
+    ![Manage Your Virtual Machine](media/AZ-800-g4.png)
 
 2. To initiate the required VMs, manually select and launch them directly from the Lab VM's desktop.
 
@@ -38,7 +38,7 @@ For convenience, you can open the lab guide in a separate window by selecting th
 
     ![Manage Your Virtual Machine](media/login.png)
 
-4. If you face an issue while copying the content from the lab guide and pasting it into the Hyper-V virtual machines, navigate to the **Clipboard** option in the Virtual Machine Connection window and select **Type Clipboard Text**.
+4. If you face an issue while copying the content from the lab guide and pasting it into the Hyper-V virtual machines, navigate to the **Clipboard** option in the Virtual Machine Connection window and select **Type Clipboard Text (Ctrl + V)**.
 
     ![Manage Your Virtual Machine](media/clipboard.png)
   
@@ -78,7 +78,7 @@ By following this workaround, you can ensure accurate execution of the PowerShel
 
 ## Let's Get Started with Azure Portal
  
-1. On your virtual machine, click on the Azure Portal icon as shown below:
+1. On your virtual machine, click on the **Azure Portal** icon as shown below:
  
    ![Launch Azure Portal](media/sc900-image(1).png)
     
@@ -98,7 +98,7 @@ By following this workaround, you can ensure accurate execution of the PowerShel
 
     ![](media/getting_started_ask_later_sc.png)
        
-5. If prompted to stay signed in, you can click "No."
+5. If prompted to **Stay signed in**, you can click **No.**
  
 6. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
 
@@ -132,7 +132,7 @@ The CloudLabs support team is available 24/7, 365 days a year, via email and liv
  
 Learner Support Contacts:
  
-- Email Support: labs-support@spektrasystems.com
+- Email Support: cloudlabs-support@spektrasystems.com
 - Live Chat Support: https://cloudlabs.ai/labs-support
  
 Click "Next" from the bottom right corner to embark on your Lab journey!
