@@ -13,7 +13,7 @@ In this lab, you will perform:
   - Task 4: Verify remote administration
   - Task 5:Administer servers with Remote PowerShell
 
-## Estimated time: 45 minutes
+## Estimated time: 45 Minutes
 
 ## Architecture Diagram
 
@@ -27,7 +27,13 @@ In this exercise, you will learn how to install and configure Windows Admin Cent
 
 In this task, you will install Windows Admin Center on SEA-ADM1. You will download the installation package, run the installer using PowerShell, and configure the necessary settings during installation. After installation, you will troubleshoot any potential connection issues and restart the system to complete the setup.
 
-1. Connect to **SEA-ADM1**, and if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
+1. On the **HOSTVM dropdown menu (1)**, select **SEA-ADM1 (2)** to connect to the administrator VM.  
+
+    ![](media/AZ-800-l1-1.png)
+
+1. On the **SEA-ADM1 login screen**, sign in as **CONTOSO\Administrator** with the password **Pa55w.rd**.  
+
+    ![](media/AZ-800-l1-2.1.png)
 
 1. On **SEA-ADM1**, select **Start (1)**, and then right click on **Windows PowerShell (2)** and select **Run as Administrator (3)**.
 
@@ -53,6 +59,8 @@ In this task, you will install Windows Admin Center on SEA-ADM1. You will downlo
 In this task, you will use Windows Admin Center to add SEA-DC1 for remote administration. You will configure the connection by entering the necessary credentials and verifying the connection status. If any issues occur, you will handle the error by reconfiguring the settings to ensure successful remote management.
 
 1. On **SEA-ADM1**, start Microsoft Edge, and then go to `https://SEA-ADM1.contoso.com`.
+
+    ![](media/AZ-800-l2-1.png)
 
    >**Note**: If the link does not work, on **SEA-ADM1**, open File Explorer, select Downloads folder, in the Downloads folder select **WindowsAdminCenter.msi** file and install manually. After the install completes, refresh Microsoft Edge.
 
@@ -84,55 +92,59 @@ In this task, you will use Windows Admin Center to add SEA-DC1 for remote admini
 
    > **Note**: While performing step 7, if you see an error message stating, **"You can add this server to your list of connections, but we can't confirm it's available."**, select **Add**.  
 
-   - In the **All Connections** pane, select **sea-dc1.contoso.com** (1) and then click on **Manage as** (2).  
+   - In the **All Connections** pane, select **sea-dc1.contoso.com** **(1)** and then click on **Manage as** **(2)**.  
    - In the **Specify your credentials** dialog box:  
-     - Ensure that **Use another account for this connection** (3) is selected.  
+     - Ensure that **Use another account for this connection** **(3)** is selected.  
      - Enter the Administrator credentials:  
-       - **Username**: **CONTOSO\Administrator** (4)  
-       - **Password**: **Pa55w.rd** (5)  
-     - Check the **Use this credential for all connections** checkbox (6).  
-     - Click **Continue** (7).  
+       - **Username**: **CONTOSO\Administrator** **(4)**  
+       - **Password**: **Pa55w.rd** **(5)**  
+     - Check the **Use this credential for all connections** checkbox **(6)**.  
+     - Click **Continue** **(7)**.  
 
-   ![](media/lab3f3.png)  
+      ![](media/AZ-800-l2-2.png) 
 
 ### Task 3: Configure Windows Admin Center extensions
 
 In this task, you will configure extensions in Windows Admin Center to enhance its functionality. You will install the Security (Preview) extension, review installed extensions, and configure the DNS tools on SEA-DC1. This will allow you to manage and monitor additional aspects of your servers, such as DNS records.
 
-1. On **SEA-ADM1**, in the upper-right corner of the Microsoft Edge window displaying Windows Admin Center, select the **Settings(1)** icon (the cog wheel).
+1. On **SEA-ADM1**, in the upper-right corner of the Microsoft Edge window displaying Windows Admin Center, select the **Settings (1)** icon (the cog wheel).
 
-1. In the left pane, under **Gateway** section, select **Extensions(2)**. Review the available extensions.
+1. In the left pane, under **Gateway** section, select **Extensions (2)**. Review the available extensions.
 
-   ![](media/lab3-t3-1upd.png) 
+   ![](media/AZ-800-l2-3.png) 
 
-1. Select the **Security (Preview)** (1) extension, then click on **Install**(2). The extension will install and Windows Admin Center will refresh.
+1. Select the **Security (Preview)** **(1)** extension, then click on **Install** **(2)**. The extension will install and Windows Admin Center will refresh.
 
-   ![](media/lab3-t3-2upd.png) 
+   ![](media/AZ-800-l2-4.png)  
 
    > **Note**: If the **Security (Preview)** extension is not available, choose another Microsoft extension.
 
-1. In the details pane, select **Installed extensions** (1) and verify that the list includes the **Security (Preview)**(2) extension you just installed, and another extension named **DNS** as shown below:
+1. In the details pane, select **Installed extensions** **(1)** and verify that the list includes the **Security (Preview) (2)** extension you just installed, and another extension named **DNS** as shown below:
 
-   ![](media/sec-preextenupd.png)
+   ![](media/AZ-800-l2-5.png)  
 
-   ![](media/dns-extensionupd.png) 
+   ![](media/AZ-800-l2-6.png)   
 
-1. On the top menu, next to **Settings**, select the drop-down arrow, and then select **Server Manager**.
+1. On the top menu, next to **Settings (1)**, select the drop-down arrow, and then select **Server Manager (2)**.
 
-   ![](media/lab3-t3-4upd.png)
+   ![](media/AZ-800-l2-7.png)  
 
 1. On the **Server connections** page, select the **sea-dc1.contoso.com** link.
+
+    ![](media/AZ-800-l2-8.png)  
 
 1. If prompted for credentials, ensure that **Use another account for this connection** option is selected, select the **Use these credentials for all connections**, enter the following credentials, and then select **Continue**:
 
    - Username: **CONTOSO\Administrator**
    - Password: **Pa55w.rd**
 
-1. To install the DNS PowerShell tools, in the left pane, in the list of **Tools**, select **DNS**, and then select **Install**. The tools will take less than a minute to install.
+1. To install the DNS PowerShell tools, in the left pane, in the list of **Tools**, select **DNS (1)**, and then select **Install (2)**. The tools will take less than a minute to install.
 
-1. Select the **Contoso.com** (2) zone and review the list of its DNS records.
+    ![](media/AZ-800-l2-9.png)  
 
-   ![](media/lab3-t3-7upd.png)
+1. Select the **Contoso.com** **(3)** zone and review the list of its DNS records.
+
+    ![](media/AZ-800-l2-10.png)  
 
 ### Task 4: Verify remote administration
 
@@ -140,9 +152,11 @@ In this task, you will verify that remote administration is working correctly th
 
 1. On **SEA-ADM1**, in Windows Admin Center, in the left pane, in the list of **Tools**, select **Overview**. Note that the details pane of Windows Admin Center displays basic server information and performance monitoring.
 
+    ![](media/AZ-800-l2-11.png)  
+
 1. In the left pane, in the list of **Tools**, scroll down and review the basic administration tools available. Select **Roles & features (1)** and note which roles and features are listed as installed and which ones are available to install. Scroll down, select the **Telnet Client (2)** checkbox, and then select **+ Install (3)** at the top of the pane.
 
-   ![](media/lab3f4.png)  
+    ![](media/AZ-800-l2-12.png)  
 
 1. In the **Install Roles and Features** pane, select **Yes** and wait for the message confirming that Telnet Client was installed successfully.
 
@@ -154,13 +168,13 @@ In this task, you will verify that remote administration is working correctly th
 
 1. In the **Remote Desktop** section, select the option **Allow remote connections to this computer (3)** checkbox, and then select **Save (4)**.
 
-   ![](media/lab3f6.png)  
+   ![](media/AZ-800-l2-13.png)  
 
 1. In the left pane, in the list of **Tools**, select **Remote Desktop (1)**.
 
 1. In the Remote Desktop pane, select the **Automatically connect with the certificate presented by this machine (2)** checkbox, and then select **Connect**.
 
-   ![](media/lab3f7.png)  
+   ![](media/AZ-800-l2-14.png)   
 
 1. When prompted, select **Confirm**, and enter Password: **Pa55w.rd (1)** then select **Connect (2)**.
 
@@ -194,6 +208,8 @@ In this task, you will use PowerShell Remoting to administer SEA-DC1. You will s
    Get-Service -Name AppIDSvc
    ```
 
+   ![](media/AZ-800-l2-15.png)  
+
    > **Note**: Verify that the service is currently stopped.
 
 1. From the **[SEA-DC1]** prompt, enter the following command and press Enter to start the Application Identity service:
@@ -209,7 +225,7 @@ In this task, you will use PowerShell Remoting to administer SEA-DC1. You will s
 
    > **Note**: Verify that the service is currently running.
 
-   ![](media/lab3f10.png)  
+   ![](media/AZ-800-l2-16.png)  
 
 ### Results
 

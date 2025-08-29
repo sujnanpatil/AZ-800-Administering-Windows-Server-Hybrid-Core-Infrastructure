@@ -31,7 +31,7 @@ In this task, you will install the AD DS role on the SEA-SVR1 server using Power
 
 1. On the **SEA-ADM1 login screen**, sign in as **CONTOSO\Administrator** with the password **Pa55w.rd**.  
 
-    ![](media/AZ-800-l1-2.png)
+    ![](media/AZ-800-l1-2.1.png)
 
 1. On **SEA-ADM1**, right click **Start (1)**, and then select **Windows PowerShell (Admin) (2)**.
 
@@ -315,8 +315,13 @@ In this task, you will review the applied Group Policy settings on a client mach
 1. In the **Allowed apps and features** list, locate the **Remote Event Log Management (1)** entry, select the checkbox in the **Domain (2)** column, and then select **OK (3)**. 
 
    ![](media/lab1f15.png)
+1. On the **Start menu (1)**, select the **Administrator account (2)** and then click **Sign out (3)**.  
 
-1. Sign out, and then sign in as **CONTOSO\\Ty** with the password **Pa55w.rd**.
+    ![](media/AZ-800-l1-37.png)
+
+1. On the login screen, select **Other user (1)**. Enter **CONTOSO\\Ty (2)** as the username and the provided password  **Pa55w.rd(3)**.  
+
+    ![](media/AZ-800-l1-38.png)
 
    > **Note:** while logging into the Hyper-V virtual machines, if a message appears stating **"Press Ctrl+Alt+Delete to unlock"**, navigate to the **Actions** menu in the Virtual Machine Connection window and select the **Ctrl+Alt+Delete** option, as shown in the image below and you will find the Other User option to Sign in
    
@@ -330,19 +335,31 @@ In this task, you will review the applied Group Policy settings on a client mach
 
 1. In the search box in Control Panel, enter **screen saver**, and then select **Change screen saver**. (It might take a few minutes for the option to display.)
 
-   ![](media/lab1f17.png)
+    ![](media/AZ-800-l1-39.png)
 
 1. In the **Screen Saver Settings** dialog box, notice that the **Wait** option is dimmed. You cannot change the time-out. Notice that the **On resume, display logon screen** option is selected and dimmed and that you cannot change the settings.
 
    > **Note**: If the **On resume, display logon screen** option is not selected and dimmed, open a command prompt, run `gpupdate /force`, and repeat the preceding steps.
 
-1. Right-click or access the context menu for **Start**, and then select **Run**.
+      ![](media/AZ-800-l1-40.png)
 
-1. In the **Run** dialog box, in the **Open** text box, enter **regedit**, and then select **Yes**. Note the error message stating **Registry editing has been disabled by your administrator**.
+1. Right-click or access the context menu for **Start (1)**, and then select **Run (2)**.
+
+    ![](media/AZ-800-l1-41.png)
+
+1. In the **Run** dialog box, in the **Open** text box, enter **regedit (1)**,click **OK (2)**, and then select **Yes**. Note the error message stating **Registry editing has been disabled by your administrator**.
+
+      ![](media/AZ-800-l1-42.png)
+
+      ![](media/AZ-800-l1-43.png)
 
 1. In the **Registry Editor** dialog box, select **OK**.
 
-1. Sign out and then sign in back as **CONTOSO\Administrator** with the password **Pa55w.rd**.
+1. On the **Start menu (1)**, select the **Ty Carlson account (2)** and then click **Sign out (3)**.  
+
+   ![](media/AZ-800-l1-44.png)
+
+1. On the login screen, sign back in as **CONTOSO\Administrator** with the password **Pa55w.rd**. 
 
 ### Task 4: Create and link the required GPOs
 
