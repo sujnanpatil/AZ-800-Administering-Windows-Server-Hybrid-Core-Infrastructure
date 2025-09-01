@@ -28,7 +28,13 @@ In this exercise, you will provision Azure VMs running Windows Server using Azur
 
 In this task, you will create an Azure resource group using an ARM template. This resource group will be used to organize the resources provisioned in this lab, ensuring a structured approach to managing resources within Azure.
 
-1. Connect to **SEA-ADM1**, and if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
+1. On the **HOSTVM (1)** dropdown menu, select **SEA-ADM1 (2)** to connect to the administrator VM.  
+
+    ![](media/AZ-800-l1-1.png)
+
+1. On the **SEA-ADM1** login screen, sign in as **CONTOSO\Administrator** with the password **Pa55w.rd**.  
+
+    ![](media/AZ-800-l1-2.1.png)
 
 1. On **SEA-ADM1**, start Microsoft Edge, go to the [Azure portal](https://portal.azure.com), and sign in by using the following credentials : 
 
