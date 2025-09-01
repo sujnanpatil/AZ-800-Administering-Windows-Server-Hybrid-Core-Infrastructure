@@ -133,7 +133,17 @@ In this task, you will register windows admin center with Azure.
 
     ![](media/lab7-172.png)
 
-1. On the **All connections** page, select the **sea-adm1.contoso.com** entry. 
+1. In the **All Connections** pane, select **sea-adm1.contoso.com** **(1)** and then click on **Manage as** **(2)**.  
+1. In the **Specify your credentials** dialog box:  
+1. Ensure that **Use another account for this connection** **(3)** is selected.  
+1. Enter the Administrator credentials:  
+    - **Username**: **CONTOSO\Administrator** **(4)**  
+    - **Password**: **Pa55w.rd** **(5)**  
+    - Check the **Use this credential for all connections** checkbox **(6)**.  
+    - Click **Continue** **(7)**.  
+
+       ![](media/az800nl4r.png)
+
 1. In Windows Admin Center, select **Networks (1)**, and then select **+ Add Azure Network Adapter (Preview) (2)**.
 
    > **Note**: Depending on the screen resolution, you might need to select the **ellipsis** icon if the **Actions** menu is not available.
@@ -277,7 +287,7 @@ In this task, you will install windows admin center gateway in Azure.
 
    ![](media/lab4g20.png)
 
-   ![](media/lab4g21.png)
+   ![](media/az800nl4t.png)
 
 1. When prompted, use the below credentials
 
