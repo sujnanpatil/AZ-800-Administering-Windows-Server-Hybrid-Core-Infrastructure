@@ -18,7 +18,7 @@ In this lab, you will perform:
 - Configure administrative access to Azure VMs running Windows Server
 - Configure Windows Server security in Azure VMs
 
-## Estimated time: 90 minutes
+## Estimated time: 90 Minutes
 
 ## Architecture Diagram
 
@@ -30,7 +30,13 @@ In this lab, you will perform:
 
 In this task, you will connect to your Azure subscription and enable enhanced security features of Microsoft Defender for Cloud.
 
-1. Connect to **SEA-ADM1**, and then, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
+1. On the **HOSTVM dropdown menu (1)**, select **SEA-ADM1 (2)** to connect to the administrator VM.  
+
+    ![](media/AZ-800-l1-1.png)
+
+1. On the **SEA-ADM1 login screen**, sign in as **CONTOSO\Administrator** with the password **Pa55w.rd**.  
+
+    ![](media/AZ-800-l1-2.1.png)
 
 1. On **SEA-ADM1**, start Microsoft Edge, go to the [Azure portal](https://portal.azure.com).
 
@@ -46,11 +52,13 @@ In this task, you will connect to your Azure subscription and enable enhanced se
 
    ![](media/action.png) 
 
-   >**Note** : Please follow the steps outlined on page 1 to set up MFA if the **Ask Later** option is not visible. Once MFA setup is complete, please enter the number displayed on the screen in the Authenticator app and proceed. 
+   >**Note:** Please follow the steps outlined on page 1 to set up MFA if the **Ask Later** option is not visible. Once MFA setup is complete, please enter the number displayed on the screen in the Authenticator app and proceed. 
 
 1. On the **Stay signed in?** dialog box, select the Don’t show this again check box and then select **No**.
 
-   >**Note**: Skip the remaining steps in this task and proceed directly to the next one if you have already enabled Microsoft Defender for Cloud in your Azure subscription.
+    ![](media/AZ-800-g7.png)
+
+   >**Note:** Skip the remaining steps in this task and proceed directly to the next one if you have already enabled Microsoft Defender for Cloud in your Azure subscription.
 
 3. In the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for and select **Microsoft Defender for Cloud**.
 
@@ -79,17 +87,17 @@ In this task, you will use the Azure portal to create resource groups and create
    |Subscription|Leave the default subscription|
    |Resource group|select the resource group **AZ800-L0601-RG (1)** from the drop-down|
    |Virtual machine name|**az800l06-vm0 (2)**|
-   |Region|Leave the default region (3)|
-   |Availability options|No infrastructure redundancy required (4)|
-   |Security type|Standard (5)|
+   |Region|Leave the default region **(3)**|
+   |Availability options|No infrastructure redundancy required **(4)**|
+   |Security type|**Standard (5)**|
    |Image|**Windows Server 2022 Datacenter: Azure Edition - x64 Gen2 (6)**|
-   |Run with Azure Spot discount|No (7)|
+   |Run with Azure Spot discount|**No (7)**|
    |Size|**Standard_D2s_v3 (8)**|
-   |Username|**Student** (9)|
-   |Password|**Pa55w.rd1234** (10)|
-   |Confirm Password|**Pa55w.rd1234** (11)|
-   |Public inbound ports|None (12)|
-   |Would you like to use an existing Windows Server license|Off (13)|
+   |Username|**Student** **(9)**|
+   |Password|**Pa55w.rd1234** **(10)**|
+   |Confirm Password|**Pa55w.rd1234** **(11)**|
+   |Public inbound ports|None **(12)**|
+   |Would you like to use an existing Windows Server license|Off **(13)**|
 
    ![](media/lab6f6.png)
 
@@ -121,10 +129,10 @@ In this task, you will use the Azure portal to create resource groups and create
 
    |Setting|Value|
    |---|---|
-   |Public IP|None (1)|
-   |NIC network security group|None (2)|
-   |Enable accelerated networking|Off (3)|
-   |Load balancing options|None (4)| 
+   |Public IP|None **(1)**|
+   |NIC network security group|None **(2)**|
+   |Enable accelerated networking|Off **(3)**|
+   |Load balancing options|None **(4)**| 
 
    ![](media/lab6f10.png)
 
@@ -252,7 +260,7 @@ In this task, you will use the Azure portal to create resource groups and create
    |Subscription|Leave the default value|
    |Resource group|Select **AZ800-L0601-RG (1)** resource group from the dropdown|
    |Region|Leave the default value|
-   |Admin Password|**Pa55w.rd1234** (2)|
+   |Admin Password|**Pa55w.rd1234** **(2)**|
 
    ![](media/lab6f26.png)
 
@@ -270,7 +278,7 @@ In this task, you will use the Azure portal to create resource groups and create
 
 ### Task 2: Review results of the Azure VM deployment
 
-1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for and select **Resource groups**.
+1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for **Resource groups (1)** and select **Resource groups (2)** from services.
 
 1. On the **Resource groups** page, select the **AZ800-L0601-RG** entry.
 
@@ -294,7 +302,7 @@ In this task, you will use the Azure portal to create resource groups and create
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help.
 
 <validation step="b33341ed-9083-4c7b-83db-8ba4fab02d26" />
  
@@ -364,7 +372,7 @@ In this task, you will use the Azure portal to create resource groups and create
       |Setting|Value|
       |---|---|
       |Source|**Any (3)**|
-      |Source port ranges|* (4)|
+      |Source port ranges|* **(4)**|
       |Destination|**Any (5)**|
       |Service|**HTTP (6)**|
       |Action|**Allow (7)**|
@@ -481,7 +489,7 @@ In this task, you will use the Azure portal to create resource groups and create
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help.
 
 <validation step="e61e31af-224b-4ff6-94d4-b86acfa02071" />
  
