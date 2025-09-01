@@ -10,10 +10,10 @@ Contoso, Ltd. is a large organization with complex requirements for network serv
 
 In this lab, you will perform:
 
-- Exercise 1: Deploy and configure DHCP.
-- Exercise 2: Deploy and configure DNS.
+- **Exercise 1:** Deploy and configure DHCP.
+- **Exercise 2:** Deploy and configure DNS.
 
-## Estimated time: 60 minutes
+## Estimated time: 60 Minutes
 
 ## Architecture Diagram
 
@@ -23,11 +23,17 @@ In this lab, you will perform:
 
 ### Task 1: Install the DHCP role
 
-1. Connect to **SEA-ADM1**, and then, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
+1. On the **HOSTVM dropdown menu (1)**, select **SEA-ADM1 (2)** to connect to the administrator VM.  
+
+    ![](media/AZ-800-l1-1.png)
+
+1. On the **SEA-ADM1 login screen**, sign in as **CONTOSO\Administrator** with the password **Pa55w.rd**.  
+
+    ![](media/AZ-800-l1-2.1.png)
 
 1. On **SEA-ADM1**, start Microsoft Edge, and then browse to `https://SEA-ADM1.contoso.com`.
  
-   >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe)**.
+   >**Note:** If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe)**.
 
    ![](media/lab7-171.png)
    

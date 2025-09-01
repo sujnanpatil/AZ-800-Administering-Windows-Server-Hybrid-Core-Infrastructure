@@ -72,13 +72,13 @@ In this task, you will connect to your Azure subscription and enable enhanced se
 
 In this task, you will use the Azure portal to create resource groups and create a disk in the resource group.
 
-1. On **SEA-ADM1**, in the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for and select **Virtual machines**.
+1. On **SEA-ADM1**, in the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for **Virtual machines (1)** and select **Virtual machines (2)** from services.
 
-   ![](media/lab6f4.png)
+   ![](media/AZ-800-l6-1.png)
 
-1. In the **Virtual machines** page, select **+ Create (1)**, and then select **Azure virtual machine (2)**.
+1. In the **Virtual machines** page, select **+ Create (1)**, and then select **Virtual machine (2)**.
 
-   ![](media/lab6f5.png)
+   ![](media/AZ-800-l6-2.png)
 
 1. In the **Create a virtual machine** page, on the **Basics** tab, specify the following settings and leave all other settings with their default values, but do not deploy it:
 
@@ -99,11 +99,11 @@ In this task, you will use the Azure portal to create resource groups and create
    |Public inbound ports|None **(12)**|
    |Would you like to use an existing Windows Server license|Off **(13)**|
 
-   ![](media/lab6f6.png)
+   ![](media/AZ-800-l6-3.png)
 
    ![](media/lab6f7.png)
 
-   ![](media/lab6f50.png)
+   ![](media/AZ-800-l6-4.png)
 
 1. Select **Next: Disks > (14)**, and then on the **Create a virtual machine** page, on the **Disks** tab, specify the following settings, leaving all other settings with their default values:
 
@@ -113,17 +113,20 @@ In this task, you will use the Azure portal to create resource groups and create
 
    ![](media/lab6f8.png)
 
-1. Select **Next: Networking > (2)**, and in the **Create a virtual machine** page, on the **Networking** tab, select the **Create new (1)** hyperlink that follows the **Virtual network** text box.
-1. On the **Create virtual network** page, specify the following settings, leaving all other settings with their default values, and then select **OK (6)**:
+1. Select **Next: Networking > (2)**, and in the **Create a virtual machine** page, on the **Networking** tab, select the **Edit virtual network** hyper link that follows the **Virtual network** text box.
 
-   |Setting|Value|
-   |---|---|
-   |Name|**az800l06-vnet (2)**|
-   |Address range|**10.60.0.0/20 (3)**|
-   |Subnet name|**subnet0 (4)**|
-   |Subnet range|**10.60.0.0/24 (5)**|
+    ![](media/AZ-800-l6-7.png)
 
-   ![](media/lab6f9.png)
+1. On the **Virtual network** page, specify the following settings, leaving all other settings with their default values, and then select **Save (7)**:
+
+   - Enter **az800l06-vnet (1)** in the **Name** field.  
+   - In the **Address range** field, specify **10.60.0.0/20 (2)**.  
+   - Click the **Edit (3)** icon under Subnets.  
+   - In the **Name** field, type **subnet0 (4)**.  
+   - In the **Size** drop-down, select **/24 (256 addresses) (5)**.  
+   - Click **Save (6)** on the subnet blade.  
+
+     ![](media/AZ-800-l6-5.png)
 
 1. Back on the **Create a virtual machine** page, on the **Networking** tab, specify the following settings, leaving all other settings with their default values:
 
@@ -146,11 +149,11 @@ In this task, you will use the Azure portal to create resource groups and create
    |---|---|
    |Boot diagnostics|**Enable with managed storage account (recommended) (1)**|
 
-   ![](media/lab6f12n.png)  
+   ![](media/AZ-800-l6-8.png) 
    
 1. Select **Next: Advanced > (2)**, on the **Advanced** tab of the **Create a virtual machine** page, review the available settings without modifying any of them, and then select **Review + create**.
 
-   ![](media/lab6f13.png)
+   ![](media/AZ-800-l6-9.png)
 
 1. **Do not click** on **Create**
 
@@ -160,11 +163,11 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. In the Azure portal, on the **Create a virtual machine** page, select **Download a template for automation** from the bottom right corner.
 
-   ![](media/lab6-10.png)
+    ![](media/AZ-800-l6-10.png)
 
 1. On the **Template** page, select **Download**.
 
-   ![](media/lab6f14.png)
+    ![](media/AZ-800-l6-11.png)
 
 1. Select the ellipsis button next to the **template.zip**, and then in the pop-up menu, select **Show in folder**. This will automatically open File Explorer displaying the content of the **Downloads** folder.
 
@@ -180,13 +183,13 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. Extract the content of the **template.zip** file into the same folder.
 
-   ![](media/lab6f15.png)
+   ![](media/AZ-800-l6-12.png)
 
-   ![](media/lab6f16.png)
+   ![](media/AZ-800-l6-13.png)
 
-1. Open the **template.json** file in Notepad, and review its content. Keep the Notepad window open.
+1. Open the **template.json (1)** file, select **Notepad (2)** as the editor, and click **OK (3)** to review its content. Keep the Notepad window open.  
 
-   ![](media/lab6f17.png)
+   ![](media/AZ-800-l6-42.png)
 
 1. From File Explorer, open the **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab06\\template\\parameters.json** file in Notepad and review its content.
 
@@ -221,9 +224,9 @@ In this task, you will use the Azure portal to create resource groups and create
 
    ![](media/lab6f18.png)
 
-1. Save the change and close the file.
+1. On the Notepad menu, click **File (1)**, select **Save (2)**, and then close the file.  
 
-   ![](media/lab6f19.png)
+   ![](media/AZ-800-l6-14.png)
 
 ## Exercise 3: Deploying Azure VMs running Windows Server by using ARM templates
 
@@ -231,9 +234,9 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. On **SEA-ADM1**, switch to the browser window displaying the Azure portal.
 
-1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for and select **Deploy a Custom Template**.
+1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search **Deploy a Custom Template** and select **Deploy a custom template (2)** from the results.
 
-   ![](media/lab6f20.png)
+   ![](media/AZ-800-l6-15.png)
 
 1. In the **Custom deployment** page, select **Build your own template in the editor**.
 
@@ -243,7 +246,7 @@ In this task, you will use the Azure portal to create resource groups and create
 
    ![](media/lab6f23.png)
 
-   ![](media/lab6f22.png)
+   ![](media/AZ-800-l6-16.png)
 
 1. On the **Custom deployment** page, select **Edit parameters**.
 
@@ -251,7 +254,7 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. On the **Edit parameters** page, select **Load file**, upload the parameters file **parameters.json** that you reviewed in the previous exercise, and then select **Save**.
 
-   ![](media/lab6f25.png)
+   ![](media/AZ-800-l6-17.png)
 
 1. Back on the **Custom deployment** page, specify the following settings, and leave the other settings with their default values:
 
@@ -270,31 +273,37 @@ In this task, you will use the Azure portal to create resource groups and create
 
    ![](media/lab6f28.png)
 
-   ![](media/lab6f29.png)
+   ![](media/AZ-800-l6-18.png)
 
-   >**Note**: The deployment might take about 10 minutes.
+   >**Note**: The deployment might take about **10 minutes**.
 
 1. Verify that the deployment completed successfully.
 
 ### Task 2: Review results of the Azure VM deployment
 
-1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for **Resource groups (1)** and select **Resource groups (2)** from services.
+1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for **Resource groups (1)** and select **Resource groups (2)** from the results.
+
+    ![](media/AZ-800-l6-19.png)
 
 1. On the **Resource groups** page, select the **AZ800-L0601-RG** entry.
+
+    ![](media/AZ-800-l6-20.png)
 
 1. On the **AZ800-L0601-RG** page, on the **Overview** page, review the list of resources, including the Azure VM **az800l06-vm0**.
 
 1. Within the list of resources, select the Azure VM **az800l06-vm0** entry. 
 
-1. On the **az800l06-vm0** page, under **Settings** section, select **Extensions + applications (1)**, and on the list of extensions, verify that the **customScriptExtension (2)** has been **provisioned successfully**.
+    ![](media/AZ-800-l6-21.png)
 
-   ![](media/lab6f30.png)
+1. On the **az800l06-vm0** page, under **Settings (1)** section, select **Extensions + applications (2)**, and on the list of extensions, verify that the **customScriptExtension (3)** has been **provisioned successfully**.
 
-1. Browse back to the **AZ800-L0601-RG** page, and in the **Settings** section, select **Deployments**.
+    ![](media/AZ-800-l6-22.png)
 
-1. On the **AZ800-L0601-RG \| Deployments** page, select the **Microsoft.Template** link.
+1. Browse back to the **AZ800-L0601-RG** page, and in the **Settings (1)** section, select **Deployments (2)**.
 
-   ![](media/az-800-lab06-12.png)
+1. On the **AZ800-L0601-RG \| Deployments** page, select the **Microsoft.Template (3)** link.
+
+   ![](media/AZ-800-l6-23.png)
 
 1. On the **Microsoft.Template \| Overview** page, select **Template**, and note that this is the same template you used for deployment.
 
@@ -318,19 +327,21 @@ In this task, you will use the Azure portal to create resource groups and create
 
     ![](media/lab6f31.png)
 
-1. On the **Settings | Defender plans** page, ensure that the Servers plan is configured with **Microsoft Defender for Plan 2**(1) and the status is set to **On**(2). If not, update the pricing to Plan 2, enable the status by setting it to On, and then click **Save**(3)
+1. On the **Settings | Defender plans** page, ensure that the Servers plan is configured with **Microsoft Defender for Plan 2 (1)** and the status is set to **On** **(2)**. If not, update the pricing to Plan 2, enable the status by setting it to On, and then click **Save (3)**
 
-    ![](media/az800l6yh.png).
+    ![](media/AZ-800-l6-24.png)
 
 ### Task 2: Review the Just-in-time VM access settings
 
-1. Browse back to the **Overview** page of Microsoft Defender for Cloud, and then, in the **Cloud Security** section, select **Workload protections**.
+1. Browse back to the **Overview** page of Microsoft Defender for Cloud, and then, in the **Cloud Security (1)** section, select **Workload protections (2)**.
+
+    ![](media/AZ-800-l6-25.png)
 
 1. On the **Microsoft Defender for Cloud \| Workload protections** page, select **Just-in-time VM access**.
 
     ![](media/az-800-lab06-09.png)
 
-   >**Note**: If ypu see a pop-up to enable Microsoft Defender for cloud, please select the enable option and select **Upgrade** and refresh the page.
+   >**Note**: If you see a pop-up to enable Microsoft Defender for cloud, please select the enable option and select **Upgrade** and refresh the page.
 
 1. On the **Just-in-time VM access** page, review the **Configured**, **Not Configured**, and **Unsupported** tabs.
 
@@ -340,11 +351,13 @@ In this task, you will use the Azure portal to create resource groups and create
 
 ### Task 1: Create and configure an NSG
 
-1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for and select **Network security groups**.
+1. In the Azure portal, on the toolbar, in the **Search resources, services, and docs** text box, search for **Network security groups (1)** and select **Network security groups (2)** from results.
+
+    ![](media/AZ-800-l6-26.png)
 
 1. On the **Network security groups** page, select **+ Create**.
 
-   ![](media/lab6f32.png)
+    ![](media/AZ-800-l6-27.png)
 
 1. On the **Basics** tab of the **Create network security group** page, specify the following settings (leave others with their default values):
 
@@ -355,13 +368,15 @@ In this task, you will use the Azure portal to create resource groups and create
       |Name|**az800l06-vm0-nsg1 (2)**|
       |Region|the name of the Azure region into which you provisioned the Azure VM **az800l06-vm0**|
 
-   ![](media/lab6f33.png)
+      ![](media/lab6f33.png)
 
 1. On the **Create network security group** page, on the **Basics** tab, select **Review + create (3)**, and then select **Create**.
 
-   ![](media/lab6f34.png)
+    ![](media/AZ-800-l6-28.png)
 
 1. In the Azure portal, browse back to the **AZ800-L0601-RG** page, and then in the list of resources, select the entry representing the newly created network security group **az800l06-vm0-nsg1**.
+
+    ![](media/AZ-800-l6-29.png)
 
 1. On the **az800l06-vm0-nsg1** page, review the listing of the default inbound and outbound security rules, and then in the **Settings** section, select **Inbound security rules**.
 
@@ -379,31 +394,31 @@ In this task, you will use the Azure portal to create resource groups and create
       |Priority|**300 (8)**|
       |Name|**AllowHTTPInBound (9)**|
 
-   ![](media/lab6f35.png)
+      ![](media/lab6f35.png)
 
 ### Task 2: Configure Inbound HTTP access to an Azure VM
 
 1. In the Azure portal, browse back to the **AZ800-L0601-RG** page, and then in the list of resources, select the entry representing the Azure VM **az800l06-vm0**.
 
-   ![](media/lab6f36.png)
+    ![](media/lab6f36.png)
 
-1. On the **az800l06-vm0** page, under **Networking** section select **Network settings**.
+1. On the **az800l06-vm0** page, under **Networking** section select **Network settings (1)**.
 
-1. On the **az800l06-vm0 \| Network settings (1)** page, select the link designating the **network interface (2)** attached to **az800l06-vm0**.
+1. On the **az800l06-vm0 \| Network settings** page, select the link designating the **network interface (2)** attached to **az800l06-vm0**.
 
-   ![](media/lab6f37n.png)
+    ![](media/AZ-800-l6-20.png)
 
 1. On the page displaying the network interface properties, in the vertical menu on the left side, in the **Settings** section, select **Network security group**. 
 
 1. On the **Network security group (1)** page, in the drop-down list, select **az800l06-vm0-nsg1 (2)**, and then select **Save (3)**.
 
-   ![](media/lab6f38.png)
+    ![](media/AZ-800-l6-31.png)
 
-1. In the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for and select **Public IP addresses**, click **Create**.
+1. In the Azure portal, in the **Search resources, services, and docs** text box, on the toolbar, search for **Public IP addresses (1)** and select **Public IP addresses (2)** from results, click **Create**.
 
-   ![](media/lab6f39.png)
+    ![](media/AZ-800-l6-32.png)
 
-   ![](media/lab6f40.png)
+    ![](media/AZ-800-l6-33.png)
 
 1. On Basis tab of create public ip address specify the following and select **Review + create (3)** and **Create**.
      
@@ -413,23 +428,23 @@ In this task, you will use the Azure portal to create resource groups and create
       |Name|**az800l06-vm0-pip1 (2)**|
       |SKU|**Standard**|
 
-   ![](media/lab6f41.png)
+      ![](media/lab6f41.png)
       
 1. In the Azure portal, browse back to the **AZ800-L0601-RG** page, and then in the list of resources, select the entry representing the network interface, select **IP configurations (1)** under **Settings**, and then select the **ipconfig1 (2)** entry.
 
-   ![](media/lab6f42.png)
+    ![](media/AZ-800-l6-34.png)
 
 1. On the **Edit ip configuration** page, in the **Public IP address settings** section, select **Associate public ip address (3)**, and then, below the **Public IP address** drop-down list, select **az800l06-vm0-pip1 (4)** and click **Save (5)**.
 
-   ![](media/lab6f43.png)
+    ![](media/AZ-800-l6-35.png)
 
 1. Browse back to the page displaying the network interface properties and select **Overview (1)**. Note the value of the **Public IP address (2)** assigned to the interface.
 
-   ![](media/lab6f44.png)
+    ![](media/AZ-800-l6-36.png)
 
 1. Open another browser tab, browse to that IP address, and verify that a webpage opens, displaying **Hello World from az800l06-vm0**.
 
-   ![](media/az-800-lab06-07.png)
+    ![](media/AZ-800-l6-37.png)
 
 1. From the lab computer, start the Remote Desktop app, and try connecting to the same IP address. Verify that the connection fails.
 
@@ -441,13 +456,13 @@ In this task, you will use the Azure portal to create resource groups and create
 
 1. In the Azure portal, browse back to the **AZ800-L0601-RG** page, and then in the list of resources, select the entry representing the Azure VM **az800l06-vm0**.
 
-1. On the **az800l06-vm0** page, under **Settings** section select **Configuration**. 
+1. On the **az800l06-vm0** page, under **Settings** section select **Configuration (1)**. 
 
-1. On the **az800l06-vm0 \| Configuration** page, select **Enable just-in-time** VM access and select the **Open Microsoft Defender for Cloud** link.
+1. On the **az800l06-vm0 \| Configuration** page, select **Enable just-in-time (2)** VM access and select the **Open Microsoft Defender for Cloud** link.
 
-   ![](media/az-800-lab06-01.png)
+    ![](media/AZ-800-l6-38.1.png)
 
-   ![](media/lab6f45.png)
+    ![](media/AZ-800-l6-38.png)
 
 1. On the **Just-in-time VM access** page, verify that the entry representing the **az800l06-vm0 (2)** Azure VM appears on the **Configured (1)** tab.
 
@@ -455,17 +470,13 @@ In this task, you will use the Azure portal to create resource groups and create
 
 ### Task 4: Connect to the Azure VM via JIT VM access
 
-1. Browse back to the **az800l06-vm0** page, select **Connect**
+1. Browse back to the **az800l06-vm0** page, select **Connect (1)**, and then choose **Connect (2)** from the drop-down menu.  
 
-   ![](media/lab6f47.png)
+   ![](media/AZ-800-l6-39.png)
 
-1. On **az800l06-vm0 \| Connect** page, scroll down and click **Select** option in **Native RDP** under **Most Common** section.
+1. On the **az800l06-vm0 \| Connect** page, under the **Native RDP** section, click **Request JIT + Check access (1)**, and then select **Download RDP file (2)**
 
-   ![](media/lab6f48.png)
-
-1. Select the check box under the **Configure prerequisites for Native RDP** and click on **Configure** and wait for the configuration to be completed.
-
-    ![](media/az-800-lab06-03.png)
+    ![](media/AZ-800-l6-40.png)
 
 1. On **Native RDP**, select **Download RDP File**,  follow prompts to connect to the target Azure VM.
 
@@ -482,7 +493,7 @@ In this task, you will use the Azure portal to create resource groups and create
       |Username|**.\Student**|
       |Password|**Pa55w.rd1234**|
    
-    ![](media/az-800-lab06-06.png)
+      ![](media/AZ-800-l6-41.png)
 
 1. Verify that you can successfully access via Remote Desktop the operating system running in the Azure VM and close the Remote Desktop session.
 
