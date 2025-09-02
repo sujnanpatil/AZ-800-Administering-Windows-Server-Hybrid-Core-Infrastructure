@@ -43,6 +43,8 @@ In this lab, you will perform:
 
 1. In the **Add Roles and Features Wizard**, select **Next** twice.
 
+   ![](media/AZ-800-l9-1.png)
+
 1. On the **Select destination server** page , in the Server Pool pane, select **SEA-SVR3.Contoso.com (1)**, and then select **Next (2)**.
 
    ![](media/srvr-selection01.png)
@@ -65,15 +67,15 @@ In this lab, you will perform:
 
 1. In the **Network access** window, in the **Type a name and then click Add, or click the arrow to find someone** text box, type **Users (1)** and click **Add (2)**.
 
-   ![](media/lab9k1.png)
+   ![](media/AZ-800-l9-2.png)
 
 1. In the **Network access** window, select **Share (3)**, and once you are presented with the **Your folder is shared** window, select **Done**.
 
-   ![](media/lab9k2.png)
+   ![](media/AZ-800-l9-3.png)
 
 1. Switch back to the **Server Manager** window, and then, on the **Add Roles and Features Wizard installation succeeded** page, select **Close**.
 
-   ![](media/lab9k3.png)
+   ![](media/AZ-800-l9-4.png)
 
 1. Switch to the **SEA-SVR3** console session, and then, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
 
@@ -97,6 +99,8 @@ In this lab, you will perform:
    ```powershell
    Initialize-Disk -Number 1
    ```	
+   ![](media/AZ-800-l9-5.png)
+
    ### 3. Create a new partition using the entire disk space and assign a drive letter (M)  
    ```powershell
    New-Partition -DiskNumber 1 -UseMaximumSize -DriveLetter M
@@ -118,10 +122,15 @@ In this lab, you will perform:
    ```powershell
    New-Item -Type Directory -Path 'M:\Data' -Force
    ```
+
+   ![](media/AZ-800-l9-6.png)
+
    ### 3. Copy `CreateLabFiles.cmd` from the network drive to `M:\Data`
    ```powershell
    Copy-Item -Path X:\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab09\CreateLabFiles.cmd -Destination M:\Data\ -PassThru
    ```
+   ![](media/AZ-800-l9-7.png)
+
    ### 4. Execute the copied script
    ```powershell
    Start-Process -FilePath M:\Data\CreateLabFiles.cmd -PassThru
@@ -134,10 +143,14 @@ In this lab, you will perform:
    ```powershell
    Get-ChildItem -Path .
    ```
+   ![](media/AZ-800-l9-8.png)
+
    ### 7. Verify the `M:` drive details
    ```powershell
    Get-PSDrive -Name M
    ```
+   ![](media/AZ-800-l9-9.png)
+
    > **Note**: Record the free space on drive **M**. 
 
 ### Task 2: Enable and configure Data Deduplication
@@ -148,17 +161,19 @@ In this lab, you will perform:
 
 1. In the **Server Manager** tree pane, select **File and Storage Services**, and then select **Disks**.
 
-1. In the **Disks (1)** pane, browse to the list of disks of **SEA-SVR3** and select the entry representing the disk number **1** (2), which you configured in the previous task.
+    ![](media/AZ-800-l9-10.png)
 
-   ![](media/lab9k6.png)
+1. In the **Disks (1)** pane, browse to the list of disks of **SEA-SVR3** and select the entry representing the disk number **1** **(2)**, which you configured in the previous task.
 
 1. In the **Volumes** pane, display the context-sensitive menu of the **M:** volume, and by right clicking on **M: (3)** volume ,select **Configure Data Deduplication (4)**.
 
+    ![](media/AZ-800-l9-11.png)
+
 1. In the **Volume (M:\\) Deduplication Settings** window, in the **Data deduplication** drop-down list, select the **General purpose file server (1)** setting.
 
-   ![](media/lab9k7.png)
+   ![](media/AZ-800-l9-12.png)
 
-1. In the **Deduplicate files older than (in days):** text box, replace the default value of **3** with **0** (2).
+1. In the **Deduplicate files older than (in days):** text box, replace the default value of **3** with **0** **(2)**.
 
 1. Select the **Set Deduplication Schedule (3)** button.
 
@@ -168,11 +183,13 @@ In this lab, you will perform:
 
 1. Back in the **Volume (M:\\) Deduplication Settings** window, select **OK**.
 
+   ![](media/AZ-800-l9-13.png)
+
 ### Task 3: Test Data Deduplication
 
 1. On **SEA-ADM1**, start Microsoft Edge, and then browse to `https://SEA-ADM1.contoso.com`.
  
-   >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe)**.
+   >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced (2)** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe) (3)**.
 
    ![](media/lab7-171.png)
    
@@ -181,7 +198,7 @@ In this lab, you will perform:
    - Username: **CONTOSO\Administrator (1)**
    - Password: **Pa55w.rd (2)**
 
-   ![](media/lab7-172.png)
+     ![](media/lab7-172.png)
 
 1. In the All connections pane, select **+ Add (1)**.
 
@@ -189,24 +206,26 @@ In this lab, you will perform:
 
 1. In the Add or create resources pane, on the **Servers** tile, select **Add (2)**.
 
-1. In the **Server name** text box, enter **sea-svr3.contoso.com** (1) and click on **Add** (2).  
+1. In the **Server name** text box, enter **sea-svr3.contoso.com** **(1)** and click on **Add** **(2)**.  
 
    ![](media/lab9k8.png)  
 
    > **Note**: While performing the step, if you see an error message stating, **"You can add this server to your list of connections, but we can't confirm it's available."**, select **Add**.  
 
-   - In the **All Connections** pane, select **sea-svr3.contoso.com** (1) and then click on **Manage as** (2).  
+   - In the **All Connections** pane, select **sea-svr3.contoso.com** **(1)** and then click on **Manage as** **(2)**.  
    - In the **Specify your credentials** dialog box:  
-     - Ensure that **Use another account for this connection** (3) is selected.  
+     - Ensure that **Use another account for this connection** **(3)** is selected.  
      - Enter the Administrator credentials:  
-       - **Username**: **CONTOSO\Administrator** (4)  
-       - **Password**: **Pa55w.rd** (5)  
-     - Check the **Use this credential for all connections** checkbox (6).  
-     - Click **Continue** (7).  
+       - **Username**: **CONTOSO\Administrator** **(4)**  
+       - **Password**: **Pa55w.rd** **(5)**  
+     - Check the **Use this credential for all connections** checkbox **(6)**.  
+     - Click **Continue** **(7)**.  
 
-   ![](media/lab9k9.png)
+       ![](media/lab9k9.png)
 
 1. In **All connections** pane, select **sea-svr3.contoso.com**.
+
+   ![](media/AZ-800-l9-14.png)
 
 1. On the **sea-svr3.contoso.com (1)** page, in the **Tools** menu, select **PowerShell (2)**, and then, when prompted, sign in as the **CONTOSO\Administrator** user with **Pa55w.rd (3)** as its password and **Submit (4)**
 
@@ -217,6 +236,8 @@ In this lab, you will perform:
    ```powershell
    Start-DedupJob -Volume M: -Type Optimization –Memory 50
    ```
+   ![](media/AZ-800-l9-15.png)
+
 1. Switch back to the console session to **SEA-SVR3**.
 
    > **Note:** Minimize the current VM window, then select **SEA-SVR3** from the taskbar.
@@ -226,6 +247,8 @@ In this lab, you will perform:
    ```powershell
    Get-PSDrive -Name M
    ```
+   
+   ![](media/AZ-800-l9-16.png)
 
    > **Note**: Compare the previously displayed values with the current ones. 
 
@@ -288,6 +311,8 @@ In this lab, you will perform:
    Format-Volume -DriveLetter $partition3.DriveLetter -FileSystem ReFS
    ```
 
+   ![](media/AZ-800-l9-17.png)
+
 1. Enter the following commands and after each, press Enter to configure Windows Defender Firewall with Advanced Security rules that allow iSCSI traffic:
 
    ```powershell
@@ -314,7 +339,7 @@ In this lab, you will perform:
 
    ![](media/disk-refresh.png)
 
-1. Review the updated **SEA-SVR3 (1)** disk configuration with disks 2 and 3 (2) online.
+1. Review the updated **SEA-SVR3 (1)** disk configuration with disks 2 and 3 **(2)** online.
 
    ![](media/disks01.png)
 
@@ -376,6 +401,8 @@ In this lab, you will perform:
 
 1. On the **View results** page, select **Close**.
 
+    ![](media/AZ-800-l9-20.png)
+
 1. Create the second iSCSI virtual disk (F:), by repeating steps 6 through 9, selecting the existing iSCSI target, and completing the wizard using step 18 through 19,
 using the following settings:
 
@@ -402,9 +429,13 @@ using the following settings:
 
    > **Note**: The **iscsicpl** command will open an **iSCSI Initiator Properties** window.
 
-1. On **SEA-DC1**, in the **iSCSI Initiator Properties** dialog box, on the **Targets** tab, in the **Target** text box, type **SEA-SVR3.contoso.com**, and then select **Quick Connect**.
+1. On **SEA-DC1**, in the **iSCSI Initiator Properties** dialog box, on the **Targets** tab, in the **Target** text box, type **SEA-SVR3.contoso.com (1)**, and then select **Quick Connect (2)**.
+
+    ![](media/AZ-800-l9-21.png)
 
 1. In the **Quick Connect** dialog box, note that the **Discovered target name** is **iqn.1991-05.com.microsoft:sea-svr3-iscscifarm-target**, and then select **Done**.
+
+   ![](media/AZ-800-l9-22.png)
 
 1. In the **iSCSI Initiator Properties** dialog box, select **OK**.
 
@@ -416,7 +447,7 @@ using the following settings:
 
    ![](media/disk-refresh.png)
 
-1. In disks (1) pane, Review the **SEA-DC1(2)** disk configuration and verify that it includes two **5 GB** disks with the **Offline (3)** status and the **iSCSI** bus type too.
+1. In **Disks (1)** pane, Review the **SEA-DC1 (2)** disk configuration and verify that it includes two **5 GB** disks with the **Offline (3)** status and the **iSCSI** bus type too.
 
    ![](media/disks-iscsi01.png)
 
@@ -427,6 +458,7 @@ using the following settings:
    ```powershell
    Get-Disk
    ```
+   ![](media/AZ-800-l9-23.png)
 
    > **Note**: Both disks are present and healthy, but offline. To use them, you need to initialize and format them.
 
@@ -437,6 +469,9 @@ using the following settings:
    New-Partition -DiskNumber 1 -UseMaximumSize -DriveLetter E
    Format-Volume -DriveLetter E -FileSystem ReFS
    ```
+
+   ![](media/AZ-800-l9-24.png)
+
 1. Repeat the previous step to create a new drive formatted with ReFS but this time replace the disk number with **2** and the drive letter with **F**. It should look as below:
 
    ```powershell
@@ -444,6 +479,9 @@ using the following settings:
    New-Partition -DiskNumber 2 -UseMaximumSize -DriveLetter F
    Format-Volume -DriveLetter F -FileSystem ReFS
    ```
+
+   ![](media/AZ-800-l9-25.png)
+
 1. Switch back to the console session to **SEA-ADM1** with the **Server Manager** window active.
 
 1. In **Server Manager**, refresh the Disks pane in **File and Storage Services** by selecting **Refresh** in the **TASKS** menu in the upper right corner of the window.
@@ -479,9 +517,17 @@ using the following settings:
 
 1. In the Disks pane, scroll down, and note that the **SEA-SVR3** disks 1 through 4 are listed with **Unknown** partitions and the **Offline** status. 
 
-1. Select each of the four disks in sequence, display its context-sensitive menu by right clicking on disk and select the **Bring Online** option in the menu, and then in the **Bring Disk Online** window, select **Yes**.
+    ![](media/AZ-800-l9-26.png)
+
+1. Select each of the four disks in sequence, display its context-sensitive menu by right clicking on disk **(1)** and select the **Bring Online (2)** option in the menu, and then in the **Bring Disk Online** window, select **Yes**.
+
+    ![](media/AZ-800-l9-27.png)
+
+    ![](media/AZ-800-l9-28.png)
 
 1. Verify that all disks are listed with the **Online** status. In **Server Manager**, in the navigation pane, select **Storage Pools**.
+
+   ![](media/AZ-800-l9-29.png)
 
 1. In **Server Manager**, in the **Storage Pools (1)** area, in the **TASKS (2)** list, select **New Storage Pool (3)**.
 
@@ -489,13 +535,13 @@ using the following settings:
 
 1. In the **New Storage Pool Wizard**, on the **Before you begin** page, select **Next**.
 
-1. On the **Specify a storage pool name and subsystem** page, in the **Name** text box, enter **SP1**. In the **Description** text box, enter **Storage Pool 1**. In the **Select the group of available disks (also known as a primordial pool) that you want to use** listing, select the **SEA-SVR3** entry, and then select **Next**.
+1. On the **Specify a storage pool name and subsystem** page, in the **Name** text box, enter **SP1 (1)**. In the **Description** text box, enter **Storage Pool 1 (2)**. In the **Select the group of available disks (also known as a primordial pool) that you want to use** listing, select the **SEA-SVR3 (3)** entry, and then select **Next (4)**.
 
-   ![](media/spl-name.png)
+   ![](media/AZ-800-l9-35.png)
 
-1. On the **Select physical disks for the storage pool** page, select the check boxes next to the three disks of **127 GB** size, and then select **Next**.
+1. On the **Select physical disks for the storage pool** page, select the check boxes next to the three disks of **127 GB (1)** size, and then select **Next (2)**.
 
-   ![](media/spl-disks.png)
+   ![](media/AZ-800-l9-36.png)
 
 1. On the **Confirm selections** page, review the settings, and then select **Create**.
 
@@ -505,33 +551,35 @@ using the following settings:
 
 ### Task 2: Create a volume based on a three-way mirrored disk 
 
-1. On **SEA-ADM1**, in **Server Manager**, on the Storage Pools pane, select **SP1**.
+1. On **SEA-ADM1**, in **Server Manager**, on the Storage Pools pane, select **SP1 ()**.
 
-1. In the **VIRTUAL DISKS** area, select **TASKS**, and then select **New Virtual Disk**.
+1. In the **VIRTUAL DISKS** area, select **TASKS (2)**, and then select **New Virtual Disk (3)**.
 
-   ![](media/spl-vd.png)
+   ![](media/AZ-800-l9-37.png)
 
-1. In the **Select the storage pool** dialog box, select **SP1**, and then select **OK**.
+1. In the **Select the storage pool** dialog box, select **SP1 (1)**, and then select **OK (2)**.
+
+    ![](media/AZ-800-l9-30.png)
 
 1. In the **New Virtual Disk Wizard**, on the **Before you begin** page, select **Next**.
 
-1. On the **Specify the virtual disk name** page, in the **Name** text box, enter **Three-Mirror**, and then select **Next**.
+1. On the **Specify the virtual disk name** page, in the **Name** text box, enter **Three-Mirror (1)**, and then select **Next (2)**.
 
-   ![](media/spl-vdname.png)
+    ![](media/AZ-800-l9-38.png)
 
 1. On the **Specify enclosure resiliency** page, select **Next**.
 
-1. On the **Select the storage layout** page, select **Mirror**, and then select **Next**.
+1. On the **Select the storage layout** page, select **Mirror (1)**, and then select **Next (2)**.
 
-   ![](media/spl-vdlayout.png)
+   ![](media/AZ-800-l9-39.png)
 
-1. On the **Specify the provisioning type** page, select **Thin**, and then select **Next**.
+1. On the **Specify the provisioning type** page, select **Thin (1)**, and then select **Next (2)**.
 
-   ![](media/spl-vdtype.png)
+   ![](media/AZ-800-l9-40.png)
 
-1. On the **Specify the size of the virtual disk** page, in the **Specify size** text box, enter **25**, and then select **Next**.
+1. On the **Specify the size of the virtual disk** page, in the **Specify size** text box, enter **25 (1)**, and then select **Next (2)**.
 
-   ![](media/spl-vdsize.png)
+   ![](media/AZ-800-l9-41.png)
 
 1. On the **Confirm selections** page, review the settings, and then select **Create**.
 
@@ -539,23 +587,23 @@ using the following settings:
 
 1. On the **View results** page, **clear** the **Create a volume when this wizard closes** check box, and then select **Close**.
 
-1. In **Server Manager**, in the navigation pane, ensure that the **Volumes** entry is selected.
+1. In **Server Manager**, in the navigation pane, ensure that the **Volumes (1)** entry is selected.
 
-1. In the **VOLUMES** area, select **TASKS**, and then select **New Volume**.
+1. In the **VOLUMES** area, select **TASKS (2)**, and then select **New Volume (3)**.
 
-   ![](media/srvm-volcreate.png)
+    ![](media/AZ-800-l9-42.png)
 
 1. In the **New Volume Wizard**, on the **Before you begin** page, select **Next**.
 
-1. On the **Select the server and disk** page, select **SEA-SVR3**, select **Three-Mirror**, and then select **Next**.
+1. On the **Select the server and disk** page, select **SEA-SVR3 (1)**, select **Three-Mirror (2)**, and then select **Next (3)**.
 
-   ![](media/srvm-voldisk.png)
+   ![](media/AZ-800-l9-43.png)
 
 1. On the **Specify the size of the volume** page, select **Next**.
 
-1. On the **Assign to a drive letter or folder** page, select **Drive letter**, select **T**, and then select **Next**.
+1. On the **Assign to a drive letter or folder** page, select **Drive letter**, select **T (1)**, and then select **Next (2)**.
 
-   ![](media/srvm-volletter.png)
+   ![](media/AZ-800-l9-44.png)
 
 1. On the **Select file system settings (1)** page, in the **File system** drop-down list, select **ReFS (2)**. In the **Volume label** text box, enter **TestData (3)**, and then select **Next (4)**.
 
@@ -597,21 +645,25 @@ using the following settings:
 
    ![](media/stpools01.png)
 
-1. In the Physical Disks pane, select the **TASKS** drop-down list, and then select **Add Physical Disk**.
+1. In the Physical Disks pane, select the **TASKS (1)** drop-down list, and then select **Add Physical Disk (2)**.
 
-   ![](media/srvm-pdisk.png)
+   ![](media/AZ-800-l9-45.png)
 
-1. In the **Add Physical Disk** dialog box, in the row representing the fourth disk to be added to the pool, select the check box next to the disk name. In the **Allocation** drop-down list, ensure that the **Automatic** entry is selected, and then select **OK**.
+1. In the **Add Physical Disk** dialog box, in the row representing the fourth disk to be added to the pool, select the check box next to the disk name **(1)**. In the **Allocation** drop-down list, ensure that the **Automatic** entry is selected, and then select **OK (2)**.
 
-   ![](media/srvm-addpd.png)
+   ![](media/AZ-800-l9-46.png)
 
-1. In the PHYSICAL DISKS pane, right-click the top disk in the list, and then select **Remove disk**.
+1. In the **PHYSICAL DISKS** pane, right-click the top disk **(1)** in the list, and then select **Remove disk (2)**.
 
-   ![](media/srvm-rmpd.png)
+   ![](media/AZ-800-l9-47.png)
 
 1. In the **Remove Physical Disk** window, select **Yes**.
 
+    ![](media/AZ-800-l9-31.png)
+
 1. In the **Remove Physical Disk** dialog box, review the message stating that **Windows is repairing the affected virtual disk**, and then select **OK**.
+
+    ![](media/AZ-800-l9-32.png)
 
 1. Switch back to the **File Explorer** window displaying the content of the **TestData** folder.
 
@@ -627,7 +679,7 @@ using the following settings:
 
 1. When prompted, in the **Rescan Storage** dialog box, select **Yes**.
 
-1. In the Physical Disks (1) pane, select **TASKS(2)**, and then, in the drop-down menu, select **Add Physical Disk (3)**.
+1. In the **Physical Disks (1)** pane, select **TASKS (2)**, and then, in the drop-down menu, select **Add Physical Disk (3)**.
 
    ![](media/add-pd01.png)
 
@@ -658,23 +710,23 @@ using the following settings:
 
 ### Task 1: Prepare for installation of Storage Spaces Direct 
 
-1. Switch back to the console session to **SEA-ADM1** and select **All Servers**.
+1. Switch back to the console session to **SEA-ADM1** and select **All Servers (1)**.
 
-1. On **SEA-ADM1**, in **Server Manager**, in the console tree, select **All Servers**, and verify that **SEA-SVR1**, **SEA-SVR2**, and **SEA-SVR3** have the **Manageability** status of **Online – Performance counters not started** before continuing.
+1. On **SEA-ADM1**, in **Server Manager**, in the console tree, select **All Servers**, and verify that **SEA-SVR1**, **SEA-SVR2**, and **SEA-SVR3** have the **Manageability** status of **Online – Performance counters not started (2)** before continuing.
 
-   ![](media/allservers.png)
+   ![](media/AZ-800-l9-48.png)
 
-1. In **Server Manager**, in the navigation pane, select **File and Storage Services**, and then select **Disks**.
+1. In **Server Manager**, in the navigation pane, select **File and Storage Services**, and then select **Disks (1)**.
 
 1. With the Disks pane selected, in its upper right corner, in the **TASKS** menu, select **Refresh**.
 
    ![](media/disk-refresh.png)
 
-1. In the Disks pane, scroll down to the listing of **SEA-SVR3** disks 1 through 4, and verify that their respective entries in the **Partition** column are listed as **Unknown**.
+1. In the Disks pane, scroll down to the listing of **SEA-SVR3** disks 1 through 4, and verify that their respective entries in the **Partition (2)** column are listed as **Unknown**.
 
-   ![](media/disks-offline2.png)
+   ![](media/AZ-800-l9-50.png)
 
-1. Select each of the four disks in sequence, and right-click. In the menu, select the **Bring Online** option, and then in the **Bring Disk Online** window, select **Yes**.
+1. Select each of the four disks in sequence, and right-click **(1)**. In the menu, select the **Bring Online (2)** option, and then in the **Bring Disk Online** window, select **Yes**.
 
    ![](media/disk-online01.png)
 
@@ -686,9 +738,9 @@ using the following settings:
 
    ![](media/ps-ise01.png)
 
-1. In **Windows PowerShell ISE**, select the **File** menu. In the **File** menu, select **Open**, and then, in the **Open** dialog box, go to **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab09**.
+1. In **Windows PowerShell ISE**, select the **File** menu. In the **File** menu, select **Open**, and then, in the **Open** dialog box, go to **C:\Labfiles\AZ-800-Administering-Windows-Server-Hybrid-Core-Infrastructure-master\Allfiles\Labfiles\Lab09 (1)**.
 
-1. Select **Implement-StorageSpacesDirect.ps1 (1)**, and then select **Open (2)**.
+1. Select **Implement-StorageSpacesDirect.ps1 (2)**, and then select **Open (3)**.
 
    ![](media/psfile-open01.png)
 
@@ -738,9 +790,9 @@ using the following settings:
 
    > **Note**: Wait until the step completes. This should take less than 1 minute. In the output of the command, verify that the **FriendlyName** attribute has a value of **S2DStoragePool**.
 
-1. Switch to the **Failover Cluster Manager** window, expand **S2DCluster.Contoso.com**, expand **Storage**, and then select **Pools**.
+1. Switch to the **Failover Cluster Manager** window, expand **S2DCluster.Contoso.com (1)**, expand **Storage (2)**, and then select **Pools (3)**.
 
-1. Verify the existence of **Cluster Pool 1**.
+1. Verify the existence of **Cluster Pool 1 (4)**.
 
    ![](media/clusterpool101.png)
 
@@ -764,7 +816,7 @@ using the following settings:
 
 1. Switch to the **Failover Cluster Manager** window and select **Roles (1)**.
 
-1. Verify the existence of the S2D-SOFS (2) role. This also verifies that the command completed successfully.
+1. Verify the existence of the **S2D-SOFS (2)** role. This also verifies that the command completed successfully.
 
    ![](media/s2d-role01.png)
 
@@ -812,15 +864,15 @@ using the following settings:
 
 1. Switch to **Failover Cluster Manager**, select **Disks (1)**, and then select **Cluster Virtual Disk (CSV) (2)**.
 
-1. Verify that for the **Cluster Virtual Disk (CSV)**, the **Health Status** is set to **Warning** and **Operational Status** to **Degraded** (**Operational Status** might also be listed as **Incomplete**.)
+1. Verify that for the **Cluster Virtual Disk (CSV)**, the **Health Status** is set to **Warning** and **Operational Status** to **Degraded (3)** (**Operational Status** might also be listed as **Incomplete**.)
 
-   ![](media/csv-health01.png)
+   ![](media/AZ-800-l9-51.png)
 
 1. On **SEA-ADM1**, switch to the **Microsoft Edge** window displaying Windows Admin Center. 
 
 1. Browse to the All connections pane and select **+ Add (1)**.
 
-1. In the **Add or create resources** pane, in the **Server clusters(2)** pane, select **Add (3)**.
+1. In the **Add or create resources** pane, in the **Server clusters (2)** pane, select **Add (3)**.
 
    ![](media/add-srvcluster01.png)
 
@@ -830,20 +882,20 @@ using the following settings:
 
    > **Note**: While performing the step, if you see an error message stating, **check the name or network connection, but we can't confirm that this cluster is available."**, select **Add**.  
 
-   - In the **All Connections** pane, select **S2DCluster.Contoso.com** (1) and then click on **Manage as** (2).  
+   - In the **All Connections** pane, select **S2DCluster.Contoso.com** **(1)** and then click on **Manage as** **(2)**.  
    - In the **Specify your credentials** dialog box:  
-     - Ensure that **Use another account for this connection** (3) is selected.  
+     - Ensure that **Use another account for this connection** **(3)** is selected.  
      - Enter the Administrator credentials:  
-       - **Username**: **CONTOSO\Administrator** (4)  
-       - **Password**: **Pa55w.rd** (5)  
-     - Check the **Use this credential for all connections** checkbox (6).  
-     - Click **Continue** (7).  
+       - **Username**: **CONTOSO\Administrator** **(4)**  
+       - **Password**: **Pa55w.rd** **(5)**  
+     - Check the **Use this credential for all connections** checkbox **(6)**.  
+     - Click **Continue** **(7)**.  
 
-   ![](media/lab9k16.png)
+       ![](media/lab9k16.png)
 
 1. Back on the **All connections** page, select **s2dcluster.contoso.com (1)**.
 
-1. Verify that when the page loads, the Dashboard (2) pane has an alert indicating that **SEA-SVR3 (3)** is not reachable.
+1. Verify that when the page loads, the **Dashboard (2)** pane has an alert indicating that **SEA-SVR3 (3)** is not reachable.
 
    ![](media/server2alert01.png)
 

@@ -131,7 +131,7 @@ In this lab, you will perform:
 
 1. On **SEA-ADM1**, in the Microsoft Edge window displaying the Azure portal, open another tab and browse to the **[Azure portal](https://portal.azure.com)**.
 
-1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Virtual networks (1)** and select **Virtual networks (2)** from list.
+1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Virtual networks (1)** and select **Virtual networks (2)** from Services.
 
      ![](media/AZ-800-l8-5.png)
 
@@ -200,7 +200,7 @@ In this lab, you will perform:
 
 >**Note**: Before you start this task, make sure that the script you invoked in the first task of this exercise completed successfully.
 
-1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Network Watcher (1)** and select **Network Watcher (2)** from list.
+1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Network Watcher (1)** and select **Network Watcher (2)** from Services.
 
    ![](media/AZ-800-l8-10.png)
 
@@ -274,7 +274,7 @@ In this lab, you will perform:
 
 ### Task 4: Configure routing in the hub and spoke topology
 
-1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Virtual machines (1)** and select **Virtual machines (2)** from reslut.
+1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Virtual machines (1)** and select **Virtual machines (2)** from Services.
 
      ![](media/AZ-800-l6-1.png)
 
@@ -322,7 +322,7 @@ In this lab, you will perform:
 
    > **Note**: Now you need to create and configure user-defined routes on the spoke virtual networks.
 
-1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Route tables (1)** and select **Route tables (2)** from result, and then, on the **Route tables** page, select **+ Create**.
+1. In the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Route tables (1)** and select **Route tables (2)** from Services, and then, on the **Route tables** page, select **+ Create**.
 
    ![](media/lab8j12.png)
 
@@ -473,7 +473,7 @@ In this lab, you will perform:
 
 ### Task 1: Configure Azure private DNS name resolution
 
-1. On **SEA-ADM1**, in the Microsoft Edge window displaying the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Private DNS (1)** and select **Private DNS zones (2)** from result, and then, on the **Private DNS zones** page, select **+ Create**.
+1. On **SEA-ADM1**, in the Microsoft Edge window displaying the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **Private DNS (1)** and select **Private DNS zones (2)** from Services, and then, on the **Private DNS zones** page, select **+ Create**.
 
    ![](media/lab8j24.png)
 
@@ -560,7 +560,7 @@ In this lab, you will perform:
 
 ### Task 3: Configure Azure public DNS name resolution
 
-1. On **SEA-ADM1**, switch to the Microsoft Edge tab displaying the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **DNS zones (1)** and select **DNS zones (2)** from result, and then, on the **DNS zones** page, select **+ Create**.
+1. On **SEA-ADM1**, switch to the Microsoft Edge tab displaying the Azure portal, in the **Search resources, services, and docs** text box in the toolbar, search for **DNS zones (1)** and select **DNS zones (2)** from Services, and then, on the **DNS zones** page, select **+ Create**.
 
     ![](media/AZ-800-l8-31.png)
 
