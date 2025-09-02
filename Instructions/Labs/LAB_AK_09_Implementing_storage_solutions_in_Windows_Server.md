@@ -10,12 +10,12 @@ At Contoso, Ltd., you need to implement the Storage Spaces feature on the Window
 
 In this lab, you will perform:
 
-- Exercise 1: Implement Data Deduplication.
-- Exercise 2: Configure iSCSI storage.
-- Exercise 3: Configure Storage Spaces.
-- Exercise 4: Implement Storage Spaces Direct.
+- **Exercise 1:** Implement Data Deduplication.
+- **Exercise 2:** Configure iSCSI storage.
+- **Exercise 3:** Configure Storage Spaces.
+- **Exercise 4:** Implement Storage Spaces Direct.
 
-## Estimated time: 90 minutes
+## Estimated time: 90 Minutes
 
 ## Architecture Diagram
 
@@ -25,7 +25,13 @@ In this lab, you will perform:
 
 ### Task 1: Install the Data Deduplication role service
 
-1. Connect to **SEA-ADM1**, and then, if needed, sign in as **CONTOSO\Administrator** with a password of **Pa55w.rd**.
+1. On the **HOSTVM (1)** dropdown menu, select **SEA-ADM1 (2)** to connect to the administrator VM.  
+
+    ![](media/AZ-800-l1-1.png)
+
+1. On the **SEA-ADM1** login screen, sign in as **CONTOSO\Administrator** with the password **Pa55w.rd**.  
+
+    ![](media/AZ-800-l1-2.1.png)
 
 1. On **SEA-ADM1**, select **Start (1)**, and then select **Server Manager (2)**.
 
