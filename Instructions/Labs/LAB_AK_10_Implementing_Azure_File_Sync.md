@@ -434,9 +434,11 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, **AZ-800T00A-
 
 1. On **SEA-ADM1**, in the Azure portal, on the **Sync1** sync group page, select **SEA-SVR2.Contoso.com** in the **server endpoints** section.
 
-1. In the Server Endpoint Properties pane, Under **settings** section, select **Cloud Tiering Settings**. 
+1. In the Server Endpoint Properties pane, Under **settings (1)** section, select **Cloud Tiering Settings (2)**. 
 
-1. Select **Enable cloud Tiering** In the **Always preserve the specified percentage of free space on the volume** text box, enter **90** and select **Enabled Date policy**. In the **Only cache files that were accessed or modified within the specified number of days** text box, enter **14**, and then select **Save**.  
+1. Select **Enable cloud tiering (3)**. In Tier cool files to the cloud when less than of free space is available on your local disk text box, enter **90 (4)**, and select **Enable date policy (5)**. In Tier cool files to the cloud if they haven’t been accessed for more than text box, enter **14 (6)** days, and then select **Save (7)**.  
+
+    ![](./media/AZ-800-l10-46.png)
 
    >**Note:** After some time, files on **SEA-SVR2** would be automatically tiered. You will trigger this process by using PowerShell.
 
@@ -455,7 +457,7 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, **AZ-800T00A-
    ```
 1. On **SEA-ADM1**, switch to the File Explorer window displaying the content of the **\\\\SEA-SVR2\\Data** folder.
 
-      ![](./media/2.png)
+      ![](./media/AZ-800-l10-47.png)
 
 1. In the File Explorer window, add the **Attributes** column in the details pane by right-clicking or accessing the context menu for the **Title** column in the details pane; for example, in the **Name** column, select **More**, select the **Attributes** checkbox, and then select **OK**.
 
@@ -475,15 +477,17 @@ Virtual machines: **AZ-800T00A-SEA-DC1**, **AZ-800T00A-SEA-SVR1**, **AZ-800T00A-
 
 1. In the **server endpoints** section, verify that the **Health** of both endpoints has green check marks.
 
+    ![](./media/AZ-800-l10-48.png)
+
 1. Select the **SEA-SVR2.Contoso.com** endpoint in the Server Endpoint Properties pane, review **Sync Activity**, and then close the pane.
 
 1. Select the **Files Synced** graph, and then explore how you can customize the graph by using a filter.
 
 1. Switch to the File Explorer window displaying the content of drive **Z** mapped to the Azure File share and verify that the drive contains the content of the **INF** folder synchronized from **\\\\SEA-SVR2\\Data**.
 
-1. Switch to the Azure portal displaying **Sync1** under **Monitoring** section, select status and verify that the **INF** sync traffic is reflected in the **Files Synced** and **Bytes Synced** graphs. The **INF** folder has more than 800 files, and its size is more than 40 MB.
+1. Switch to the Azure portal displaying **Sync1** under **Monitoring (1)** section, select **status (2)** and verify that the **INF** sync traffic is reflected in the **Files Synced** and **Bytes Synced** graphs. The **INF** folder has more than 800 files, and its size is more than 40 MB.
 
-    ![](./media/E5T1.png)
+    ![](./media/AZ-800-l10-49.png)
 
    >**Note:** You might need to refresh the page displaying the Azure portal to see the updated statistics.
 
