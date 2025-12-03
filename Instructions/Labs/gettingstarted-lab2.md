@@ -6,7 +6,7 @@ Welcome to your AZ-800: Administering Windows Server Hybrid Core Infrastructure 
  
 Once you're ready to dive in, your virtual machine and **Guide** will be right at your fingertips within your web browser.
  
-![Access Your VM and Lab Guide](media/AZ-800-g1.png)
+![Access Your VM and Lab Guide](media/lab2-g1.png)
 
 ### Virtual Machine & Lab Guide
  
@@ -44,9 +44,9 @@ For convenience, you can open the lab guide in a separate window by selecting th
 
 ## Lab Guide Zoom In/Zoom Out
  
-1. To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
+To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
 
-   ![](media/zoom.png)  
+   ![](media/lab1-g2.png)  
 
 ## Lab Duration Extension
 
@@ -90,9 +90,9 @@ By following this workaround, you can ensure accurate execution of the PowerShel
  
 1. Next, provide your password:
  
-   - **Password:** <inject key="AzureAdUserPassword"></inject>
+   - **Temporary Access Pass:** <inject key="AzureAdUserPassword"></inject>
  
-      ![Enter Your Password](media/sc900-image-2.png)
+      ![Enter Your Password](media/lab2-12-1.png)
 
 1. If **Action required** pop-up window appears, click on **Ask later**
 

@@ -77,7 +77,7 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
 
 1. Note the post-deployment configuration of **SEA-SVR1**, and then select the **Promote this server to a domain controller** link.
    
-   ![](media/update4.png)
+   ![](media/lab1-12-1.png)
 
 1. In the **Active Directory Domain Services Configuration Wizard**, on the **Deployment Configuration** page, under **Select the deployment operation**, verify that **Add a domain controller to an existing domain (1)** is selected.
 
@@ -120,7 +120,7 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
    - Remove the grave accents (**`**) at the end of each line.
    - Remove the line breaks.
 
-     ![](media/addscontrol.png)
+     ![](media/lab1-12-2.png)
 
 1. Now the **Install-ADDSDomainController** command and all the parameters are on one line. Place the cursor in front of the line, and then, on the **Edit** menu, select **Select All** to select the whole line. On the menu, select **Edit**, and then select **Copy**.
 
@@ -142,7 +142,7 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
    Invoke-Command -ComputerName SEA-SVR1 {Install-ADDSDomainController -NoGlobalCatalog:$false -CreateDnsDelegation:$false -Credential (Get-Credential) -CriticalReplicationOnly:$false -DatabasePath "C:\Windows\NTDS" -DomainName "Contoso.com" -InstallDns:$true -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion:$false -SiteName "Default-First-Site-Name" -SysvolPath "C:\Windows\SYSVOL" -Force:$true}
    ```
 
-   ![](media/lab1f5.png)
+   ![](media/lab1-12-3.png)
 
 1. To invoke the command, press Enter.
 
@@ -156,7 +156,7 @@ In this task, you will configure the SEA-SVR1 server to be promoted to a domain 
 
 1. Wait until the command runs and the **Status Success** message is returned. The **SEA-SVR1** virtual machine restarts.
 
-   ![](media/lab1f7.png)
+   ![](media/lab1-12-4.png)
 
 1. Close Notepad without saving the file.
 
@@ -195,7 +195,7 @@ In this task, you will create an Organizational Unit (OU) called Seattle, create
 
 1. When you receive a prompt to repeat the password, enter **Pa55w.rd** and then press Enter.
 
-   ![](media/update15.png)
+   ![](media/lab1-12-5.png)
 
 1. To enable the account, enter the following command, and then press Enter:
 
@@ -238,7 +238,7 @@ In this task, you will create a new GPO named CONTOSO Standards, configure it to
 
 1. On **SEA-ADM1**, from Server Manager, select **Tools (1)**, and then select **Group Policy Management (2)**.
 
-   ![](media/update21.png)
+   ![](media/lab1-12-6.png)
 
 1. If necessary, switch to the **Group Policy Management** window.
 
@@ -310,11 +310,12 @@ In this task, you will review the applied Group Policy settings on a client mach
 
 1. Select **System and Security (1)**, and under **Windows Defender Firewall**, select **Allow an app through Windows Firewall (2)**.
 
-   ![](media/lab1f16.png)
+   ![](media/lab1-12-7.png)
 
 1. In the **Allowed apps and features** list, locate the **Remote Event Log Management (1)** entry, select the checkbox in the **Domain (2)** column, and then select **OK (3)**. 
 
-   ![](media/lab1f15.png)
+   ![](media/lab1-12-8.png)
+
 1. On the **Start menu (1)**, select the **Administrator account (2)** and then click **Sign out (3)**.  
 
     ![](media/AZ-800-l1-37.png)
@@ -325,7 +326,7 @@ In this task, you will review the applied Group Policy settings on a client mach
 
    > **Note:** while logging into the Hyper-V virtual machines, if a message appears stating **"Press Ctrl+Alt+Delete to unlock"**, navigate to the **Actions** menu in the Virtual Machine Connection window and select the **Ctrl+Alt+Delete** option, as shown in the image below and you will find the Other User option to Sign in
    
-    ![Manage Your Virtual Machine](media/login.png)
+    ![Manage Your Virtual Machine](media/lab1-12-9.png)
 
 1. In the search box on the taskbar, enter **Control Panel**.
 
@@ -335,7 +336,7 @@ In this task, you will review the applied Group Policy settings on a client mach
 
 1. In the search box in Control Panel, enter **screen saver**, and then select **Change screen saver**. (It might take a few minutes for the option to display.)
 
-    ![](media/AZ-800-l1-39.png)
+    ![](media/lab1-12-10.png)
 
 1. In the **Screen Saver Settings** dialog box, notice that the **Wait** option is dimmed. You cannot change the time-out. Notice that the **On resume, display logon screen** option is selected and dimmed and that you cannot change the settings.
 
@@ -367,7 +368,7 @@ In this task, you will create and link a Seattle Application Override Group Poli
 
 1. On **SEA-ADM1**, from Server Manager, select **Tools (1)**, and then select **Group Policy Management (2)**.
 
-    ![](media/update21.png)
+    ![](media/lab1-12-6.png)
 
 1. If necessary, switch to the **Group Policy Management** window.
 
@@ -382,6 +383,8 @@ In this task, you will create and link a Seattle Application Override Group Poli
    ![](media/lab1f19.png)
 
 1. In the details pane, right-click or access the context menu for the **Seattle Application Override** GPO, and then select **Edit**.
+
+    ![](media/lab1-12-11.png)
 
 1. In the **console** tree, expand **User Configuration (1)**, expand **Policies (2)**, expand **Administrative Templates (3)**, expand **Control Panel (4)**, and then select **Personalization (5)**.
 
