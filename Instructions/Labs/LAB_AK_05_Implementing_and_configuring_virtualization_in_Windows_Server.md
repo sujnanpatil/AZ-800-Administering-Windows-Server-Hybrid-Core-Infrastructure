@@ -8,8 +8,6 @@ Contoso is a global engineering and manufacturing company with its head office i
 
 Because of many physical servers being currently underutilized, the company plans to expand virtualization to optimize the environment. Because of this, you decide to perform a proof of concept to validate how Hyper-V can be used to manage a virtual machine environment. Also, the Contoso DevOps team wants to explore container technology to determine whether they can help reduce deployment times for new applications and to simplify moving applications to the cloud. You plan to work with the team to evaluate Windows Server containers and to consider providing Internet Information Services (Web services) in a container.
 
-**Note:** An **[interactive lab simulation](https://mslabs.cloudguides.com/guides/AZ-800%20Lab%20Simulation%20-%20Implementing%20and%20configuring%20virtualization%20in%20Windows%20Server)** is available that allows you to click through this lab at your own pace. You may find slight differences between the interactive simulation and the hosted lab, but the core concepts and ideas being demonstrated are the same. 
-
 ## Lab objectives
 
 In this lab, you will perform:
@@ -165,7 +163,7 @@ In this task, you will manage virtual machines using Windows Admin Center
  
    ![](media/AZ-800-l2-1.png)
    
-   >**Note**: If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced (2)** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe) (3)**.
+   >**Note:** If you get **NET::ERR_CERT_DATE_INVALID** error, select **Advanced (2)** on the Edge browser page, at the bottom of page select **Continue to sea-adm1-contoso.com (unsafe) (3)**.
 
    ![](media/lab7-171.png)
    
@@ -186,7 +184,7 @@ In this task, you will manage virtual machines using Windows Admin Center
 
    ![](media/lab5h8.png)  
 
-   > **Note**: While performing above step, if you see an error message stating, **"You can add this server to your list of connections, but we can't confirm it's available."**, select **Add**.  
+   > **Note:** While performing above step, if you see an error message stating, **"You can add this server to your list of connections, but we can't confirm it's available."**, select **Add**.  
 
    - In the **All Connections** pane, select **sea-svr1.contoso.com** **(1)** and then click on **Manage as** **(2)**.  
    - In the **Specify your credentials** dialog box:  
@@ -330,91 +328,123 @@ In this task, you will install Docker on Windows Server machine
 
 In this task, you will install and run windows container inside server machine.
 
-
 1. Wait for sometime until **SEA-SVR1** restarts, use the below PowerShell command again to establish a new PowerShell Remoting session to **SEA-SVR1**.
    
    ```powershell
     Enter-PSSession -ComputerName SEA-SVR1
    ```
 
-1. In the **Windows PowerShell** console, enter the following command, and then press Enter to verify the installed version of Docker:
+    > **Note:** For the remaining steps in this task, you will need to run interactive Docker commands that require a TTY-capable terminal. The PowerShell console in Windows Admin Center does not support TTY. Therefore, it is recommended to use the alternative method: open **Windows PowerShell** as Administrator on **SEA-ADM1** and run `Enter-PSSession -ComputerName SEA-SVR1` to establish a PowerShell Remoting session.
 
-   ```powershell
-   Get-Package -Name Docker -ProviderName DockerProvider
-   ```
-1. Enter the following command, and then press Enter to identify Docker images currently present on **SEA-SVR1**: 
+1. In the **Windows PowerShell** console, enter the following command, and then press Enter to identify Docker images currently present on **SEA-SVR1**: 
 
    ```powershell
    docker images
    ```
 
-    ![](media/AZ-800-l5-22.png)
+    ![](media/lab5-12-4.1.png)
 
-   > **Note**: Verify that there are no images in the local repository store.
+    > **Note:** Verify that there are no images in the local repository store.
 
-1. Enter the following command, and then press Enter to download a Servercore image containing an Internet Information Services (IIS) installation:
+1. Enter the following command, and then press Enter to download a Nano Server image:
 
    ```powershell
-   docker pull nanoserver/iis
+   docker pull mcr.microsoft.com/windows/nanoserver:ltsc2022
    ```
 
-   > **Note**: The time it takes to complete the download will depend on the available bandwidth of the network connection from the lab VM to the Microsoft container registry.
+    > **Note:** The time it takes to complete the download will depend on the available bandwidth of the network connection from the lab VM to the Microsoft container registry.
+
+    ![](media/lab5-12-5.png)
 
 1. Enter the following command, and then press Enter to verify that the Docker image has been successfully downloaded:
 
    ```powershell
    docker images
    ```
+
 1. Enter the following command, and then press Enter to launch a container based on the downloaded image:
 
    ```powershell
-   docker run --isolation=hyperv -d -t --name nano -p 80:80 nanoserver/iis 
+   docker run -d --name nano1 mcr.microsoft.com/windows/nanoserver:ltsc2022 ping -t localhost 
    ```
+    ![](media/lab5-12-7.png)
 
-   ![](media/AZ-800-l5-23.png)
-
-   > **Note**: The docker command starts a container in the Hyper-V isolation mode (which addresses any host operating system incompatibility issues) as a background service (`-d`) and configures networking such that port 80 of the container host maps to port 80 of the container. 
+    > **Note:** The docker command starts a container and connects you to the command line interface of the container. 
 
 1. Enter the following command, and then press Enter to retrieve the IP address information of the container host:
 
    ```powershell
-   ipconfig
+   docker exec nano1 hostname
    ```
+    > **Note:** Verify this is the hostname of the container instance, not **SEA-SVR1**.
 
-   ![](media/AZ-800-l5-24.png)
-
-   > **Note**: Identify the IPv4 address of the Ethernet adapter named vEthernet (nat). This is the address of the new container. Next, identify the IPv4 address of the Ethernet adapter named **Ethernet**. This is the IP address of the host (**SEA-SVR1**) and is set to **172.16.10.12**.
-
-1. On **SEA-ADM1**, switch to the Microsoft Edge window, open another tab and go to **http://172.16.10.12**. Verify that the browser displays the default IIS page.
-
-   ![](media/IPaddress.png)
-
-1. On **SEA-ADM1**, switch back to the PowerShell Remoting session to **SEA-SVR1**, and then, in the **Windows PowerShell** console, enter the following command, and then press Enter to list running containers:
+1. Enter the following command, and then press Enter to create a text file in the container:
 
    ```powershell
-   docker ps
+   docker exec nano1 cmd.exe /c "echo Hello World! > C:\Users\Public\Hello.txt"
    ```
-    ![](media/AZ-800-l5-25.png)
 
-   > **Note**: This command provides information on the container that is currently running on **SEA-SVR1**. Record the container ID because you will use it to stop the container. 
+    ![](media/lab5-12-8.png)
 
-1. Enter the following command, and then press Enter to stop the running container (replace the `<ContainerID>` placeholder with the container ID you identified in the previous step): 
+1. Enter the following command to stop the running container and return to the PowerShell prompt on **SEA-SVR1**:
+   ```powershell
+   docker stop nano1
+   ```
+
+1. Enter the following command, and then press Enter get the container ID for the container you just exited by running the docker ps command:
 
    ```powershell
-   docker stop <ContainerID>
+   docker ps -a
    ```
 
-1. Enter the following command, and then press Enter to verify that the container has stopped:
+    ![](media/lab5-12-9.png)
+
+    > **Note:** The `-a` switch lists all containers, including those that are not currently running.
+
+1. Create a new helloworld image that includes the changes in the first container you ran. To do so, run the docker commit command, replacing \<containerID\> with the ID of your container:
 
    ```powershell
-   docker ps
+   docker commit <containerID> helloworld
    ```
 
-    ![](media/AZ-800-l5-26.png)
+1. You now have a custom image that contains the Hello.txt file. You can use the docker images command to see the new image.
+
+   ```powershell
+   docker images
+   ```
+
+    ![](media/lab5-12-10.png)
+
+1. Run the new container by using the docker run command with the --rm option. When you use this option, Docker automatically removes the container when the command, cmd.exe in this case, stops.
+
+   ```powershell
+   docker run --rm helloworld cmd.exe /s /c "type C:\Users\Public\Hello.txt"
+   ```
+   > **Note:** This command line outputs the content of the file you created earlier and stops the container again.
+
+1. Enter the following command, and then press Enter to launch a new container instance of the original image and check if the file you created is present:
+
+   ```powershell
+   docker run --rm mcr.microsoft.com/windows/nanoserver:ltsc2022 cmd.exe /s /c "type C:\Users\Public\Hello.txt"
+   ```
+    
+    ![](media/lab5-12-11.png)
+
+    > **Note:** The original image was not modified by adding a file and reverted back to its original state after stopping.
 
 ### Task 3: Use Windows Admin Center to manage containers
 
 In this task, you will use Windows Admin Center to manage containers.
+
+1. On **SEA-ADM1**, in the Windows Admin Center, go to the **settings (1)** icon in the top left corner, and then select **Extensions (2)**.
+
+1. In the **Extensions** pane, verify the **Containers (3)** extension is installed and updated under **Installed Extension**. If the extension is not installed, add it from the **Available Extensions** pane.
+
+    ![](media/lab5-12-12.png)
+
+    >**Note:** If the **Containers** extension shows an **Update available** status, update before proceeding.
+
+    ![](media/lab5-12-14.png)
 
 1. On **SEA-ADM1**, in the Windows Admin Center, in the Tools menu of **sea-svr1.contoso.com**, select **Containers**. 
 
@@ -422,7 +452,7 @@ In this task, you will use Windows Admin Center to manage containers.
 
 1. In the Containers pane, browse through the **Overview**, **Containers**, **Images**, **Networks**, and **Volumes** tabs.
 
-   ![](media/lab5h14.png)
+    ![](media/lab5-12-15.png)
 
 ### Review
 In this lab, you have completed:
