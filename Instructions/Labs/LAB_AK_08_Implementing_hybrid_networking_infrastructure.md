@@ -148,13 +148,12 @@ In this lab, you will perform:
     | Setting | Value |
     | --- | --- |
     | Peering link name | **az800l08-vnet1_to_az800l08-vnet0 (1)** |
-    | Virtual network deployment model | **Resource manager (2)** |
-    | Subscription | Leave the default subscription **(3)** |
-    | Remote virtual network: Virtual network | **az800l08-vnet1(4)** |
-    | Allow 'az800l08-vnet1' to access 'az800l08-vnet0' | **Select the checkbox (5)** |
-    | Allow 'az800l08-vnet1' to receive forwarded traffic from 'az800l08-vnet0'| **Select the checkbox (6)** |
+    | Subscription | Leave the default subscription **(2)** |
+    | Remote virtual network: Virtual network | **az800l08-vnet1(3)** |
+    | Allow 'az800l08-vnet1' to access 'az800l08-vnet0' | **Select the checkbox (4)** |
+    | Allow 'az800l08-vnet1' to receive forwarded traffic from 'az800l08-vnet0'| **Select the checkbox (5)** |
 
-    ![](media/AZ-800-l8-8.png)
+    ![](imagesa/t2s5.png)
 
 1. Specify the following settings for **Local virtual network** (leave others with their default values), and then select **Add (4)**:
 
