@@ -153,7 +153,7 @@ In this lab, you will perform:
     | Allow 'az800l08-vnet1' to access 'az800l08-vnet0' | **Select the checkbox (4)** |
     | Allow 'az800l08-vnet1' to receive forwarded traffic from 'az800l08-vnet0'| **Select the checkbox (5)** |
 
-    ![](imagesa/t2s5.png)
+    ![](images/t2s5.png)
 
 1. Specify the following settings for **Local virtual network** (leave others with their default values), and then select **Add (4)**:
 
