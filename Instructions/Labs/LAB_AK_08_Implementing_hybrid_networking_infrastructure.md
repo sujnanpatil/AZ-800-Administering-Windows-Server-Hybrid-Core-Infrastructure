@@ -620,7 +620,7 @@ In this lab, you will perform:
 1. In the **Windows PowerShell** console, enter the following command, and then press Enter to test external name resolution of the **www** DNS record set in the newly created DNS zone (replace the placeholder `<Name server 1>` with the name of **Name server 1** you noted earlier in this task and the `<domain name>` placeholder with the name of the DNS domain you created earlier in this task):
 
    ```powershell
-   nslookup www.mydns<inject key="DeploymentID" enableCopy="false"/> <Name server 1>
+   nslookup www.mydns<inject key="DeploymentID" enableCopy="false"/>.com <Name server 1>
    ```
 
 1. Verify that the output of the command includes the public IP address of **20.30.40.50**.
